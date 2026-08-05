@@ -1,7 +1,7 @@
 import type { DayPlan, FlightLeg, FlightOption, HotelStay } from './types'
 
 export const tripMeta = {
-  title: '奧匈捷 14 天聖誕市集',
+  title: '🎄 奧匈捷 14 天聖誕市集',
   nights: '14 天 13 夜',
   start: '2026-12-07',
   end: '2026-12-21',
@@ -26,7 +26,7 @@ export const hotels: HotelStay[] = [
     city: '布達佩斯',
     nights: '3 晚',
     dates: '12/8 – 12/11',
-    stars: 3,
+    stars: 4,
     placeId: 'hotel-vision',
     room: '雙床房',
     price: 16314,
@@ -35,7 +35,7 @@ export const hotels: HotelStay[] = [
     city: '維也納',
     nights: '4 晚',
     dates: '12/11 – 12/15',
-    stars: 4,
+    stars: 3,
     placeId: 'ibis-wien',
     room: '雙床房',
     price: 24899,
@@ -55,6 +55,12 @@ export const hotels: HotelStay[] = [
 
 export const transportItems = [
   {
+    label: '維也納機場 ➜ 中央車站',
+    detail: 'Day 2 · €19.9',
+    price: 743,
+    placeId: 'wien-hbf',
+  },
+  {
     label: '維也納 ➜ 布達佩斯',
     detail: 'ÖBB 火車頭等艙 €35.4',
     price: 1324,
@@ -67,10 +73,16 @@ export const transportItems = [
     placeId: 'obb',
   },
   {
-    label: '維也納 ➜ 布拉格（中停 CK）',
+    label: '維也納 ➜ 布拉格（中停 CK 庫倫洛夫）',
     detail: 'CK Shuttle 專車',
     price: 5867,
     placeId: 'ck-shuttle',
+  },
+  {
+    label: '布拉格飯店 ➜ 機場專車',
+    detail: 'Day 14 · 門對門約 $2,000／車（兩人同行可對分）',
+    price: 2000,
+    placeId: 'prg-airport',
   },
 ]
 
@@ -81,9 +93,64 @@ export const ticketItems = [
     price: 3733,
     placeId: 'klook-daytrip',
   },
+  {
+    label: '國會大廈內部導覽',
+    detail: 'Day 3 · 非歐盟成人 14,000 HUF，含中文語音導覽',
+    price: 1445,
+    placeId: 'parliament',
+  },
+  {
+    label: '城堡山復古纜車',
+    detail: 'Day 3 · 官網單程 4,500 HUF（上山後走路下山）',
+    price: 464,
+    placeId: 'funicular',
+  },
+  {
+    label: '塞車尼溫泉',
+    detail: 'Day 4 週四 · 平日全日票含置物櫃 13,200 HUF',
+    price: 1362,
+    placeId: 'szechenyi',
+  },
+  {
+    label: '多瑙河夜航',
+    detail: 'Day 4 · 參考 Legenda 官網晚間航程約 €25，含中文語音',
+    price: 934,
+    placeId: 'danube-cruise',
+  },
+  {
+    label: '美景宮上宮（克林姆《吻》）',
+    detail: 'Day 6 · 官網上宮成人 €23',
+    price: 859,
+    placeId: 'belvedere',
+  },
+  {
+    label: '維也納國家歌劇院',
+    detail: 'Day 8 · 官網站票 Parterre €18；座位視劇目另計',
+    price: 672,
+    placeId: 'staatsoper',
+  },
+  {
+    label: '布拉格城堡套票',
+    detail: 'Day 11 · 主迴路成人 450 CZK（聖維特、舊皇宮、黃金巷）',
+    price: 695,
+    placeId: 'prague-castle',
+  },
 ]
 
-export const transportPerPerson = 12098
+export const optionalTicketItems = [
+  {
+    label: '美泉宮宮殿（若進宮）',
+    detail: 'Day 6 · Palace Ticket 成人 €42，含語音導覽；冬季價可能微調',
+    price: 1569,
+    placeId: 'schonbrunn',
+  },
+  {
+    label: 'CK 彩繪塔登塔（若上去）',
+    detail: 'Day 9 · 晚間僅登塔 100 CZK；博物館＋登塔 280 CZK',
+    price: 154,
+    placeId: 'painted-tower',
+  },
+]
 
 export const days: DayPlan[] = [
   {
@@ -93,6 +160,7 @@ export const days: DayPlan[] = [
     title: '啟程前往歐洲',
     cityLabel: '台北 ➜ 維也納',
     cityIds: ['taipei', 'inflight'],
+    coverPlaceId: 'ci63',
     schedule: [
       {
         time: '21:30',
@@ -123,6 +191,7 @@ export const days: DayPlan[] = [
     title: '維也納落地 ➔ 直奔布達佩斯',
     cityLabel: '維也納 ➜ 布達佩斯',
     cityIds: ['vienna', 'budapest'],
+    coverPlaceId: 'st-stephen-market',
     schedule: [
       {
         time: '06:50',
@@ -191,6 +260,7 @@ export const days: DayPlan[] = [
     title: '經典宮廷與城堡夕陽',
     cityLabel: '布達佩斯',
     cityIds: ['budapest'],
+    coverPlaceId: 'parliament',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -202,7 +272,7 @@ export const days: DayPlan[] = [
       {
         time: '13:00 – 14:30',
         title: '國會大廈內部導覽',
-        note: '歐洲最宏偉哥德式建築之一',
+        note: '中文語音導覽；歐洲最宏偉哥德式建築之一',
         placeIds: ['parliament'],
       },
       {
@@ -235,6 +305,7 @@ export const days: DayPlan[] = [
     title: '百年市集與冰火溫泉',
     cityLabel: '布達佩斯',
     cityIds: ['budapest'],
+    coverPlaceId: 'szechenyi',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -286,6 +357,7 @@ export const days: DayPlan[] = [
     subtitle: '歐洲最大聖誕市集',
     cityLabel: '布達佩斯 ➜ 維也納',
     cityIds: ['budapest', 'vienna'],
+    coverPlaceId: 'stephansdom',
     schedule: [
       {
         time: '11:00',
@@ -337,6 +409,7 @@ export const days: DayPlan[] = [
     title: '皇家宮殿與古典咖啡館',
     cityLabel: '維也納',
     cityIds: ['vienna'],
+    coverPlaceId: 'the-kiss',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -382,7 +455,7 @@ export const days: DayPlan[] = [
     subtitle: '比較辛苦的一天，拉車時間長',
     cityLabel: '維也納 ➜ 薩爾斯堡／哈修塔特',
     cityIds: ['vienna', 'salzburg', 'hallstatt'],
-    note: '隔天可睡飽飽。',
+    coverPlaceId: 'hallstatt',
     schedule: [
       {
         time: '07:30 – 20:00',
@@ -408,6 +481,7 @@ export const days: DayPlan[] = [
     title: '維也納放鬆日',
     cityLabel: '維也納',
     cityIds: ['vienna'],
+    coverPlaceId: 'staatsoper',
     schedule: [
       {
         time: '12:30 – 14:00',
@@ -454,6 +528,7 @@ export const days: DayPlan[] = [
     weekday: '二',
     title: '維也納 ➔ CK 小鎮 ➔ 布拉格',
     cityLabel: '維也納 ➜ 庫倫洛夫 ➜ 布拉格',
+    coverPlaceId: 'ck-town',
     cityIds: ['vienna', 'ck', 'prague'],
     schedule: [
       {
@@ -502,6 +577,7 @@ export const days: DayPlan[] = [
     title: '童話老城與查理大橋',
     cityLabel: '布拉格',
     cityIds: ['prague'],
+    coverPlaceId: 'old-town-square',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -546,6 +622,7 @@ export const days: DayPlan[] = [
     title: '城堡區與帝國午茶',
     cityLabel: '布拉格',
     cityIds: ['prague'],
+    coverPlaceId: 'st-vitus',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -584,6 +661,7 @@ export const days: DayPlan[] = [
     title: '高堡區雪景與漫活日',
     cityLabel: '布拉格',
     cityIds: ['prague'],
+    coverPlaceId: 'vysehrad',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
@@ -627,6 +705,7 @@ export const days: DayPlan[] = [
     title: '最後採買與歡送晚宴',
     cityLabel: '布拉格',
     cityIds: ['prague'],
+    coverPlaceId: 'old-town-shopping',
     schedule: [
       { time: '11:00', title: '睡飽晚出門' },
       {
@@ -669,6 +748,7 @@ export const days: DayPlan[] = [
     title: '布拉格 ➔ 桃園，平安返台',
     cityLabel: '布拉格 ➜ 台北',
     cityIds: ['prague', 'inflight', 'taipei'],
+    coverPlaceId: 'prg-airport',
     schedule: [
       {
         time: '12/20 07:30',

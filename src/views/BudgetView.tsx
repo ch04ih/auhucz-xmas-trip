@@ -5,13 +5,57 @@ import {
   formatTwd,
   hotelPerPerson,
   hotels,
+  optionalTicketItems,
   ticketItems,
   transportItems,
-  transportPerPerson,
 } from '../data/trip'
 
 interface Props {
   onOpenPlace: (id: string) => void
+}
+
+interface BudgetRow {
+  label: string
+  detail: string
+  price: number
+  placeId?: string
+}
+
+function BudgetCards({
+  items,
+  onOpenPlace,
+}: {
+  items: BudgetRow[]
+  onOpenPlace: (id: string) => void
+}) {
+  return (
+    <div className="stack">
+      {items.map((item) =>
+        item.placeId ? (
+          <button
+            key={item.label}
+            type="button"
+            className="budget-card"
+            onClick={() => onOpenPlace(item.placeId!)}
+          >
+            <div>
+              <strong>{item.label}</strong>
+              <span>{item.detail}</span>
+            </div>
+            <em>{formatTwd(item.price)}</em>
+          </button>
+        ) : (
+          <div key={item.label} className="budget-card static">
+            <div>
+              <strong>{item.label}</strong>
+              <span>{item.detail}</span>
+            </div>
+            <em>{formatTwd(item.price)}</em>
+          </div>
+        ),
+      )}
+    </div>
+  )
 }
 
 export function BudgetView({ onOpenPlace }: Props) {
@@ -19,7 +63,7 @@ export function BudgetView({ onOpenPlace }: Props) {
   const flight = flightOptions[cabin]
   const transportSum = transportItems.reduce((s, i) => s + i.price, 0)
   const ticketSum = ticketItems.reduce((s, i) => s + i.price, 0)
-  const total = flight.price + hotelPerPerson + transportPerPerson
+  const total = flight.price + hotelPerPerson + transportSum + ticketSum
 
   return (
     <div className="page">
@@ -32,7 +76,10 @@ export function BudgetView({ onOpenPlace }: Props) {
       <div className="total-card">
         <span>預估每人（含{flight.cabin}）</span>
         <strong>{formatTwd(total)}</strong>
-        <p>機票 {formatTwd(flight.price)} ＋ 住宿 {formatTwd(hotelPerPerson)} ＋ 交通／一日遊 {formatTwd(transportPerPerson)}</p>
+        <p>
+          機票 {formatTwd(flight.price)} ＋ 住宿 {formatTwd(hotelPerPerson)} ＋ 交通{' '}
+          {formatTwd(transportSum)} ＋ 門票 {formatTwd(ticketSum)}
+        </p>
       </div>
 
       <section className="section">
@@ -96,22 +143,7 @@ export function BudgetView({ onOpenPlace }: Props) {
           <h2>交通</h2>
           <span className="muted">{formatTwd(transportSum)}</span>
         </div>
-        <div className="stack">
-          {transportItems.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              className="budget-card"
-              onClick={() => onOpenPlace(item.placeId)}
-            >
-              <div>
-                <strong>{item.label}</strong>
-                <span>{item.detail}</span>
-              </div>
-              <em>{formatTwd(item.price)}</em>
-            </button>
-          ))}
-        </div>
+        <BudgetCards items={transportItems} onOpenPlace={onOpenPlace} />
       </section>
 
       <section className="section">
@@ -119,26 +151,16 @@ export function BudgetView({ onOpenPlace }: Props) {
           <h2>景點門票</h2>
           <span className="muted">{formatTwd(ticketSum)}</span>
         </div>
-        <div className="stack">
-          {ticketItems.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              className="budget-card"
-              onClick={() => onOpenPlace(item.placeId)}
-            >
-              <div>
-                <strong>{item.label}</strong>
-                <span>{item.detail}</span>
-              </div>
-              <em>{formatTwd(item.price)}</em>
-            </button>
-          ))}
+        <BudgetCards items={ticketItems} onOpenPlace={onOpenPlace} />
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>選擇性門票</h2>
+          <span className="muted">未列入總額</span>
         </div>
-        <p className="fineprint">
-          交通三項 {formatTwd(transportSum)} ＋ 一日遊 {formatTwd(ticketSum)} ＝{' '}
-          {formatTwd(transportPerPerson)}，與行程表「交通 $12,098／人」相符。
-        </p>
+        <p className="hero-sub pending-lead">時間夠再買；外觀與市集本身免費。</p>
+        <BudgetCards items={optionalTicketItems} onOpenPlace={onOpenPlace} />
       </section>
     </div>
   )

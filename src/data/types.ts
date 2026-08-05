@@ -1,4 +1,4 @@
-export type Tab = 'home' | 'itinerary' | 'budget' | 'places'
+export type Tab = 'home' | 'itinerary' | 'budget' | 'places' | 'info'
 
 export type CityId =
   | 'taipei'
@@ -53,6 +53,7 @@ export interface DayPlan {
   subtitle?: string
   cityLabel: string
   cityIds: CityId[]
+  coverPlaceId?: string
   note?: string
   schedule: ScheduleItem[]
   meals: {

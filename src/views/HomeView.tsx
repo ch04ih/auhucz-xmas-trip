@@ -1,4 +1,4 @@
-import { days, flightLegs, formatTwd, hotelPerPerson, transportPerPerson, tripMeta } from '../data/trip'
+import { days, flightLegs, tripMeta } from '../data/trip'
 import type { DayPlan } from '../data/types'
 import { shareLink } from '../lib/share'
 
@@ -25,7 +25,6 @@ function todayDay(): DayPlan | undefined {
 
 export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
   const current = todayDay()
-  const beforeTrip = new Date() < new Date(`${tripMeta.start}T00:00:00`)
 
   return (
     <div className="page">
@@ -42,21 +41,6 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
         >
           分享給同行
         </button>
-        <div className="route">
-          <span>台北</span>
-          <i />
-          <span>維也納</span>
-          <i />
-          <span>布達佩斯</span>
-          <i />
-          <span>維也納</span>
-          <i />
-          <span>CK</span>
-          <i />
-          <span>布拉格</span>
-          <i />
-          <span>台北</span>
-        </div>
       </header>
 
       {current ? (
@@ -67,12 +51,6 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
           </strong>
           <span>{current.title}</span>
         </button>
-      ) : beforeTrip ? (
-        <div className="today-card static">
-          <span className="today-label">倒數出發</span>
-          <strong>{tripMeta.dateRangeLabel}　華航直飛</strong>
-          <span>先熟悉每日行程與景點簡介，出發就能直接用。</span>
-        </div>
       ) : null}
 
       <section className="section">
@@ -104,22 +82,6 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
               <span>{leg.detail}</span>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="section-head">
-          <h2>每人參考預算</h2>
-        </div>
-        <div className="stat-grid">
-          <button type="button" className="stat" onClick={onOpenBudget}>
-            <span>住宿 12 晚</span>
-            <strong>{formatTwd(hotelPerPerson)}</strong>
-          </button>
-          <button type="button" className="stat" onClick={onOpenBudget}>
-            <span>交通＋一日遊</span>
-            <strong>{formatTwd(transportPerPerson)}</strong>
-          </button>
         </div>
       </section>
 

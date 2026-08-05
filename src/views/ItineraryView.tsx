@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { PlaceChips } from '../components/PlaceChips'
+import { getPlace, placeImage } from '../data/places'
 import { days } from '../data/trip'
 import type { DayPlan } from '../data/types'
 import { shareLink } from '../lib/share'
@@ -38,6 +39,7 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
   const day: DayPlan = days.find((d) => d.day === dayNumber) ?? days[0]
   const prev = days.find((d) => d.day === day.day - 1)
   const next = days.find((d) => d.day === day.day + 1)
+  const cover = day.coverPlaceId ? getPlace(day.coverPlaceId) : undefined
   const scrollerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -81,6 +83,16 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
         >
           分享這一天
         </button>
+        {cover && (
+          <button
+            type="button"
+            className="day-cover"
+            onClick={() => onOpenPlace(cover.id)}
+          >
+            <img src={placeImage(cover)} alt={cover.name} />
+            <span>{cover.name}</span>
+          </button>
+        )}
       </header>
 
       <section className="section">

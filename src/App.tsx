@@ -4,6 +4,7 @@ import { parseHash, toHash, type AppRoute } from './lib/route'
 import { BudgetView } from './views/BudgetView'
 import { HomeView } from './views/HomeView'
 import { ItineraryView } from './views/ItineraryView'
+import { InfoView } from './views/InfoView'
 import { PlacesView } from './views/PlacesView'
 import type { Tab } from './data/types'
 
@@ -12,6 +13,7 @@ const tabs: { id: Tab; label: string }[] = [
   { id: 'itinerary', label: '行程' },
   { id: 'budget', label: '預算' },
   { id: 'places', label: '景點' },
+  { id: 'info', label: '資訊' },
 ]
 
 export default function App() {
@@ -71,6 +73,7 @@ export default function App() {
         )}
         {route.tab === 'budget' && <BudgetView onOpenPlace={openPlace} />}
         {route.tab === 'places' && <PlacesView onOpenPlace={openPlace} />}
+        {route.tab === 'info' && <InfoView />}
       </main>
 
       <nav className="tabbar" aria-label="主要選單">

@@ -73,7 +73,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '維也納最主要的長途鐵路樞紐，地下有超市、麵包店與咖啡。Ibis 飯店就在車站旁，Day 2 落地後先到這裡轉 ÖBB，Day 5 回維也納也在此下車。',
-    tip: '機場搭 CAT 或 ÖBB 市郊列車約 15–20 分鐘可到。車站內可買輕食當早午餐。',
+    tip: '機場進市區車票以 €19.9 計。車站內可買輕食當早午餐。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -83,7 +83,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'hotel',
     intro:
-      '布達佩斯三星飯店，住 12/8–12/11 共 3 晚，雙床房 $16,314。位置方便，作為瓦茨街、大教堂市集與市區移動的基地。',
+      '布達佩斯四星飯店，住 12/8–12/11 共 3 晚，雙床房 $16,314。位置方便，作為瓦茨街、大教堂市集與市區移動的基地。',
     tip: 'Day 2 中午可先放行李再逛街；正式 check-in 多在下午。Day 5 須 12:00 前退房。',
     mapsQuery: 'Hotel Vision Budapest',
   },
@@ -150,7 +150,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '多瑙河畔的新哥德式巨構，也是匈牙利最大建築之一。外觀對稱華麗，內部導覽可見圓頂大廳、階梯與王冠複製品。無論白天或夜景都是布達佩斯招牌畫面。',
-    tip: '內部導覽務必提前上網訂英文場次。外面拍照最佳角度在對岸漁人堡或船上。',
+    tip: '非歐盟成人 14,000 HUF，票價含語音導覽；官網 jegymester.hu 先訂場次，進場後選中文耳機。外面拍照最佳角度在對岸漁人堡或船上。',
     mapsQuery: 'Hungarian Parliament Building',
   },
   {
@@ -183,7 +183,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '從鍊子橋布達側山腳通往城堡區的百年纜車，車廂復古、坡度明顯，本身就是一個小體驗。可比走路省力，也適合拍照。',
-    tip: '現場買票即可，尖峰可能稍等一班。若排隊太長，也可改搭巴士 16 路上山。',
+    tip: '官網單程 4,500 HUF、來回 5,500 HUF。現場買票即可；尖峰可能稍等。排隊太長可改搭巴士 16 路上山。',
     mapsQuery: 'Budavári Sikló',
   },
   {
@@ -227,7 +227,7 @@ export const places: Place[] = [
     category: 'experience',
     intro:
       '布達佩斯最著名的溫泉浴場，黃色巴洛克宮殿環繞數座戶外熱池。冬天蒸汽與熱氣在冷空氣中升起，是「冰火溫泉」的招牌畫面，也是本行程放鬆核心。',
-    tip: '記得帶泳衣；可租毛巾與置物櫃。戶外池才是重點。建議平日下午去，避開週末人潮。',
+    tip: '平日全日票含置物櫃 13,200 HUF；12/19 起旺季 15,800 HUF。記得帶泳衣，戶外池才是重點。',
     mapsQuery: 'Széchenyi Thermal Bath',
   },
   {
@@ -271,7 +271,7 @@ export const places: Place[] = [
     category: 'experience',
     intro:
       '夜遊多瑙河是看國會大廈、鍊子橋與城堡燈飾的最佳方式。金黃色燈光倒映水面，從船上拍國會幾乎不會失手，也是布達佩斯最值得排進晚上的體驗。',
-    tip: '20:30–22:00 場次，吃完晚餐再上船。記得帶外套，甲板風大。可選含熱飲的簡單航程即可。',
+    tip: '20:30–22:00 場次。Legenda 等業者晚間航程約 €25，多含中文語音。記得帶外套，甲板風大。',
     mapsQuery: 'Danube cruise Budapest Parliament',
   },
   {
@@ -292,7 +292,7 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'hotel',
     intro:
-      '維也納四星（商務連鎖）飯店，住 12/11–12/15 共 4 晚，雙床房 $24,899，不可退。緊鄰中央車站，轉火車、回飯店都很省事，房間機能導向。',
+      '維也納三星（商務連鎖）飯店，住 12/11–12/15 共 4 晚，雙床房 $24,899，不可退。緊鄰中央車站，轉火車、回飯店都很省事，房間機能導向。',
     tip: 'Day 7 一日遊早出晚歸，住車站旁很加分。老城市集需搭地鐵或 Bolt 約 10–15 分。',
     mapsQuery: 'Ibis Wien Hauptbahnhof',
   },
@@ -359,7 +359,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '哈布斯堡王朝夏宮，也被譯為熊布朗宮。黃牆宮殿、法式花園與背後的凱旋門山丘，是維也納必訪。聖誕期間宮殿前方會舉辦大型聖誕市集。',
-    tip: '若要進宮建議訂 Grand Tour 或經典路線；時間有限至少走前庭、市集與花園軸線。',
+    tip: '進宮選 Palace Ticket，官網成人約 €42（含語音導覽，冬季價可能微調）。時間有限至少走前庭、市集與花園軸線。',
     mapsQuery: 'Schönbrunn Palace',
   },
   {
@@ -381,7 +381,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '歐根親王的巴洛克夏宮，分上宮與下宮，中間是幾何花園與水池。上宮收藏克林姆《吻》等奧地利名畫，是藝術迷必訪；花園倒影在冬天也很好拍。',
-    tip: '看《吻》要進上宮，建議線上購票。看完可直接逛宮前／園區聖誕市集。',
+    tip: '看《吻》要進上宮，官網成人 €23，建議線上購票。看完可直接逛宮前／園區聖誕市集。',
     mapsQuery: 'Belvedere Palace Vienna',
   },
   {
@@ -524,7 +524,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '世界頂尖歌劇院之一，環城大道上的新文藝復興建築。晚上來看歌劇或芭蕾，是維也納最有儀式感的體驗。即使只看外觀與大廳，也值得。',
-    tip: '票券提早在官網買。服裝不必燕尾服，整齊大方即可。演出約 19:00 開始，預留安檢入場。',
+    tip: '站票官網 €13–18（Parterre €18 視野最好）；座位視劇目。服裝整齊大方即可，預留安檢入場。',
     mapsQuery: 'Vienna State Opera',
   },
   {
@@ -568,7 +568,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '庫倫洛夫城堡區最醒目的圓塔，外壁有文藝復興彩繪，是小鎮天際線焦點。登塔可俯瞰整個河灣與舊城紅瓦。',
-    tip: '若開放登塔且時間夠就上去；不夠就在橋上與廣場拍外觀。',
+    tip: '晚間僅登塔 100 CZK，博物館＋登塔 280 CZK。時間不夠就在橋上與廣場拍外觀。',
     mapsQuery: 'Český Krumlov Castle Tower',
   },
   {
@@ -689,7 +689,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '據稱是世界上最大的古城堡建築群，包含聖維特大教堂、舊皇宮、聖喬治教堂、黃金巷等。建議搭車到頂，再一路往下走回小城與查理大橋，最省力。',
-    tip: '門票種類多，經典組合含大教堂、舊皇宮、黃金巷即可。安檢要一點時間，11:30 出發剛剛好。',
+    tip: '主迴路成人 450 CZK，含聖維特、舊皇宮、黃金巷。安檢要一點時間，11:30 出發剛剛好。',
     mapsQuery: 'Prague Castle',
   },
   {
@@ -854,7 +854,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '布拉格國際機場，華航 CI68 由此直飛台北。市區專車約 25 分鐘，建議預留塞車與晨間報到時間。',
-    tip: '07:30 退房出發，10:30 班機。國際線建議提早 3 小時到。',
+    tip: '07:30 退房出發，專車約 $2,000／車、車程約 25 分。10:30 班機，國際線建議提早 3 小時到。',
     mapsQuery: 'Václav Havel Airport Prague',
   },
 ]
