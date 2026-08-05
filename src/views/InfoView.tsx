@@ -19,7 +19,6 @@ const weather = [
   { city: '布達佩斯', high: '3–5°C', low: '-2–0°C', note: '濕冷，偶有薄雪' },
   { city: '維也納', high: '3–4°C', low: '-1–1°C', note: '市集風大，體感更低' },
   { city: '薩爾斯堡／哈修塔特', high: '0–3°C', low: '-5–-1°C', note: '湖區與山區最冷' },
-  { city: 'CK 庫倫洛夫', high: '1–3°C', low: '-4–0°C', note: '河谷夜晚偏冷' },
   { city: '布拉格', high: '1–3°C', low: '-3–0°C', note: '陰天多，可能下雪' },
 ]
 

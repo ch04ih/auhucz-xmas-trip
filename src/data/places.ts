@@ -6,7 +6,6 @@ export const cityLabels: Record<CityId, string> = {
   budapest: '布達佩斯',
   salzburg: '薩爾斯堡',
   hallstatt: '哈修塔特',
-  ck: '庫倫洛夫',
   prague: '布拉格',
   inflight: '旅途中',
 }
@@ -61,8 +60,8 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'transport',
     intro:
-      '奧地利聯邦鐵路，維也納與布達佩斯之間最方便的跨國火車。本行程去回皆訂頭等艙：去程約 €35.4（$1,324），回程約 €31.4（$1,174），車程約 2.5–3 小時。',
-    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB 或 ÖBB app 預訂。',
+      '奧地利聯邦鐵路。維也納⇄布達佩斯去回皆訂頭等艙（約 €35.4／€31.4）；Day 9 再搭頭等艙直達布拉格，約 €32（$1,195），15:10–19:23。',
+    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB app 預訂。Day 9 記得 14:40 前回到中央車站。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -73,7 +72,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '維也納最主要的長途鐵路樞紐，地下有超市、麵包店與咖啡。Ibis 飯店就在車站旁，Day 2 落地後先到這裡轉 ÖBB，Day 5 回維也納也在此下車。',
-    tip: '機場進市區車票以 €19.9 計。車站內可買輕食當早午餐。',
+    tip: '機場進市區車票以 €19.9 計。Day 9 由此搭 15:10 ÖBB 頭等艙前往布拉格。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -293,7 +292,7 @@ export const places: Place[] = [
     category: 'hotel',
     intro:
       '維也納三星（商務連鎖）飯店，住 12/11–12/15 共 4 晚，雙床房 $24,899，不可退。緊鄰中央車站，轉火車、回飯店都很省事，房間機能導向。',
-    tip: 'Day 7 一日遊早出晚歸，住車站旁很加分。老城市集需搭地鐵或 Bolt 約 10–15 分。',
+    tip: 'Day 7 一日遊早出晚歸，住車站旁很加分。Day 9 中午退房可先寄放行李，逛完再取行李搭 15:10 火車。',
     mapsQuery: 'Ibis Wien Hauptbahnhof',
   },
   {
@@ -528,70 +527,26 @@ export const places: Place[] = [
     mapsQuery: 'Vienna State Opera',
   },
   {
-    id: 'ck-shuttle',
-    name: 'CK Shuttle',
-    nameEn: 'Český Krumlov Shuttle',
-    city: 'ck',
-    category: 'transport',
-    intro:
-      '維也納經庫倫洛夫（CK）到布拉格的專車接送，費用約 $5,867。飯店門口上車，中停 CK 小鎮約 4 小時，再直送布拉格飯店，省去兩段火車與搬行李。',
-    tip: 'Day 9 09:00 退房等候接送。車上可補眠。CK 停留時間固定，抓緊午餐與拍照節奏。',
-    mapsQuery: 'Český Krumlov',
-  },
-  {
-    id: 'ck-town',
-    name: 'CK 小鎮／庫倫洛夫',
-    nameEn: 'Český Krumlov',
-    city: 'ck',
-    category: 'attraction',
-    intro:
-      '南波希米亞的世界遺產小鎮，伏爾塔瓦河繞成 S 型灣，紅瓦、城堡與彩繪塔堆在河彎裡，常被形容為「迷你布拉格」。舊城很小，很適合步行半日。',
-    tip: '12:30–17:00 停留約 4 小時：先找餐廳、再走河灣、登塔、看斗篷橋，最後留時間回上車點。',
-    mapsQuery: 'Český Krumlov Old Town',
-  },
-  {
-    id: 'vltava-bend',
-    name: '伏爾塔瓦河 S 型灣',
-    nameEn: 'Vltava River Bend',
-    city: 'ck',
-    category: 'attraction',
-    intro:
-      '庫倫洛夫最經典的地理特徵：河流幾乎繞小鎮一圈，從城堡或高處俯瞰可見完整 S 灣與紅瓦屋頂，是 CK 必拍畫面。',
-    tip: '城堡花園或城堡上層觀景點角度最好。冬天路面可能滑，走路小心。',
-    mapsQuery: 'Český Krumlov castle viewpoint',
-  },
-  {
-    id: 'painted-tower',
-    name: '彩繪塔',
-    nameEn: 'Castle Tower (Little Castle)',
-    city: 'ck',
-    category: 'attraction',
-    intro:
-      '庫倫洛夫城堡區最醒目的圓塔，外壁有文藝復興彩繪，是小鎮天際線焦點。登塔可俯瞰整個河灣與舊城紅瓦。',
-    tip: '晚間僅登塔 100 CZK，博物館＋登塔 280 CZK。時間不夠就在橋上與廣場拍外觀。',
-    mapsQuery: 'Český Krumlov Castle Tower',
-  },
-  {
-    id: 'cloak-bridge',
-    name: '斗篷橋',
-    nameEn: 'Cloak Bridge (Plášťový most)',
-    city: 'ck',
-    category: 'attraction',
-    intro:
-      '連接城堡不同翼樓的多層拱橋，因外形像披風／斗篷得名。從下方街道仰拍拱圈層次豐富，是 CK 建築攝影熱點。',
-    tip: '橋上與橋下兩種角度都值得停一下，不必久留。',
-    mapsQuery: 'Cloak Bridge Cesky Krumlov',
-  },
-  {
-    id: 'krcma',
-    name: 'Krčma v Šatlavské',
-    nameEn: 'Krčma v Šatlavské ulici',
-    city: 'ck',
+    id: 'schwarzer-kameel',
+    name: 'Zum Schwarzen Kameel',
+    nameEn: 'Zum Schwarzen Kameel',
+    city: 'vienna',
     category: 'restaurant',
     intro:
-      'CK 最有名的地窖炭烤餐廳之一，空間像中世紀酒館，主打開放式火爐烤肉、 dumplings 與啤酒。冬天吃一頓熱騰騰的地窖餐非常對味。',
-    tip: '中午可能客滿，到達小鎮後可先訂位或早點去排。控制用餐時間以免壓縮散步。',
-    mapsQuery: 'Krčma v Šatlavské ulici',
+      '開業超過 400 年的維也納老店，就在格拉本旁。以開放式小三明治、冷熱拼盤與簡致熱食聞名，氣氛典雅但不沉重，適合退房後、搭車前的最後一頓維也納午餐。',
+    tip: '建議訂位。吃完直接逛格拉本與科爾市場買紀念品，再搭 U1 回中央車站。',
+    mapsQuery: 'Zum Schwarzen Kameel Vienna',
+  },
+  {
+    id: 'praha-hlavni',
+    name: '布拉格中央車站',
+    nameEn: 'Praha hlavní nádraží',
+    city: 'prague',
+    category: 'transport',
+    intro:
+      '布拉格主要長途鐵路車站。Day 9 19:23 搭 ÖBB 頭等艙由此抵達，再前往 Botanique Hotel check-in。',
+    tip: '出站後搭 Bolt 或電車去飯店最省事。大件行李不必先去老城。',
+    mapsQuery: 'Praha hlavní nádraží',
   },
   {
     id: 'botanique',
@@ -854,7 +809,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '布拉格國際機場，華航 CI68 由此直飛台北。市區專車約 25 分鐘，建議預留塞車與晨間報到時間。',
-    tip: '07:30 退房出發，專車約 $2,000／車、車程約 25 分。10:30 班機，國際線建議提早 3 小時到。',
+    tip: '07:30 退房出發，專車每人 $1,000、車程約 25 分。10:30 班機，國際線建議提早 3 小時到。',
     mapsQuery: 'Václav Havel Airport Prague',
   },
 ]

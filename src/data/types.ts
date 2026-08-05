@@ -6,7 +6,6 @@ export type CityId =
   | 'budapest'
   | 'salzburg'
   | 'hallstatt'
-  | 'ck'
   | 'prague'
   | 'inflight'
 

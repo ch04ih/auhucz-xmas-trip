@@ -12,7 +12,6 @@ const filters: { id: CityId | 'all'; label: string }[] = [
   { id: 'vienna', label: '維也納' },
   { id: 'salzburg', label: '薩爾斯堡' },
   { id: 'hallstatt', label: '哈修塔特' },
-  { id: 'ck', label: 'CK' },
   { id: 'prague', label: '布拉格' },
 ]
 
