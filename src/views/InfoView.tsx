@@ -16,11 +16,34 @@ const fallbackPerTwd: Record<Exclude<MoneyCode, 'TWD'>, number> = {
 }
 
 const weather = [
-  { city: '布達佩斯', high: '3–5°C', low: '-2–0°C', note: '濕冷，偶有薄雪' },
-  { city: '維也納', high: '3–4°C', low: '-1–1°C', note: '市集風大，體感更低' },
-  { city: '薩爾斯堡／哈修塔特', high: '0–3°C', low: '-5–-1°C', note: '湖區與山區最冷' },
-  { city: '布拉格', high: '1–3°C', low: '-3–0°C', note: '陰天多，可能下雪' },
+  {
+    city: '布達佩斯',
+    high: '3–5°C',
+    low: '-2–0°C',
+    note: '河邊風稍大，著重頭頸防風保暖；隨處有暖氣與熱飲。',
+  },
+  {
+    city: '維也納',
+    high: '3–4°C',
+    low: '-1–1°C',
+    note: '市集廣場無遮蔽，外層建議穿防風羽絨外套。',
+  },
+  {
+    city: '薩爾斯堡／哈修塔特',
+    high: '0–3°C',
+    low: '-5–-1°C',
+    note: '山區湖區較冷，搭乘厚羊毛襪與發熱褲，注意保暖。',
+  },
+  {
+    city: '布拉格',
+    high: '1–3°C',
+    low: '-3–0°C',
+    note: '陰天多、偶有飄雪，地面若有融雪注意鞋底防滑。',
+  },
 ]
+
+const wearLayers = ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽圍巾', '防滑防水鞋']
+const kitItems = ['護唇膏', '保濕乳霜', '手套', '折疊傘']
 
 function formatClock(date: Date, timeZone: string) {
   return new Intl.DateTimeFormat('zh-TW', {
@@ -158,16 +181,51 @@ export function InfoView() {
       </section>
 
       <section className="section">
-        <h2>12 月天氣</h2>
-        <p className="hero-sub pending-lead">約略均溫，實際以出發前一週為準。白天短，約 8:00–16:00。</p>
+        <h2>❄️ 12 月天氣與穿搭建議</h2>
+        <p className="hero-sub pending-lead">
+          約略均溫，實際以出發前一週為準。白天短，約 8:00–16:00。
+        </p>
+
+        <div className="weather-overview">
+          <span>整體體感</span>
+          <p>
+            乾冷為主，白天體感約台灣寒流（12–14°C）。防風保暖做對，逛起來非常舒服乾爽！
+          </p>
+        </div>
+
+        <div className="weather-pack">
+          <div>
+            <span>穿搭公式</span>
+            <ol className="wear-steps">
+              {wearLayers.map((layer) => (
+                <li key={layer}>{layer}</li>
+              ))}
+            </ol>
+          </div>
+          <div>
+            <span>隨身必備</span>
+            <p className="kit-note">空氣乾，護唇與保濕很重要。</p>
+            <div className="kit-chips">
+              {kitItems.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <h3 className="weather-sub">📍 各城市氣候提示</h3>
         <div className="stack">
           {weather.map((item) => (
             <div key={item.city} className="weather-card">
-              <strong>{item.city}</strong>
-              <span>
-                白天 {item.high}　夜晚 {item.low}
-              </span>
-              <em>{item.note}</em>
+              <div className="weather-head">
+                <strong>{item.city}</strong>
+                <span>
+                  白天 {item.high}
+                  <i>／</i>
+                  夜晚 {item.low}
+                </span>
+              </div>
+              <p>{item.note}</p>
             </div>
           ))}
         </div>
@@ -181,16 +239,12 @@ export function InfoView() {
             <p>中歐是 C／F 型、230V。台灣電器需轉接頭；吹風機建議在當地買或確認雙電壓。</p>
           </div>
           <div className="info-card">
-            <strong>白天很短</strong>
-            <p>12 月約下午 4 點天黑。11 點出門後，戶外拍照與夕陽時間不多，溫泉、市集、夜景可排晚上。</p>
-          </div>
-          <div className="info-card">
             <strong>緊急電話</strong>
             <p>歐盟通用 112。市集人多注意包包；卡片可刷，攤位仍常收現金。</p>
           </div>
           <div className="info-card">
-            <strong>打包</strong>
-            <p>保暖層、防水靴、手套、圍巾、行動電源。溫泉記得泳衣；歌劇院穿著整齊即可，不必禮服。</p>
+            <strong>別忘了帶</strong>
+            <p>行動電源、泳衣（溫泉）。歌劇院穿著整齊即可，不必禮服。</p>
           </div>
         </div>
       </section>

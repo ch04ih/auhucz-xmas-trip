@@ -228,7 +228,9 @@ h3 {
 }
 
 .info-card,
-.weather-card {
+.weather-card,
+.weather-overview,
+.weather-pack {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -240,7 +242,8 @@ h3 {
 
 .info-card span,
 .weather-card span,
-.weather-card em,
+.weather-overview span,
+.weather-pack span,
 .rate-note {
   color: var(--muted);
   font-size: 12px;
@@ -252,11 +255,85 @@ h3 {
   font-size: 16px;
 }
 
-.info-card p {
+.info-card p,
+.weather-overview p,
+.weather-card p,
+.kit-note {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.weather-overview p {
+  color: var(--ink);
+}
+
+.weather-pack {
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.wear-steps {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wear-steps li {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.kit-note {
+  margin-top: 2px;
+  font-size: 13px;
+}
+
+.kit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.kit-chips span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.weather-sub {
+  margin: 18px 0 0;
+  font-size: 15px;
+}
+
+.weather-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.weather-head span {
+  flex: none;
+  font-size: 12px;
+  text-align: right;
+}
+
+.weather-head i {
+  font-style: normal;
+  color: var(--line);
+  margin: 0 4px;
 }
 
 .field {
