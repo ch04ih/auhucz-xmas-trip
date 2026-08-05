@@ -187,9 +187,17 @@ export function InfoView() {
         </p>
 
         <div className="weather-overview">
-          <span>整體體感</span>
+          <span>實際均溫</span>
+          <p className="weather-temps">
+            白天約 <strong>1–5°C</strong>
+            <i>／</i>
+            夜晚約 <strong>-3–1°C</strong>
+          </p>
+          <p className="weather-temps-note">三城差不多；薩爾斯堡／哈修塔特再低 2–3°C。</p>
+          <span>體感</span>
           <p>
-            乾冷為主，白天體感約台灣寒流（12–14°C）。防風保暖做對，逛起來非常舒服乾爽！
+            穿好防風的話，逛起來大概就像台灣寒流 <strong>12–14°C</strong>
+            ——涼涼乾乾的，很好走，沒有濕冷那種黏。實際氣溫更低，可是中歐是乾冷，體感沒數字看起來可怕；空曠市集沒防風，就會再冷好幾度。
           </p>
         </div>
 
