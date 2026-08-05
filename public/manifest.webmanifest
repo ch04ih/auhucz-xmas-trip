@@ -1,0 +1,25 @@
+{
+  "name": "奧匈捷 14 天聖誕市集",
+  "short_name": "奧匈捷行程",
+  "description": "布達佩斯、維也納、布拉格聖誕市集 14 天行程、預算與景點簡介",
+  "theme_color": "#7c2f38",
+  "background_color": "#f4efe7",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
