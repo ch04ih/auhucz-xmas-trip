@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pages": "BASE_PATH=/auhucz-xmas-trip/ tsc -b && BASE_PATH=/auhucz-xmas-trip/ vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
