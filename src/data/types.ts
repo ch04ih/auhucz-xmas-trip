@@ -97,6 +97,19 @@ export interface HotelCityGroup {
   options: HotelOption[]
 }
 
+export interface FlightCabin {
+  cabin: string
+  price: number
+}
+
+export interface FlightPlan {
+  id: string
+  label: string
+  note?: string
+  cabins: FlightCabin[]
+  legs: FlightLeg[]
+}
+
 export interface FlightOption {
   cabin: string
   price: number

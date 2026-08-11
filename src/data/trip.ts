@@ -1,4 +1,10 @@
-import type { DayPlan, FlightLeg, FlightOption, HotelCityGroup, HotelOption } from './types'
+import type {
+  DayPlan,
+  FlightLeg,
+  FlightPlan,
+  HotelCityGroup,
+  HotelOption,
+} from './types'
 
 export const tripMeta = {
   title: '🎄 奧匈捷 14 天聖誕市集',
@@ -9,15 +15,43 @@ export const tripMeta = {
   year: 2026,
 }
 
-export const flightOptions: FlightOption[] = [
-  { cabin: '經濟艙', price: 33639 },
-  { cabin: '豪經艙', price: 68786 },
+export const flightPlans: FlightPlan[] = [
+  {
+    id: 'ci',
+    label: '華航',
+    cabins: [
+      { cabin: '經濟艙', price: 33639 },
+      { cabin: '豪經艙', price: 68786 },
+    ],
+    legs: [
+      { route: '台北 ➜ 維也納', detail: '12/7 23:35 – 12/8 06:50　華航 CI63' },
+      { route: '布拉格 ➜ 台北', detail: '12/20 10:30 – 12/21 05:25　華航 CI68' },
+    ],
+  },
+  {
+    id: 'jx',
+    label: '星宇',
+    note: '直飛布拉格；回程可選 12/22–23 或 12/19–20',
+    cabins: [
+      { cabin: '經濟艙', price: 30674 },
+      { cabin: '豪經艙', price: 60914 },
+    ],
+    legs: [
+      { route: '台北 ➜ 布拉格', detail: '12/8 00:05 – 12/8 08:15　星宇 JX101' },
+      {
+        route: '布拉格 ➜ 台北',
+        detail: '12/22 10:25 – 12/23 05:20　星宇 JX102（或改 12/19–20）',
+      },
+    ],
+  },
 ]
 
-export const flightLegs: FlightLeg[] = [
-  { route: '台北 ➜ 維也納', detail: '12/7 23:35 – 12/8 06:50　華航 CI63' },
-  { route: '布拉格 ➜ 台北', detail: '12/20 10:30 – 12/21 05:25　華航 CI68' },
-]
+export const defaultFlightPlanId = 'ci'
+
+export const flightLegs: FlightLeg[] =
+  flightPlans.find((p) => p.id === defaultFlightPlanId)?.legs ?? flightPlans[0].legs
+
+export const flightOptions = flightPlans[0].cabins
 
 export const hotelCities: HotelCityGroup[] = [
   {
@@ -34,6 +68,7 @@ export const hotelCities: HotelCityGroup[] = [
         room: '雙床房',
         price: 16314,
         stars: 4,
+        note: '2020 開幕',
         summary: '市區方便、性價比高；房間較普通，適合想省預算。',
       },
       {
@@ -83,7 +118,7 @@ export const hotelCities: HotelCityGroup[] = [
         room: '雙床房',
         price: 24899,
         stars: 3,
-        note: '不可退',
+        note: '不可退 · 2017 開幕',
         summary: '貼著中央車站，轉車最省事；房間基本，去老城要搭地鐵。',
       },
       {
@@ -132,7 +167,7 @@ export const hotelCities: HotelCityGroup[] = [
         room: '雙床房',
         price: 32814,
         stars: 4,
-        note: '不可退',
+        note: '不可退 · 2024 翻新',
         summary: '四星舒適、相對省錢；離老城稍遠，進出多半要叫車或搭電車。',
       },
       {
@@ -225,12 +260,6 @@ export const ticketItems = [
     placeId: 'parliament',
   },
   {
-    label: '城堡山復古纜車',
-    detail: 'Day 3 · 官網單程 4,500 HUF（上山後走路下山）',
-    price: 464,
-    placeId: 'funicular',
-  },
-  {
     label: '塞車尼溫泉',
     detail: 'Day 4 週四 · 平日全日票含置物櫃 13,200 HUF',
     price: 1362,
@@ -254,20 +283,26 @@ export const ticketItems = [
     price: 672,
     placeId: 'staatsoper',
   },
-  {
-    label: '布拉格城堡套票',
-    detail: 'Day 11 · 主迴路成人 450 CZK（聖維特、舊皇宮、黃金巷）',
-    price: 695,
-    placeId: 'prague-castle',
-  },
 ]
 
 export const optionalTicketItems = [
+  {
+    label: '城堡山復古纜車',
+    detail: 'Day 3 · 官網單程 4,500 HUF（上山後走路下山；也可改搭巴士）',
+    price: 464,
+    placeId: 'funicular',
+  },
   {
     label: '美泉宮宮殿（若進宮）',
     detail: 'Day 6 · Palace Ticket 成人 €42，含語音導覽；冬季價可能微調',
     price: 1569,
     placeId: 'schonbrunn',
+  },
+  {
+    label: '布拉格城堡套票',
+    detail: 'Day 11 · 主迴路成人 450 CZK（聖維特、舊皇宮、黃金巷）',
+    price: 695,
+    placeId: 'prague-castle',
   },
 ]
 
