@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { PlaceModal } from './components/PlaceModal'
-import { StayPlanProvider } from './lib/StayPlanContext'
+import { StayPlanProvider, useStayPlan } from './lib/StayPlanContext'
 import { parseHash, toHash, type AppRoute } from './lib/route'
+import { scheduleWarmAllPlaceImages, warmDayCovers } from './lib/preloadImages'
 import { BudgetView } from './views/BudgetView'
 import { HomeView } from './views/HomeView'
 import { ItineraryView } from './views/ItineraryView'
@@ -18,8 +19,10 @@ const tabs: { id: Tab; label: string }[] = [
 ]
 
 function AppShell() {
+  const { plan } = useStayPlan()
   const [route, setRoute] = useState<AppRoute>(() => parseHash())
   const [placeId, setPlaceId] = useState<string | null>(() => parseHash().placeId ?? null)
+  const [lastDay, setLastDay] = useState(() => parseHash().day ?? 1)
 
   useEffect(() => {
     const sync = () => {
@@ -29,6 +32,7 @@ function AppShell() {
         return next
       })
       setPlaceId(next.placeId ?? null)
+      if (next.tab === 'itinerary' && next.day) setLastDay(next.day)
     }
     window.addEventListener('hashchange', sync)
     if (!window.location.hash) {
@@ -36,6 +40,11 @@ function AppShell() {
     }
     return () => window.removeEventListener('hashchange', sync)
   }, [])
+
+  useEffect(() => {
+    warmDayCovers(plan.days, lastDay)
+    scheduleWarmAllPlaceImages()
+  }, [plan.id, plan.days, lastDay])
 
   const go = (next: AppRoute) => {
     window.location.hash = toHash(next)
@@ -55,26 +64,54 @@ function AppShell() {
     }
   }
 
+  const itineraryDay = route.tab === 'itinerary' ? (route.day ?? lastDay) : lastDay
+
   return (
     <div className="app">
       <main className="main">
-        {route.tab === 'home' && (
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'home'}
+          aria-hidden={route.tab !== 'home'}
+        >
           <HomeView
             onOpenDay={(day) => go({ tab: 'itinerary', day })}
             onOpenBudget={() => go({ tab: 'budget' })}
             onOpenPlaces={() => go({ tab: 'places' })}
           />
-        )}
-        {route.tab === 'itinerary' && (
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'itinerary'}
+          aria-hidden={route.tab !== 'itinerary'}
+        >
           <ItineraryView
-            dayNumber={route.day ?? 1}
+            dayNumber={itineraryDay}
             onSelectDay={(day) => go({ tab: 'itinerary', day })}
             onOpenPlace={openPlace}
           />
-        )}
-        {route.tab === 'budget' && <BudgetView onOpenPlace={openPlace} />}
-        {route.tab === 'places' && <PlacesView onOpenPlace={openPlace} />}
-        {route.tab === 'info' && <InfoView />}
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'budget'}
+          aria-hidden={route.tab !== 'budget'}
+        >
+          <BudgetView onOpenPlace={openPlace} />
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'places'}
+          aria-hidden={route.tab !== 'places'}
+        >
+          <PlacesView onOpenPlace={openPlace} />
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'info'}
+          aria-hidden={route.tab !== 'info'}
+        >
+          <InfoView />
+        </div>
       </main>
 
       <nav className="tabbar" aria-label="主要選單">
@@ -86,7 +123,7 @@ function AppShell() {
             onClick={() =>
               go(
                 tab.id === 'itinerary'
-                  ? { tab: 'itinerary', day: route.day ?? 1 }
+                  ? { tab: 'itinerary', day: lastDay }
                   : { tab: tab.id },
               )
             }

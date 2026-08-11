@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { FadeImage } from '../components/FadeImage'
 import { categoryLabels, cityLabels, placeImage, places } from '../data/places'
 import type { CityId } from '../data/types'
 
@@ -70,10 +71,11 @@ export function PlacesView({ onOpenPlace }: Props) {
             className="place-row"
             onClick={() => onOpenPlace(p.id)}
           >
-            <img
+            <FadeImage
               className="place-thumb"
               src={placeImage(p)}
               alt=""
+              loading="lazy"
               onError={(e) => {
                 e.currentTarget.style.visibility = 'hidden'
               }}

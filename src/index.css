@@ -64,6 +64,10 @@ h3 {
   padding: 20px 18px 12px;
 }
 
+.tab-panel[hidden] {
+  display: none !important;
+}
+
 .page {
   display: flex;
   flex-direction: column;
@@ -129,6 +133,15 @@ h3 {
   width: 100%;
   height: 188px;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.day-cover img.img-ready,
+.place-thumb.img-ready,
+.modal-image.img-ready,
+.hotel-option-main img.img-ready {
+  opacity: 1;
 }
 
 .day-cover span {
@@ -686,6 +699,8 @@ h3 {
   object-fit: cover;
   border-radius: 10px;
   background: var(--bg-deep);
+  opacity: 0;
+  transition: opacity 0.22s ease;
 }
 
 .hotel-option-body {
@@ -1577,6 +1592,25 @@ h3 {
   margin-top: 4px;
 }
 
+.day-slide-viewport {
+  overflow: hidden;
+  margin: 0 -4px;
+  padding: 0 4px;
+  touch-action: pan-y;
+}
+
+.day-slide-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.itinerary-page {
+  gap: 16px;
+}
+
 .day-edge-zone {
   display: none;
 }
@@ -1691,6 +1725,8 @@ h3 {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.22s ease;
 }
 
 .place-thumb {
@@ -1700,6 +1736,8 @@ h3 {
   object-fit: cover;
   flex: none;
   background: var(--bg-deep);
+  opacity: 0;
+  transition: opacity 0.22s ease;
 }
 
 .sr-only {

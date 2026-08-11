@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
+import { FadeImage } from './FadeImage'
 import { categoryLabels, cityLabels, getPlace, placeImage } from '../data/places'
 import { placesForDay } from '../data/trip'
 import { useStayPlan } from '../lib/StayPlanContext'
+import { warmPlaceImage } from '../lib/preloadImages'
 
 interface Props {
   placeId: string | null
@@ -15,6 +17,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
 
   useEffect(() => {
     if (!placeId) return
+    warmPlaceImage(placeId)
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
@@ -45,7 +48,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
       >
         <div className="modal-handle" />
         <div className="modal-image-wrap">
-          <img
+          <FadeImage
             className="modal-image"
             src={placeImage(place)}
             alt={place.name}
