@@ -1,4 +1,4 @@
-import type { DayPlan, FlightLeg, FlightOption, HotelStay } from './types'
+import type { DayPlan, FlightLeg, FlightOption, HotelCityGroup, HotelOption } from './types'
 
 export const tripMeta = {
   title: '🎄 奧匈捷 14 天聖誕市集',
@@ -19,39 +19,164 @@ export const flightLegs: FlightLeg[] = [
   { route: '布拉格 ➜ 台北', detail: '12/20 10:30 – 12/21 05:25　華航 CI68' },
 ]
 
-export const hotelPerPerson = 38226
-
-export const hotels: HotelStay[] = [
+export const hotelCities: HotelCityGroup[] = [
   {
+    cityId: 'budapest',
     city: '布達佩斯',
     nights: '3 晚',
     dates: '12/8 – 12/11',
-    stars: 4,
-    placeId: 'hotel-vision',
-    room: '雙床房',
-    price: 16314,
+    defaultOptionId: 'basiliq-suite',
+    options: [
+      {
+        id: 'hotel-vision',
+        placeId: 'hotel-vision',
+        name: '美景飯店－大陸集團',
+        room: '雙床房',
+        price: 16314,
+        stars: 4,
+        summary: '市區方便、性價比高；房間較普通，適合想省預算。',
+      },
+      {
+        id: 'basiliq-exec',
+        placeId: 'basiliq',
+        name: 'BasiliQ Hotel',
+        room: '行政房',
+        price: 19961,
+        stars: 4,
+        note: '不可退 · 2025 開幕',
+        summary: '全新四星，走路就到聖殿大教堂市集；行政房新淨實用。',
+        imageId: 'basiliq-room',
+      },
+      {
+        id: 'basiliq-suite',
+        placeId: 'basiliq',
+        name: 'BasiliQ Hotel',
+        room: '招牌套房（聖殿大教堂景觀）',
+        price: 22787,
+        stars: 4,
+        note: '不可退 · 含四客早餐 · 2025 開幕',
+        summary: '窗景正對大教堂，市集夜景超加分；空間比行政房寬，推薦首選。',
+      },
+      {
+        id: 'kempinski',
+        placeId: 'kempinski',
+        name: 'Kempinski Hotel Corvinus',
+        room: '高級雙床房',
+        price: 25248,
+        stars: 5,
+        note: '不可退 · 2025 翻新',
+        summary: '五星旗艦、服務與隔音最好；價格最高，住得最穩。',
+      },
+    ],
   },
   {
+    cityId: 'vienna',
     city: '維也納',
     nights: '4 晚',
     dates: '12/11 – 12/15',
-    stars: 3,
-    placeId: 'ibis-wien',
-    room: '雙床房',
-    price: 24899,
-    note: '不可退',
+    defaultOptionId: 'jaz-vienna',
+    options: [
+      {
+        id: 'ibis-wien',
+        placeId: 'ibis-wien',
+        name: '宜必思維也納中央火車站飯店',
+        room: '雙床房',
+        price: 24899,
+        stars: 3,
+        note: '不可退',
+        summary: '貼著中央車站，轉車最省事；房間基本，去老城要搭地鐵。',
+      },
+      {
+        id: 'spark-hilton',
+        placeId: 'spark-hilton',
+        name: '希爾頓維也納多瑙城區 Spark 飯店',
+        room: '雙床房',
+        price: 22364,
+        stars: 4,
+        note: '2022 開幕',
+        summary: '新、乾淨、價位友善；在多瑙城區，每天進老城通勤稍遠。',
+      },
+      {
+        id: 'jaz-vienna',
+        placeId: 'jaz-vienna',
+        name: '維也納城市爵士飯店',
+        room: '悠音房',
+        price: 27042,
+        stars: 4,
+        note: '不可退 · 2021 開幕',
+        summary: '設計感強、地鐵方便；氣氛好，比車站飯店更有度假感。',
+      },
+      {
+        id: 'hilton-vienna-park',
+        placeId: 'hilton-vienna-park',
+        name: '希爾頓維也納公園飯店',
+        room: '雙床房',
+        price: 43636,
+        stars: 5,
+        note: '不可退 · 2020 翻新',
+        summary: '五星、靠市政廳公園與市集；位置與舒適度最好，也最貴。',
+      },
+    ],
   },
   {
+    cityId: 'prague',
     city: '布拉格',
     nights: '5 晚',
     dates: '12/15 – 12/20',
-    stars: 4,
-    placeId: 'botanique',
-    room: '雙床房',
-    price: 32814,
-    note: '不可退',
+    defaultOptionId: 'hilton-prague',
+    options: [
+      {
+        id: 'botanique',
+        placeId: 'botanique',
+        name: '布拉格植物園飯店',
+        room: '雙床房',
+        price: 32814,
+        stars: 4,
+        note: '不可退',
+        summary: '四星舒適、相對省錢；離老城稍遠，進出多半要叫車或搭電車。',
+      },
+      {
+        id: 'hilton-prague',
+        placeId: 'hilton-prague',
+        name: '布拉格古城希爾頓飯店',
+        room: '希爾頓雙床房',
+        price: 38022,
+        stars: 5,
+        note: '不可退 · 2016 翻新',
+        summary: '住在老城裡，走路逛廣場與橋最輕鬆；五星規格，晚歸也安心。',
+      },
+    ],
   },
 ]
+
+export const defaultHotelSelection: Record<HotelCityGroup['cityId'], string> = {
+  budapest: 'basiliq-suite',
+  vienna: 'jaz-vienna',
+  prague: 'hilton-prague',
+}
+
+export function hotelOptionById(id: string): HotelOption | undefined {
+  for (const city of hotelCities) {
+    const found = city.options.find((opt) => opt.id === id)
+    if (found) return found
+  }
+  return undefined
+}
+
+export function hotelPerPersonFromSelection(
+  selection: Record<HotelCityGroup['cityId'], string>,
+): number {
+  const total = hotelCities.reduce((sum, city) => {
+    const opt =
+      city.options.find((o) => o.id === selection[city.cityId]) ??
+      city.options.find((o) => o.id === city.defaultOptionId) ??
+      city.options[0]
+    return sum + opt.price
+  }, 0)
+  return Math.round(total / 2)
+}
+
+export const hotelPerPerson = hotelPerPersonFromSelection(defaultHotelSelection)
 
 export const transportItems = [
   {
@@ -212,7 +337,7 @@ export const days: DayPlan[] = [
       {
         time: '12:35 – 13:10',
         title: '飯店放行李',
-        placeIds: ['hotel-vision'],
+        placeIds: ['basiliq'],
       },
       {
         time: '13:30 – 15:00',
@@ -222,7 +347,7 @@ export const days: DayPlan[] = [
       {
         time: '15:00 – 17:00',
         title: '飯店 check-in 休息',
-        placeIds: ['hotel-vision'],
+        placeIds: ['basiliq'],
       },
       {
         time: '17:00 – 19:00',
@@ -244,8 +369,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '機場地底搭電車至維也納中央車站，轉乘特快火車頭等艙直達布達佩斯；市區步行／Bolt。',
-    lodging: 'Hotel Vision Budapest（1/3 晚）',
-    lodgingPlaceId: 'hotel-vision',
+    lodging: 'BasiliQ Hotel（1/3 晚）',
+    lodgingPlaceId: 'basiliq',
   },
   {
     day: 3,
@@ -289,8 +414,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '市內全搭 Bolt；城堡區搭復古纜車（Funicular）上山。',
-    lodging: 'Hotel Vision Budapest（2/3 晚）',
-    lodgingPlaceId: 'hotel-vision',
+    lodging: 'BasiliQ Hotel（2/3 晚）',
+    lodgingPlaceId: 'basiliq',
   },
   {
     day: 4,
@@ -340,8 +465,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '景點間以 Bolt 接駁；可體驗黃線地鐵 M1。',
-    lodging: 'Hotel Vision Budapest（3/3 晚）',
-    lodgingPlaceId: 'hotel-vision',
+    lodging: 'BasiliQ Hotel（3/3 晚）',
+    lodgingPlaceId: 'basiliq',
   },
   {
     day: 5,
@@ -357,7 +482,7 @@ export const days: DayPlan[] = [
         time: '11:00',
         title: '退房、吃東西',
         note: '12:00 前退房',
-        placeIds: ['hotel-vision'],
+        placeIds: ['basiliq'],
       },
       {
         time: '12:30 – 15:20',
@@ -367,7 +492,7 @@ export const days: DayPlan[] = [
       {
         time: '15:30 – 17:00',
         title: '飯店 check-in 休息',
-        placeIds: ['ibis-wien'],
+        placeIds: ['jaz-vienna'],
       },
       {
         time: '17:00 – 19:00',
@@ -393,8 +518,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: 'ÖBB 特快火車頭等艙；老城區市集與餐廳皆可步行。',
-    lodging: 'Ibis Wien Hauptbahnhof（1/4 晚）',
-    lodgingPlaceId: 'ibis-wien',
+    lodging: 'Jaz in the City Vienna（1/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 6,
@@ -438,8 +563,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '市區至美泉宮與美景宮搭 Bolt 或地鐵 U-Bahn。',
-    lodging: 'Ibis Wien Hauptbahnhof（2/4 晚）',
-    lodgingPlaceId: 'ibis-wien',
+    lodging: 'Jaz in the City Vienna（2/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 7,
@@ -465,8 +590,8 @@ export const days: DayPlan[] = [
       dinner: { label: '飯店附近吃' },
     },
     transport: '巴士一日遊',
-    lodging: 'Ibis Wien Hauptbahnhof（3/4 晚）',
-    lodgingPlaceId: 'ibis-wien',
+    lodging: 'Jaz in the City Vienna（3/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 8,
@@ -513,8 +638,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: 'Bolt 或地鐵 U-Bahn。',
-    lodging: 'Ibis Wien Hauptbahnhof（4/4 晚）',
-    lodgingPlaceId: 'ibis-wien',
+    lodging: 'Jaz in the City Vienna（4/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 9,
@@ -528,8 +653,8 @@ export const days: DayPlan[] = [
       {
         time: '12:00',
         title: '退房，行李寄放飯店',
-        note: 'Ibis 就在中央車站旁，先放行李再出門',
-        placeIds: ['ibis-wien'],
+        note: '先放行李再出門；回程再取行李搭 Bolt 去中央車站',
+        placeIds: ['jaz-vienna'],
       },
       {
         time: '12:20 – 13:30',
@@ -538,15 +663,15 @@ export const days: DayPlan[] = [
         placeIds: ['schwarzer-kameel'],
       },
       {
-        time: '13:30 – 14:30',
+        time: '13:30 – 14:20',
         title: '格拉本／科爾市場買最後紀念品',
-        note: '14:30 前回車站取行李',
         placeIds: ['graben', 'kohlmarkt'],
       },
       {
-        time: '14:40 – 15:10',
-        title: '取行李，進站月台',
-        placeIds: ['ibis-wien', 'wien-hbf'],
+        time: '14:20 – 14:50',
+        title: '回飯店取行李，Bolt 前往中央車站',
+        note: '預留塞車，目標 14:50 前到站',
+        placeIds: ['jaz-vienna', 'wien-hbf'],
       },
       {
         time: '15:10 – 19:23',
@@ -557,7 +682,7 @@ export const days: DayPlan[] = [
       {
         time: '19:23 – 20:00',
         title: '抵達，前往飯店 check-in',
-        placeIds: ['praha-hlavni', 'botanique'],
+        placeIds: ['praha-hlavni', 'hilton-prague'],
       },
       {
         time: '20:15 – 21:45',
@@ -584,9 +709,9 @@ export const days: DayPlan[] = [
         placeIds: ['lokal'],
       },
     },
-    transport: 'ÖBB 頭等艙 15:10–19:23 直達布拉格中央車站；市區地鐵／步行／Bolt。',
-    lodging: 'Botanique Hotel Prague（1/5 晚）',
-    lodgingPlaceId: 'botanique',
+    transport: '退房後 Bolt 至中央車站；ÖBB 頭等艙 15:10–19:23 直達布拉格；再叫車到飯店。',
+    lodging: 'Hilton Prague Old Town（1/5 晚）',
+    lodgingPlaceId: 'hilton-prague',
   },
   {
     day: 10,
@@ -630,8 +755,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '老城區與查理大橋步行；累了搭 Uber／Bolt。',
-    lodging: 'Botanique Hotel Prague（2/5 晚）',
-    lodgingPlaceId: 'botanique',
+    lodging: 'Hilton Prague Old Town（2/5 晚）',
+    lodgingPlaceId: 'hilton-prague',
   },
   {
     day: 11,
@@ -669,8 +794,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '去程 Uber／Bolt 上山至城堡頂，一路往下走回老城。',
-    lodging: 'Botanique Hotel Prague（3/5 晚）',
-    lodgingPlaceId: 'botanique',
+    lodging: 'Hilton Prague Old Town（3/5 晚）',
+    lodgingPlaceId: 'hilton-prague',
   },
   {
     day: 12,
@@ -713,8 +838,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '高堡區搭 Uber／Bolt 約 10 分鐘，回程可散步回老城。',
-    lodging: 'Botanique Hotel Prague（4/5 晚）',
-    lodgingPlaceId: 'botanique',
+    lodging: 'Hilton Prague Old Town（4/5 晚）',
+    lodgingPlaceId: 'hilton-prague',
   },
   {
     day: 13,
@@ -734,7 +859,7 @@ export const days: DayPlan[] = [
       {
         time: '14:00 – 16:00',
         title: '回飯店收拾行李、秤重打包',
-        placeIds: ['botanique'],
+        placeIds: ['hilton-prague'],
       },
       {
         time: '16:30 – 18:30',
@@ -756,8 +881,8 @@ export const days: DayPlan[] = [
       },
     },
     transport: '全天於老城區與飯店周邊，零拉車負擔。',
-    lodging: 'Botanique Hotel Prague（5/5 晚）',
-    lodgingPlaceId: 'botanique',
+    lodging: 'Hilton Prague Old Town（5/5 晚）',
+    lodgingPlaceId: 'hilton-prague',
   },
   {
     day: 14,
@@ -772,7 +897,7 @@ export const days: DayPlan[] = [
         time: '12/20 07:30',
         title: '退房，搭機場接送',
         note: '車程約 25 分鐘',
-        placeIds: ['botanique', 'prg-airport'],
+        placeIds: ['hilton-prague', 'prg-airport'],
       },
       {
         time: '12/20 10:30',

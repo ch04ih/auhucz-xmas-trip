@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { placeImage } from '../data/places'
 import {
+  defaultHotelSelection,
   flightLegs,
   flightOptions,
   formatTwd,
-  hotelPerPerson,
-  hotels,
+  hotelCities,
+  hotelPerPersonFromSelection,
   optionalTicketItems,
   ticketItems,
   transportItems,
 } from '../data/trip'
+import type { HotelCityGroup } from '../data/types'
 
 interface Props {
   onOpenPlace: (id: string) => void
@@ -60,17 +63,26 @@ function BudgetCards({
 
 export function BudgetView({ onOpenPlace }: Props) {
   const [cabin, setCabin] = useState(0)
+  const [hotelSelection, setHotelSelection] = useState(defaultHotelSelection)
   const flight = flightOptions[cabin]
   const transportSum = transportItems.reduce((s, i) => s + i.price, 0)
   const ticketSum = ticketItems.reduce((s, i) => s + i.price, 0)
+  const hotelPerPerson = useMemo(
+    () => hotelPerPersonFromSelection(hotelSelection),
+    [hotelSelection],
+  )
   const total = flight.price + hotelPerPerson + transportSum + ticketSum
+
+  const selectHotel = (cityId: HotelCityGroup['cityId'], optionId: string) => {
+    setHotelSelection((prev) => ({ ...prev, [cityId]: optionId }))
+  }
 
   return (
     <div className="page">
       <header className="page-head">
         <p className="eyebrow">Budget / person</p>
         <h1>預算總覽</h1>
-        <p className="hero-sub">以每人計算。飯店房價另列出雙床房總價供對照。</p>
+        <p className="hero-sub">以每人計算。住宿可點選比較，價格為雙床房總價。</p>
       </header>
 
       <div className="total-card">
@@ -112,29 +124,63 @@ export function BudgetView({ onOpenPlace }: Props) {
           <h2>住宿</h2>
           <span className="muted">每人 {formatTwd(hotelPerPerson)}</span>
         </div>
-        <div className="stack">
-          {hotels.map((h) => (
-            <button
-              key={h.placeId}
-              type="button"
-              className="budget-card"
-              onClick={() => onOpenPlace(h.placeId)}
-            >
-              <div>
-                <strong>
-                  {h.city}　{h.nights}
-                </strong>
-                <span>
-                  {h.dates}　{'★'.repeat(h.stars)}
-                </span>
-                <span>
-                  {h.room}
-                  {h.note ? ` · ${h.note}` : ''}
-                </span>
+        <p className="hero-sub pending-lead">每個城市選一間；預設已選推薦組合，可再比較調整。</p>
+        <div className="hotel-city-stack">
+          {hotelCities.map((city) => {
+            const selectedId = hotelSelection[city.cityId]
+            return (
+              <div key={city.cityId} className="hotel-city">
+                <div className="hotel-city-head">
+                  <div>
+                    <strong>
+                      {city.city}　{city.nights}
+                    </strong>
+                    <span>{city.dates}</span>
+                  </div>
+                </div>
+                <div className="hotel-option-stack">
+                  {city.options.map((opt) => {
+                    const active = opt.id === selectedId
+                    const imgId = opt.imageId ?? opt.placeId
+                    return (
+                      <div
+                        key={opt.id}
+                        className={active ? 'hotel-option active' : 'hotel-option'}
+                      >
+                        <button
+                          type="button"
+                          className="hotel-option-main"
+                          onClick={() => selectHotel(city.cityId, opt.id)}
+                        >
+                          <img src={placeImage(imgId)} alt={opt.name} />
+                          <div className="hotel-option-body">
+                            <div className="hotel-option-title">
+                              <strong>{opt.name}</strong>
+                              {active ? <em className="hotel-pick">已選</em> : null}
+                            </div>
+                            <span>
+                              {'★'.repeat(opt.stars)}
+                              {opt.note ? ` · ${opt.note}` : ''}
+                            </span>
+                            <span>{opt.room}</span>
+                            <p>{opt.summary}</p>
+                          </div>
+                          <em className="hotel-price">{formatTwd(opt.price)}</em>
+                        </button>
+                        <button
+                          type="button"
+                          className="hotel-option-link"
+                          onClick={() => onOpenPlace(opt.placeId)}
+                        >
+                          看介紹
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-              <em>{formatTwd(h.price)}</em>
-            </button>
-          ))}
+            )
+          })}
         </div>
       </section>
 

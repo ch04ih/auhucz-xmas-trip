@@ -76,6 +76,27 @@ export interface HotelStay {
   note?: string
 }
 
+export interface HotelOption {
+  id: string
+  placeId: string
+  name: string
+  room: string
+  price: number
+  stars: number
+  note?: string
+  summary: string
+  imageId?: string
+}
+
+export interface HotelCityGroup {
+  cityId: 'budapest' | 'vienna' | 'prague'
+  city: string
+  nights: string
+  dates: string
+  defaultOptionId: string
+  options: HotelOption[]
+}
+
 export interface FlightOption {
   cabin: string
   price: number

@@ -77,14 +77,36 @@ export const places: Place[] = [
   },
   {
     id: 'hotel-vision',
-    name: 'Hotel Vision Budapest',
+    name: '美景飯店－大陸集團',
     nameEn: 'Hotel Vision Budapest',
     city: 'budapest',
     category: 'hotel',
     intro:
-      '布達佩斯四星飯店，住 12/8–12/11 共 3 晚，雙床房 $16,314。位置方便，作為瓦茨街、大教堂市集與市區移動的基地。',
-    tip: 'Day 2 中午可先放行李再逛街；正式 check-in 多在下午。Day 5 須 12:00 前退房。',
+      '布達佩斯四星，市區位置方便，瓦茨街與大教堂市集都好到達。房價最親民，適合想把預算留給吃喝與門票的人；房間標準實用，沒有太多設計感。',
+    tip: 'Day 2 中午可先放行李再逛街。治安與一般市中心觀光區差不多，晚上回飯店建議走大路或叫車。',
     mapsQuery: 'Hotel Vision Budapest',
+  },
+  {
+    id: 'basiliq',
+    name: 'BasiliQ Hotel',
+    nameEn: 'BasiliQ Hotel Budapest',
+    city: 'budapest',
+    category: 'hotel',
+    intro:
+      '2025 年開幕的四星新飯店，就在聖伊什特萬大教堂旁邊。行政房新淨實用；招牌套房可看大教堂，還含四客早餐。逛聖誕市集幾乎不用通勤，夜晚回房也安心。',
+    tip: '本行程預設住招牌套房。市集就在門口，行李可請飯店暫放。',
+    mapsQuery: 'BasiliQ Hotel Budapest',
+  },
+  {
+    id: 'kempinski',
+    name: 'Kempinski Hotel Corvinus',
+    nameEn: 'Kempinski Hotel Corvinus Budapest',
+    city: 'budapest',
+    category: 'hotel',
+    intro:
+      '布達佩斯五星旗艦，2025 年翻新。高級雙床房隔音與床墊都很好，服務穩定。位在市中心精華區，步行可到廣場與購物街，是「住得最穩」的選項。',
+    tip: '價格最高。若很在意睡眠品質與大廳氣質，這間最有把握。',
+    mapsQuery: 'Kempinski Hotel Corvinus Budapest',
   },
   {
     id: 'vaci-utca',
@@ -286,14 +308,47 @@ export const places: Place[] = [
   },
   {
     id: 'ibis-wien',
-    name: 'Ibis Wien Hauptbahnhof',
+    name: '宜必思維也納中央火車站飯店',
     nameEn: 'Ibis Wien Hauptbahnhof',
     city: 'vienna',
     category: 'hotel',
     intro:
-      '維也納三星（商務連鎖）飯店，住 12/11–12/15 共 4 晚，雙床房 $24,899，不可退。緊鄰中央車站，轉火車、回飯店都很省事，房間機能導向。',
-    tip: 'Day 7 一日遊早出晚歸，住車站旁很加分。Day 9 中午退房可先寄放行李，逛完再取行李搭 15:10 火車。',
+      '三星連鎖，幾乎貼著中央車站。轉 ÖBB、一日遊早出晚歸最省事，房價相對可控。房間偏機能、空間不大，去市政廳與老城通常要搭地鐵或 Bolt。',
+    tip: '若行程火車多、想少搬行李，這間最省心。治安單純，車站人多，貴重物品照常留意。',
     mapsQuery: 'Ibis Wien Hauptbahnhof',
+  },
+  {
+    id: 'spark-hilton',
+    name: '希爾頓維也納多瑙城區 Spark 飯店',
+    nameEn: 'Spark by Hilton Vienna Donaustadt',
+    city: 'vienna',
+    category: 'hotel',
+    intro:
+      '2022 年開幕的四星，房間新、乾淨，雙床房價位友善。位於多瑙城區，周圍較新穎安靜，但每天進一區老城與市集要多一段通勤。',
+    tip: '適合在意新房況、可接受搭地鐵往返市中心的人。',
+    mapsQuery: 'Spark by Hilton Vienna Donaustadt',
+  },
+  {
+    id: 'jaz-vienna',
+    name: '維也納城市爵士飯店',
+    nameEn: 'Jaz in the City Vienna',
+    city: 'vienna',
+    category: 'hotel',
+    intro:
+      '2021 年開幕的四星音樂主題飯店，悠音房有設計感與音響氛圍。地鐵可達市中心，比車站飯店更有度假感，也比五星親民。本行程維也納預設住宿。',
+    tip: 'Day 9 退房後可先寄放行李，逛完再取行李搭 Bolt 去中央車站趕 15:10 火車。',
+    mapsQuery: 'Jaz in the City Vienna',
+  },
+  {
+    id: 'hilton-vienna-park',
+    name: '希爾頓維也納公園飯店',
+    nameEn: 'Hilton Vienna Park',
+    city: 'vienna',
+    category: 'hotel',
+    intro:
+      '五星飯店，2020 年翻新。靠近市政廳公園與聖誕市集，夜間逛完走回飯店很輕鬆。房間寬敞、服務完整，是維也納「位置＋舒適」的頂配，價格也最高。',
+    tip: '若預算允許、想把市集當自家後院，這間最對味。',
+    mapsQuery: 'Hilton Vienna Park',
   },
   {
     id: 'rathaus-market',
@@ -544,20 +599,31 @@ export const places: Place[] = [
     city: 'prague',
     category: 'transport',
     intro:
-      '布拉格主要長途鐵路車站。Day 9 19:23 搭 ÖBB 頭等艙由此抵達，再前往 Botanique Hotel check-in。',
-    tip: '出站後搭 Bolt 或電車去飯店最省事。大件行李不必先去老城。',
+      '布拉格主要長途鐵路車站。Day 9 19:23 搭 ÖBB 頭等艙由此抵達，再前往老城希爾頓 check-in。',
+    tip: '出站後搭 Bolt 去飯店最省事。大件行李不必先去廣場。',
     mapsQuery: 'Praha hlavní nádraží',
   },
   {
     id: 'botanique',
-    name: 'Botanique Hotel Prague',
+    name: '布拉格植物園飯店',
     nameEn: 'Botanique Hotel Prague',
     city: 'prague',
     category: 'hotel',
     intro:
-      '布拉格四星飯店，住 12/15–12/20 共 5 晚，雙床房 $32,814，不可退。作為本行程最長停留城市的基地，方便老城、城堡與高堡區出擊。',
-    tip: 'Day 13 下午回飯店秤重打包。Day 14 07:30 退房搭專車送機。',
+      '布拉格四星，房間舒適、價位相對友善。離老城與城堡有一段距離，進出多半搭電車或叫車；適合想省一點住宿、白天再進中心區的人。',
+    tip: '周圍偏住宅／商務，夜晚相對安靜。去老城建議直接叫車，比摸電車轉乘輕鬆。',
     mapsQuery: 'Botanique Hotel Prague',
+  },
+  {
+    id: 'hilton-prague',
+    name: '布拉格古城希爾頓飯店',
+    nameEn: 'Hilton Prague Old Town',
+    city: 'prague',
+    category: 'hotel',
+    intro:
+      '五星飯店，2016 年翻新。住在老城範圍內，走路可到廣場、天文鐘與查理大橋方向。晚歸、下雪天都比住郊區省事，是本行程布拉格預設住宿。',
+    tip: 'Day 14 早上專車送機約 25 分。老城人多，進出大廳注意行李與隨身物。',
+    mapsQuery: 'Hilton Prague Old Town',
   },
   {
     id: 'lokal',
