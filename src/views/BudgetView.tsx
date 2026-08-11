@@ -5,13 +5,11 @@ import {
   defaultHotelSelection,
   flightPlans,
   formatTwd,
-  hotelCities,
   hotelPerPersonFromSelection,
-  optionalTicketItems,
-  ticketItems,
   transportItems,
 } from '../data/trip'
 import type { HotelCityGroup, HotelOption } from '../data/types'
+import { useStayPlan } from '../lib/StayPlanContext'
 
 interface Props {
   onOpenPlace: (id: string) => void
@@ -68,6 +66,11 @@ function hotelMeta(opt: HotelOption) {
 }
 
 export function BudgetView({ onOpenPlace }: Props) {
+  const { plan } = useStayPlan()
+  const hotelCities = plan.hotelCities
+  const ticketItems = plan.ticketItems
+  const optionalTicketItems = plan.optionalTicketItems
+
   const [flightPlanId, setFlightPlanId] = useState(defaultFlightPlanId)
   const [cabin, setCabin] = useState(0)
   const [hotelSelection, setHotelSelection] = useState(defaultHotelSelection)
@@ -80,8 +83,8 @@ export function BudgetView({ onOpenPlace }: Props) {
   const transportSum = transportItems.reduce((s, i) => s + i.price, 0)
   const ticketSum = ticketItems.reduce((s, i) => s + i.price, 0)
   const hotelPerPerson = useMemo(
-    () => hotelPerPersonFromSelection(hotelSelection),
-    [hotelSelection],
+    () => hotelPerPersonFromSelection(hotelSelection, hotelCities),
+    [hotelSelection, hotelCities],
   )
   const total = flight.price + hotelPerPerson + transportSum + ticketSum
 
@@ -104,7 +107,9 @@ export function BudgetView({ onOpenPlace }: Props) {
       <header className="page-head">
         <p className="eyebrow">Budget / person</p>
         <h1>預算總覽</h1>
-        <p className="hero-sub">以每人計算；飯店價為雙床房總價。</p>
+        <p className="hero-sub">
+          以每人計算；飯店價為雙床房總價。目前方案 {plan.label}。
+        </p>
       </header>
 
       <div className="total-card">

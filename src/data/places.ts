@@ -60,8 +60,8 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'transport',
     intro:
-      '奧地利聯邦鐵路。維也納⇄布達佩斯去回皆訂頭等艙（約 €35.4／€31.4）；Day 9 再搭頭等艙直達布拉格，約 €32（$1,195），15:10–19:23。',
-    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB app 預訂。Day 9 記得 14:40 前回到中央車站。',
+      '奧地利聯邦鐵路。維也納⇄布達佩斯去回皆訂頭等艙（約 €35.4／€31.4）；Day 10 再搭頭等艙直達布拉格，約 €32（$1,195），15:10–19:23。',
+    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB app 預訂。Day 10 記得 14:40 前回到中央車站。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -71,8 +71,8 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'transport',
     intro:
-      '維也納最主要的長途鐵路樞紐，地下有超市、麵包店與咖啡。Ibis 飯店就在車站旁，Day 2 落地後先到這裡轉 ÖBB，Day 5 回維也納也在此下車。',
-    tip: '機場進市區車票以 €19.9 計。Day 9 由此搭 15:10 ÖBB 頭等艙前往布拉格。',
+      '維也納最主要的長途鐵路樞紐，地下有超市、麵包店與咖啡。Ibis 飯店就在車站旁，Day 2 落地後先到這裡轉 ÖBB，Day 6 回維也納也在此下車。',
+    tip: '機場進市區車票以 €19.9 計。Day 10 由此搭 15:10 ÖBB 頭等艙前往布拉格。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -115,7 +115,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'shop',
     intro:
-      '布達佩斯最知名的步行購物街，連接沃洛斯馬蒂廣場與中央市場方向，兩側是紀念品店、時裝店、餐廳與街頭藝人，適合落地後先熟悉城市節奏。',
+      '布達佩斯最知名的步行購物街，連接弗洛斯馬提廣場與中央大市場方向，兩側是紀念品店、時裝店、餐廳與街頭藝人，適合落地後先熟悉城市節奏。',
     tip: '觀光區餐廳偏貴，午餐可隨便小吃即可，把正餐留給晚上。',
     mapsQuery: 'Váci utca Budapest',
   },
@@ -138,6 +138,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '布達佩斯最重要的天主教堂，供奉匈牙利首位國王聖伊什特萬的右手聖骸。新古典圓頂是市區天際線地標，夜晚被燈光照亮非常壯觀。',
+    story:
+      '教堂供奉的是匈牙利首位國王聖伊什特萬的「右手聖骸」。這隻聖手在歷史上曾被藏匿、流亡國外，輾轉多年才重回布達佩斯；聖誕市集的光影秀也常打在教堂立面上，夜晚特別有戲劇感。',
     tip: '若時間夠可上樓觀景台俯瞰市區；市集就在教堂前廣場。',
     mapsQuery: "St. Stephen's Basilica Budapest",
   },
@@ -160,6 +162,8 @@ export const places: Place[] = [
     category: 'cafe',
     intro:
       '常被稱為「全世界最美咖啡館」之一。金箔、壁畫、水晶燈與巴洛克大廳極盡華麗，19 世紀末曾是作家與記者聚集地。適合當成一頓儀式感早午餐，而不只是喝杯咖啡。',
+    story:
+      '19 世紀末文人常泡在這裡寫稿。傳說當時老闆心一橫，乾脆把店「賣」給常客，代價只要一杯咖啡，好讓作家天天來坐；後來又悄悄買回來，這份任性成了鎮店八卦，也讓它多了一層文藝傳奇色彩。',
     tip: '強烈建議訂位。點套餐或早午餐比較划算；進去先拍照再慢慢吃。',
     mapsQuery: 'New York Café Budapest',
   },
@@ -170,7 +174,9 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'attraction',
     intro:
-      '多瑙河畔的新哥德式巨構，也是匈牙利最大建築之一。外觀對稱華麗，內部導覽可見圓頂大廳、階梯與王冠複製品。無論白天或夜景都是布達佩斯招牌畫面。',
+      '多瑙河畔的新哥德式巨構，也是匈牙利最大建築之一。外觀對稱華麗，內部導覽可見圓頂大廳、階梯與聖史蒂芬王冠。無論白天或夜景都是布達佩斯招牌畫面。',
+    story:
+      '據說整棟建築共有 365 座尖塔，剛好對應一年的天數。內部還收藏匈牙利聖冠；晚上從河面或對岸望去，金燈點點，特別像一座被點亮的童話宮殿。',
     tip: '非歐盟成人 14,000 HUF，票價含語音導覽；官網 jegymester.hu 先訂場次，進場後選中文耳機。外面拍照最佳角度在對岸漁人堡或船上。',
     mapsQuery: 'Hungarian Parliament Building',
   },
@@ -182,6 +188,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '布達山丘上的新羅馬式白色廊台與尖塔，建於 19–20 世紀之交，用來紀念守護這片城牆的漁民公會。由此俯瞰國會大廈與多瑙河，是看夕陽的經典位置。',
+    story:
+      '名字真的跟「漁夫」有關，不是後來硬取的浪漫地名。中世紀這段城牆曾由漁民公會負責看守，今日的白色廊台是後世重建的紀念建築，用來向當年守城的人致敬。',
     tip: '主廊台部分收費，周圍仍有很多免費觀景點。冬天日短，15:00–16:30 就要就位看夕陽。',
     mapsQuery: "Fisherman's Bastion Budapest",
   },
@@ -198,12 +206,12 @@ export const places: Place[] = [
   },
   {
     id: 'funicular',
-    name: '城堡山復古纜車',
+    name: '布達城堡纜車',
     nameEn: 'Budavári Sikló (Castle Hill Funicular)',
     city: 'budapest',
     category: 'transport',
     intro:
-      '從鍊子橋布達側山腳通往城堡區的百年纜車，車廂復古、坡度明顯，本身就是一個小體驗。可比走路省力，也適合拍照。',
+      '從塞切尼鍊橋布達側山腳通往城堡區的百年纜車，車廂復古、坡度明顯，本身就是一個小體驗。可比走路省力，也適合拍照。',
     tip: '官網單程 4,500 HUF、來回 5,500 HUF。現場買票即可；尖峰可能稍等。排隊太長可改搭巴士 16 路上山。',
     mapsQuery: 'Budavári Sikló',
   },
@@ -220,7 +228,7 @@ export const places: Place[] = [
   },
   {
     id: 'great-market-hall',
-    name: '中央市場',
+    name: '中央大市場',
     nameEn: 'Great Market Hall (Nagyvásárcsarnok)',
     city: 'budapest',
     category: 'market',
@@ -236,18 +244,20 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'restaurant',
     intro:
-      '匈牙利國民小吃：發酵麵團油炸後抹蒜、酸奶油，再加起司或其他配料。外酥內軟、份量很大，在中央市場二樓吃最有在地感。',
+      '匈牙利國民小吃：發酵麵團油炸後抹蒜、酸奶油，再加起司或其他配料。外酥內軟、份量很大，在中央大市場二樓吃最有在地感。',
     tip: '一份很能飽，兩人可分享。趁熱吃，別點太多配料反而吃不完。',
     mapsQuery: 'Great Market Hall Budapest Langos',
   },
   {
     id: 'szechenyi',
-    name: '塞車尼溫泉',
+    name: '塞切尼溫泉',
     nameEn: 'Széchenyi Thermal Bath',
     city: 'budapest',
     category: 'experience',
     intro:
       '布達佩斯最著名的溫泉浴場，黃色巴洛克宮殿環繞數座戶外熱池。冬天蒸汽與熱氣在冷空氣中升起，是「冰火溫泉」的招牌畫面，也是本行程放鬆核心。',
+    story:
+      '在匈牙利，泡溫泉有點像社交日常。塞切尼戶外池邊常有人泡在熱水裡下西洋棋——一邊冒著蒸汽，一邊盯著黑白棋子，是冬天最有畫面、也最能感受在地節奏的一幕。',
     tip: '平日全日票含置物櫃 13,200 HUF；12/19 起旺季 15,800 HUF。記得帶泳衣，戶外池才是重點。',
     mapsQuery: 'Széchenyi Thermal Bath',
   },
@@ -259,7 +269,7 @@ export const places: Place[] = [
     category: 'market',
     intro:
       '位於城市公園內的沃伊達奇城堡前，建築本身融合多種歷史風格，晚上燈光照在城堡與冰場上，聖誕市集氣氛偏童話、比大教堂市集更安靜浪漫。',
-    tip: '可與塞車尼溫泉同一天，溫泉出來吹風後去市集喝熱飲剛剛好。',
+    tip: '可與塞切尼溫泉同一天，溫泉出來吹風後去市集喝熱飲剛剛好。',
     mapsQuery: 'Vajdahunyad Castle Christmas Market',
   },
   {
@@ -270,6 +280,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '為 1896 年千年慶而建的展示建築，把匈牙利各地建築風格濃縮成一座城堡，座落城市公園湖畔。冬天常有冰場，外觀非常上相。',
+    story:
+      '這座城堡原本是 1896 年千年國慶的「臨時展示屋」，把全國各地建築風格拼成一座樣品屋。沒想到太受歡迎，後來乾脆改建成永久建築，像一塊捨不得拆的巨大布景板。',
     tip: '不一定要進館，外觀與市集就很值得。白天與晚上氛圍差很多。',
     mapsQuery: 'Vajdahunyad Castle',
   },
@@ -280,7 +292,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'restaurant',
     intro:
-      '位於利斯斐倫茨廣場附近的摩登匈牙利餐廳，裝潢有復古食堂感，菜色道地但呈現較新。招牌鴨胸常被推薦，適合想吃好料又不想太正裝的晚上。',
+      '位於李斯特廣場附近的摩登匈牙利餐廳，裝潢有復古食堂感，菜色道地但呈現較新。招牌鴨胸常被推薦，適合想吃好料又不想太正裝的晚上。',
     tip: '建議訂位。吃完再走去碼頭搭多瑙河夜航。',
     mapsQuery: 'Menza Étterem Budapest',
   },
@@ -291,7 +303,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'experience',
     intro:
-      '夜遊多瑙河是看國會大廈、鍊子橋與城堡燈飾的最佳方式。金黃色燈光倒映水面，從船上拍國會幾乎不會失手，也是布達佩斯最值得排進晚上的體驗。',
+      '夜遊多瑙河是看國會大廈、塞切尼鍊橋與城堡燈飾的最佳方式。金黃色燈光倒映水面，從船上拍國會幾乎不會失手，也是布達佩斯最值得排進晚上的體驗。',
     tip: '20:30–22:00 場次。Legenda 等業者晚間航程約 €25，多含中文語音。記得帶外套，甲板風大。',
     mapsQuery: 'Danube cruise Budapest Parliament',
   },
@@ -302,9 +314,33 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'transport',
     intro:
-      '歐洲最早的地鐵線之一，1896 年通車，車廂與站體小巧復古，連接沃洛斯馬蒂廣場到城市公園／塞車尼溫泉方向。搭一程本身就是體驗。',
-    tip: '本行程多數路段用 Bolt，若順路可特地搭一段 M1 過癮。',
+      '歐洲最早的地鐵線之一，1896 年通車，車廂與站體小巧復古，連接弗洛斯馬提廣場到城市公園／塞切尼溫泉方向。搭一程本身就是體驗。',
+    story:
+      '它又被叫做「千年地下鐵」，是為了 1896 年建國千年慶而通車，幾乎貼著安德拉希大道下方跑。車廂與站體都小小的、很復古，搭一程不只是移動，更像坐進還在運轉的博物館。',
+    tip: 'Day 5 安德拉希大道可特地搭一段 M1；多數其他路段仍用 Bolt。',
     mapsQuery: 'Opera Metro Station Budapest M1',
+  },
+  {
+    id: 'andrassy',
+    name: '安德拉希大道',
+    nameEn: 'Andrássy Avenue',
+    city: 'budapest',
+    category: 'attraction',
+    intro:
+      '布達佩斯最氣派的林蔭大道，世界遺產之一。兩側是劇院、精品與華麗公寓，從市中心一路通往英雄廣場，適合慢慢散步或搭黃線地鐵分段體驗。',
+    tip: 'Day 5 放鬆日主軸。冷的話可邊走邊進咖啡廳暖身，不必硬走全程。',
+    mapsQuery: 'Andrássy Avenue Budapest',
+  },
+  {
+    id: 'heroes-square',
+    name: '英雄廣場',
+    nameEn: 'Heroes Square',
+    city: 'budapest',
+    category: 'attraction',
+    intro:
+      '千年紀念柱與匈牙利歷史英雄雕像環繞的大廣場，後方接城市公園。冬天廣場開闊、光線漂亮，也是拍建築與天際線的好點。',
+    tip: 'Day 5 下午來，看完可順道晃沃伊達奇城堡外圍；風大記得戴帽子。',
+    mapsQuery: 'Hősök tere Budapest',
   },
   {
     id: 'ibis-wien',
@@ -336,7 +372,7 @@ export const places: Place[] = [
     category: 'hotel',
     intro:
       '2021 年開幕的四星音樂主題飯店，悠音房有設計感與音響氛圍。地鐵可達市中心，比車站飯店更有度假感，也比五星親民。本行程維也納預設住宿。',
-    tip: 'Day 9 退房後可先寄放行李，逛完再取行李搭 Bolt 去中央車站趕 15:10 火車。',
+    tip: 'Day 10 退房後可先寄放行李，逛完再取行李搭 Bolt 去中央車站趕 15:10 火車。',
     mapsQuery: 'Jaz in the City Vienna',
   },
   {
@@ -380,6 +416,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '維也納老城心臟，以彩色菱格屋頂與南塔聞名。周圍是卡恩特納大街、格拉本等核心步行區，晚餐前後散步經過，很能感受舊城夜生活。',
+    story:
+      '彩色屋頂上有哈布斯堡的「雙老鷹」圖案；大鐘「Pummerin」曾在戰爭中毀壞後重鑄，音色低沉。當地人常開玩笑說：聽到它響，才算真正到了維也納。',
     tip: '教堂本身可進參觀；若只是路過看夜景與屋頂也足夠。附近餐廳多，Figlmüller 就在不遠處。',
     mapsQuery: 'St. Stephen\'s Cathedral Vienna',
   },
@@ -391,6 +429,8 @@ export const places: Place[] = [
     category: 'restaurant',
     intro:
       '維也納炸牛排 Schnitzel 傳奇老店，薄而巨大的炸小牛肉常超出盤子，配馬鈴薯沙拉。Wollzeile 店靠近聖史蒂芬大教堂，是經典觀光美食。',
+    story:
+      '店家據說故意把炸小牛肉做得「看起來比盤子還大」，薄薄一片常超出盤緣，成了觀光客必拍的梗圖。重點其實不只是誇張賣相，而是那層酥脆外皮與多汁肉質的反差。',
     tip: '一定要訂位。一份很大，可考慮分享；也可點小份或加配菜。',
     mapsQuery: 'Figlmüller Wollzeile Vienna',
   },
@@ -402,6 +442,8 @@ export const places: Place[] = [
     category: 'cafe',
     intro:
       '維也納最負盛名的傳統咖啡館之一。拱頂大廳、鋼琴演奏與經典蛋糕，曾是弗洛伊德、托洛茨基、作家與音樂家出沒之地。用來吃一頓從容的早午餐剛剛好。',
+    story:
+      '托洛茨基流亡維也納時，據說常來這裡看書寫字，店員未必認得他是誰。對當時的知識分子來說，咖啡館幾乎就是行動辦公室——一杯咖啡能坐一下午，邊聊政治邊改稿。',
     tip: '熱門時段常排隊，可先訂位或稍早到。招牌可點咖啡配蛋糕，或直接當成午餐。',
     mapsQuery: 'Café Central Vienna',
   },
@@ -412,7 +454,9 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'attraction',
     intro:
-      '哈布斯堡王朝夏宮，也被譯為熊布朗宮。黃牆宮殿、法式花園與背後的凱旋門山丘，是維也納必訪。聖誕期間宮殿前方會舉辦大型聖誕市集。',
+      '哈布斯堡王朝夏宮，台灣多稱美泉宮。黃牆宮殿、法式花園與背後的凱旋門山丘，是維也納必訪。聖誕期間宮殿前方會舉辦大型聖誕市集。',
+    story:
+      'Schönbrunn 原意是「美麗的泉」：傳說皇帝狩獵時發現清泉，才決定在此蓋夏宮。園區後方還有世界最古老的動物園之一；冬天來，宮殿黃牆配上聖誕市集的木屋燈火特別迷人。',
     tip: '進宮選 Palace Ticket，官網成人約 €42（含語音導覽，冬季價可能微調）。時間有限至少走前庭、市集與花園軸線。',
     mapsQuery: 'Schönbrunn Palace',
   },
@@ -434,19 +478,21 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'attraction',
     intro:
-      '歐根親王的巴洛克夏宮，分上宮與下宮，中間是幾何花園與水池。上宮收藏克林姆《吻》等奧地利名畫，是藝術迷必訪；花園倒影在冬天也很好拍。',
+      '歐根親王的巴洛克夏宮，分上宮與下宮，中間是幾何花園與水池。上宮收藏克林姆特《吻》等奧地利名畫，是藝術迷必訪；花園倒影在冬天也很好拍。',
     tip: '看《吻》要進上宮，官網成人 €23，建議線上購票。看完可直接逛宮前／園區聖誕市集。',
     mapsQuery: 'Belvedere Palace Vienna',
   },
   {
     id: 'the-kiss',
-    name: '克林姆《吻》',
+    name: '克林姆特《吻》',
     nameEn: 'Gustav Klimt, The Kiss',
     city: 'vienna',
     category: 'attraction',
     intro:
-      '維也納分離派大師克林姆的代表作，金箔與圖案包裹一對相擁的戀人，收藏於美景宮上宮。是奧地利最出名的畫作之一，現場尺寸與金光比印刷品震撼。',
-    tip: '展廳可能人多，先看畫再慢慢逛其他克林姆與席勒作品。',
+      '維也納分離派大師克林姆特的代表作，金箔與圖案包裹一對相擁的戀人，收藏於美景宮上宮。是奧地利最出名的畫作之一，現場尺寸與金光比印刷品震撼。',
+    story:
+      '畫作剛問世時，有人覺得金箔鋪得太滿、太誇張；如今卻成了奧地利國民級圖騰，連伴手禮都看得見它。現場看會發現金屬光澤與畫幅尺寸，比印刷品震撼太多。',
+    tip: '展廳可能人多，先看畫再慢慢逛其他克林姆特與席勒作品。',
     mapsQuery: 'Upper Belvedere The Kiss',
   },
   {
@@ -456,7 +502,7 @@ export const places: Place[] = [
     city: 'vienna',
     category: 'market',
     intro:
-      '美景宮園區的聖誕市集，規模小於市政廳，但巴洛克宮殿與水池燈飾很有質感，適合看完畫後慢慢逛，作為 Day 6 的收尾。',
+      '美景宮園區的聖誕市集，規模小於市政廳，但巴洛克宮殿與水池燈飾很有質感，適合看完畫後慢慢逛，作為 Day 7 的收尾。',
     tip: '16:30–18:30 天色漸暗，燈飾會愈來愈好看。',
     mapsQuery: 'Belvedere Christmas Market Vienna',
   },
@@ -479,7 +525,7 @@ export const places: Place[] = [
     category: 'experience',
     intro:
       '從維也納出發的 Klook 一日遊，約 07:30–20:00，車程長但可一天看完莫札特故鄉與世界遺產湖區小鎮。門票約 $3,733。這是本行程最辛苦的一天。',
-    tip: '前一晚早睡，帶水和零食。隔天 Day 8 刻意排成放鬆日。哈修塔特午餐時間有限，看好集合時間。',
+    tip: '前一晚早睡，帶水和零食。隔天 Day 9 刻意排成放鬆日。哈修塔特午餐時間有限，看好集合時間。',
     mapsQuery: 'Hallstatt Austria',
   },
   {
@@ -501,6 +547,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '阿爾卑斯山湖畔的世界遺產小鎮，木屋、教堂尖塔與倒影湖面構成經典明信片畫面。冬天若下雪更美，但也更冷、日照短，人潮仍可能不少。',
+    story:
+      '因為太像明信片，中國曾仿建一座「山寨哈修塔特」小鎮，真假對照一度登上國際新聞。親身站在湖邊看木屋與山壁倒影，才會懂為什麼大家搶著複製——也更能珍惜眼前這一幕。',
     tip: '經典拍照點在湖對岸觀景台或沿湖步道。午餐就在鎮上解決，準時回到集合點。',
     mapsQuery: 'Hallstatt Market Square',
   },
@@ -578,6 +626,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '世界頂尖歌劇院之一，環城大道上的新文藝復興建築。晚上來看歌劇或芭蕾，是維也納最有儀式感的體驗。即使只看外觀與大廳，也值得。',
+    story:
+      '維也納有獨特的「站票文化」：便宜站票常被學生與樂迷秒殺，有人穿得很正式，卻甘願站完全場。對他們來說，聽現場比坐哪一排更重要；也因此國家歌劇院的門檻，其實沒想像中遙遠。',
     tip: '站票官網 €13–18（Parterre €18 視野最好）；座位視劇目。服裝整齊大方即可，預留安檢入場。',
     mapsQuery: 'Vienna State Opera',
   },
@@ -599,7 +649,7 @@ export const places: Place[] = [
     city: 'prague',
     category: 'transport',
     intro:
-      '布拉格主要長途鐵路車站。Day 9 19:23 搭 ÖBB 頭等艙由此抵達，再前往老城希爾頓 check-in。',
+      '布拉格主要長途鐵路車站。Day 10 19:23 搭 ÖBB 頭等艙由此抵達，再前往老城希爾頓 check-in。',
     tip: '出站後搭 Bolt 去飯店最省事。大件行李不必先去廣場。',
     mapsQuery: 'Praha hlavní nádraží',
   },
@@ -644,6 +694,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '1357 年開始興建的石橋，連接老城與小城／城堡方向，橋上有 30 尊巴洛克聖徒雕像，是布拉格最重要的象徵。晨昏與雪景都極美，白天則有畫家與樂手。',
+    story:
+      '傳說查理四世特意選在 1357 年 7 月 9 日 5:31 動工，好讓年、月、日、時、分排成一串吉利數字。另有民間故事說建橋砂漿裡加了蛋，好讓橋更堅固——真偽難辨，卻讓過橋多了一點想像空間。',
     tip: '11:30 已會有人潮。想拍空橋要起很早；本行程走經典白天路線，重點放在雕像與兩岸景色。',
     mapsQuery: 'Charles Bridge Prague',
   },
@@ -671,12 +723,14 @@ export const places: Place[] = [
   },
   {
     id: 'astronomical-clock',
-    name: '天文鐘',
+    name: '布拉格天文鐘',
     nameEn: 'Prague Astronomical Clock',
     city: 'prague',
     category: 'attraction',
     intro:
       '安裝於老市政廳的中世紀天文鐘，整點會有使徒小雕像報時表演。鐘面同時顯示時間、星象與曆法，是老城廣場最聚集人潮的點。',
+    story:
+      '流傳最廣的傳說是：鐘匠把天文鐘做得太好，當局怕他再為別的城市打造，竟弄瞎了他的眼睛。故事偏殘忍、也未必屬實，卻讓這座整點報時的鐘，多了一層神秘又心疼的色彩。',
     tip: '表演本身很短，重點是氣氛。站外圈也能看，不必擠最前面。可順便登老市政廳塔俯瞰廣場。',
     mapsQuery: 'Prague Astronomical Clock',
   },
@@ -699,6 +753,8 @@ export const places: Place[] = [
     category: 'restaurant',
     intro:
       '營業超過 500 年的釀酒廠餐廳，只供應自家黑啤酒，配烤鴨、豬膝、酸菜與麵糰。大廳有民歌與啤酒館氣氛，是很「捷克」的一餐。',
+    story:
+      '這間釀酒廠餐廳營業超過五百年，菜單可以跟著時代變，啤酒卻幾乎只賣自家深色啤酒。來這裡點餐，某種程度上就是為了喝那一杯又苦又香的黑啤，感受老啤酒館的煙火氣。',
     tip: '觀光成分高但體驗獨特。啤酒只賣自家黑啤，接受再去。可訂位或提早到。',
     mapsQuery: 'U Fleků Prague',
   },
@@ -732,6 +788,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '城堡內的古老王宮，最著名的是弗拉迪斯拉夫大廳：巨大無柱的晚期哥德廳堂，曾舉辦加冕、宴會甚至室內騎士比武。',
+    story:
+      '弗拉迪斯拉夫大廳寬到幾乎沒有柱子，以前甚至能讓騎士騎馬進來比武。在室內辦馬術競賽聽起來很浮誇，卻是真的發生過——站在大廳裡抬頭看拱頂，特別能想像當年的場面。',
     tip: '走馬看花 20–30 分鐘即可，重點看大廳尺度與窗外景色。',
     mapsQuery: 'Old Royal Palace Prague Castle',
   },
@@ -743,6 +801,8 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '城堡牆邊一排迷你彩色小屋，曾住過砲手、金匠與僕役，卡夫卡也曾在此住過短時間。巷弄很窄很上相，現多為小博物館與商店。',
+    story:
+      '民間愛說這裡曾住煉金術士，「黃金巷」之名由此而來；較實際的說法是砲手與工匠宿舍。卡夫卡也曾在 22 號短暫住過、寫作，因此這條迷你彩色小屋巷，同時混著傳說與文學氣息。',
     tip: '通常需門票。人多時單向移動，別逆行。走到尾端可順勢下山。',
     mapsQuery: 'Golden Lane Prague',
   },
@@ -830,7 +890,7 @@ export const places: Place[] = [
     city: 'prague',
     category: 'restaurant',
     intro:
-      '老城附近的精緻捷克創意料理，曾獲米其林相關推薦，服務細緻、空間溫馨，把傳統食材做得精緻而不冰冷。適合高堡漫活日的晚餐。',
+      '老城附近的精緻捷克創意料理，曾獲米其林相關推薦，服務細緻、空間溫馨，把傳統食材做得精緻而不冰冷。可作備選精緻晚餐。',
     tip: '建議訂位。若想更輕鬆也可當天再決定，但這類餐廳週末容易滿。',
     mapsQuery: 'V Zátiší Prague',
   },

@@ -26,6 +26,8 @@ export interface Place {
   city: CityId
   category: PlaceCategory
   intro: string
+  /** 簡短趣事／傳說，獨立色塊顯示 */
+  story?: string
   tip?: string
   mapsQuery?: string
   image?: string
@@ -41,6 +43,8 @@ export interface ScheduleItem {
   time: string
   title: string
   note?: string
+  /** 從前一個行程到這裡的交通，例：「Bolt 約 10 分」 */
+  transit?: string
   placeIds?: string[]
 }
 

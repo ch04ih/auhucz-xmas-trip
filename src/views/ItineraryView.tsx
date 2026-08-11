@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { PlaceChips } from '../components/PlaceChips'
 import { getPlace, placeImage } from '../data/places'
-import { days } from '../data/trip'
 import type { DayPlan } from '../data/types'
+import { useStayPlan } from '../lib/StayPlanContext'
 import { shareLink } from '../lib/share'
 
 interface Props {
@@ -36,11 +36,14 @@ function MealBlock({
 }
 
 export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
+  const { plan } = useStayPlan()
+  const days = plan.days
   const day: DayPlan = days.find((d) => d.day === dayNumber) ?? days[0]
   const prev = days.find((d) => d.day === day.day - 1)
   const next = days.find((d) => d.day === day.day + 1)
   const cover = day.coverPlaceId ? getPlace(day.coverPlaceId) : undefined
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const touchStart = useRef<{ x: number; y: number; ignore: boolean } | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -48,8 +51,64 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
     active?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   }, [day.day])
 
+  const goPrev = () => {
+    if (prev) onSelectDay(prev.day)
+  }
+
+  const goNext = () => {
+    if (next) onSelectDay(next.day)
+  }
+
   return (
-    <div className="page itinerary-page">
+    <div
+      className="page itinerary-page"
+      onTouchStart={(e) => {
+        const t = e.touches[0]
+        const target = e.target as HTMLElement | null
+        touchStart.current = {
+          x: t.clientX,
+          y: t.clientY,
+          ignore: Boolean(target?.closest('.day-scroller, .chips, a, input, textarea, select')),
+        }
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStart.current
+        touchStart.current = null
+        if (!start || start.ignore) return
+        const t = e.changedTouches[0]
+        const dx = t.clientX - start.x
+        const dy = t.clientY - start.y
+        if (Math.abs(dx) < 56) return
+        if (Math.abs(dx) < Math.abs(dy) * 1.15) return
+        if (dx > 0) goPrev()
+        else goNext()
+      }}
+    >
+      {prev ? (
+        <div className="day-edge-zone prev">
+          <button
+            type="button"
+            className="day-edge-btn"
+            onClick={goPrev}
+            aria-label={`前一天 Day ${prev.day}`}
+          >
+            ‹
+          </button>
+        </div>
+      ) : null}
+      {next ? (
+        <div className="day-edge-zone next">
+          <button
+            type="button"
+            className="day-edge-btn"
+            onClick={goNext}
+            aria-label={`下一天 Day ${next.day}`}
+          >
+            ›
+          </button>
+        </div>
+      ) : null}
+
       <div className="day-scroller" ref={scrollerRef} role="tablist" aria-label="選擇天數">
         {days.map((d) => (
           <button
@@ -103,6 +162,12 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
               <div className="tl-time">{item.time}</div>
               <div className="tl-body">
                 <strong>{item.title}</strong>
+                {item.transit ? (
+                  <p className="tl-transit">
+                    <span aria-hidden="true">→</span>
+                    {item.transit}
+                  </p>
+                ) : null}
                 {item.note && <p>{item.note}</p>}
                 <PlaceChips ids={item.placeIds} onOpen={onOpenPlace} />
               </div>
@@ -140,7 +205,7 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
 
       <nav className="day-nav" aria-label="前後天行程">
         {prev ? (
-          <button type="button" className="day-nav-btn prev" onClick={() => onSelectDay(prev.day)}>
+          <button type="button" className="day-nav-btn prev" onClick={goPrev}>
             <span>前一天</span>
             <strong>
               Day {prev.day} · {prev.title}
@@ -150,7 +215,7 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
           <span />
         )}
         {next ? (
-          <button type="button" className="day-nav-btn next" onClick={() => onSelectDay(next.day)}>
+          <button type="button" className="day-nav-btn next" onClick={goNext}>
             <span>下一天</span>
             <strong>
               Day {next.day} · {next.title}

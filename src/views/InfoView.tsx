@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import type { StayPlanId } from '../data/stayPlans'
+import { useStayPlan } from '../lib/StayPlanContext'
 
 type MoneyCode = 'TWD' | 'EUR' | 'CZK' | 'HUF'
 
@@ -45,6 +47,167 @@ const weather = [
 const wearLayers = ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽圍巾', '防滑防水鞋']
 const kitItems = ['護唇膏', '保濕乳霜', '手套', '折疊傘']
 
+const BOOKING_DONE_KEY = 'auhucz-booking-done'
+
+type BookingItem = { name: string; note: string; food?: boolean }
+
+function getBookingGroups(planId: StayPlanId): { when: string; hint: string; items: BookingItem[] }[] {
+  const is444 = planId === '4-4-4'
+  return [
+    {
+      when: '出發前 2–3 個月',
+      hint: '聖誕旺季最容易搶光，能早訂就早訂',
+      items: [
+        { name: '維也納國家歌劇院', note: '熱門劇目／週末場常提前售完；站票也建議提早盯' },
+        { name: '飯店', note: '12 月聖誕市集檔期房很搶，訂金／取消條款先看清楚' },
+        { name: '華航／星宇機票', note: '若還沒定艙等，愈早愈有機會留到要的位子' },
+        {
+          name: 'Restaurant Bellevue',
+          note: is444
+            ? '12/19 18:30 歡送晚宴，指定河景／橋景桌'
+            : '12/19 18:30 歡送晚宴，指定河景／橋景桌',
+          food: true,
+        },
+        {
+          name: 'Mlynec',
+          note: is444
+            ? '12/18 19:00 城堡日晚餐，橋景／窗邊位'
+            : '12/17 19:00 城堡日晚餐，橋景／窗邊位',
+          food: true,
+        },
+      ],
+    },
+    {
+      when: '出發前 3–4 週',
+      hint: '門票場次與一日遊，愈早愈穩',
+      items: [
+        { name: '國會大廈內部導覽', note: '官網先訂場次，選中文語音' },
+        { name: 'Klook 薩爾斯堡＆哈修塔特', note: '一日遊名額有限' },
+        { name: 'ÖBB 頭等艙車票', note: '維也納⇄布達佩斯、維也納→布拉格' },
+        {
+          name: 'Figlmüller',
+          note: is444
+            ? '12/12 約 19:00 維也納第一晚炸牛排'
+            : '12/11 約 19:00 維也納第一晚炸牛排',
+          food: true,
+        },
+        {
+          name: '紐約咖啡館',
+          note: '12/9 11:30 早午餐',
+          food: true,
+        },
+        {
+          name: 'Plachutta',
+          note: is444
+            ? '12/13 19:00 Tafelspitz 晚餐'
+            : '12/12 19:00 Tafelspitz 晚餐',
+          food: true,
+        },
+      ],
+    },
+    {
+      when: '出發前 1–2 週',
+      hint: '多數餐廳與預購票',
+      items: [
+        { name: '美景宮上宮（《吻》）', note: '官網預購較省排隊' },
+        { name: '布拉格城堡套票', note: '若進主迴路建議線上買' },
+        {
+          name: 'Lokál Dlouhááá',
+          note: is444
+            ? '12/16 20:15 抵達布拉格第一晚'
+            : '12/15 20:15 抵達布拉格第一晚',
+          food: true,
+        },
+        {
+          name: '帝國咖啡館下午茶',
+          note: is444
+            ? '12/18 約 14:30–17:00 城堡日下午茶'
+            : '12/17 約 14:30–17:00 城堡日下午茶',
+          food: true,
+        },
+        {
+          name: 'Terasa U Zlaté studně',
+          note: is444
+            ? '12/18 約 12:00 城堡景觀午餐，指定座位'
+            : '12/17 約 12:00 城堡景觀午餐，指定座位',
+          food: true,
+        },
+        ...(is444
+          ? []
+          : [
+              {
+                name: 'V Zátiší',
+                note: '12/18 19:00 高堡日晚餐',
+                food: true,
+              } satisfies BookingItem,
+            ]),
+      ],
+    },
+    {
+      when: '出發前幾天～當天早上',
+      hint: '多數仍建議訂，臨時也常有位',
+      items: [
+        { name: '多瑙河夜航', note: '12/10 20:30；可現場買，旺季先訂較安心' },
+        {
+          name: 'Café Central',
+          note: is444
+            ? '12/13 11:30 早午餐'
+            : '12/12 11:30 早午餐',
+          food: true,
+        },
+        {
+          name: 'Zum Schwarzen Kameel',
+          note: is444
+            ? '12/16 12:20 轉布拉格當日午餐'
+            : '12/15 12:20 轉布拉格當日午餐',
+          food: true,
+        },
+        {
+          name: 'Kiskakukk',
+          note: '12/9 19:00 國會與城堡日晚餐',
+          food: true,
+        },
+        {
+          name: 'Menza',
+          note: '12/10 19:30 溫泉日晚餐',
+          food: true,
+        },
+        {
+          name: 'NENI',
+          note: is444
+            ? '12/15 12:30 維也納放鬆日午餐'
+            : '12/14 12:30 維也納放鬆日午餐',
+          food: true,
+        },
+      ],
+    },
+    {
+      when: '不用預約（walk-in）',
+      hint: '直接去即可，尖峰可能稍候',
+      items: [
+        { name: '各大聖誕市集', note: '免票入場，攤位現金方便' },
+        { name: '塞切尼溫泉', note: '現場買票；平日較不擠' },
+        { name: '布達城堡纜車', note: '現場買；排隊長可改搭巴士' },
+        { name: '查理大橋／老城廣場', note: '戶外免費逛' },
+        { name: '中央大市場／納許市場', note: '小吃與採買隨到隨吃' },
+        { name: '漁人堡／高堡區外圍', note: '散步即可' },
+        {
+          name: 'U Fleků',
+          note: is444
+            ? '12/17 約 19:00 可現場候位或提早到'
+            : '12/16 約 19:00 可現場候位或提早到',
+          food: true,
+        },
+        {
+          name: 'Café Louvre',
+          note: '12/19 約 11:30 最後一天輕食，通常免訂',
+          food: true,
+        },
+      ],
+    },
+  ]
+}
+
 function formatClock(date: Date, timeZone: string) {
   return new Intl.DateTimeFormat('zh-TW', {
     timeZone,
@@ -58,18 +221,46 @@ function formatClock(date: Date, timeZone: string) {
 }
 
 export function InfoView() {
+  const { planId } = useStayPlan()
+  const bookingGroups = useMemo(() => getBookingGroups(planId), [planId])
   const [now, setNow] = useState(() => new Date())
   const [amount, setAmount] = useState('100')
   const [from, setFrom] = useState<MoneyCode>('TWD')
   const [to, setTo] = useState<MoneyCode>('EUR')
   const [perTwd, setPerTwd] = useState(fallbackPerTwd)
   const [rateNote, setRateNote] = useState('使用備用匯率，連上網後會更新')
+  const [doneBookings, setDoneBookings] = useState<Set<string>>(() => {
+    try {
+      const raw = localStorage.getItem(BOOKING_DONE_KEY)
+      if (!raw) return new Set()
+      const parsed = JSON.parse(raw) as unknown
+      return Array.isArray(parsed) ? new Set(parsed.filter((x) => typeof x === 'string')) : new Set()
+    } catch {
+      return new Set()
+    }
+  })
 
   useEffect(() => {
     const id = window.setInterval(() => setNow(new Date()), 1000)
     return () => window.clearInterval(id)
   }, [])
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(BOOKING_DONE_KEY, JSON.stringify([...doneBookings]))
+    } catch {
+      /* ignore */
+    }
+  }, [doneBookings])
+
+  const toggleBookingDone = (name: string) => {
+    setDoneBookings((prev) => {
+      const next = new Set(prev)
+      if (next.has(name)) next.delete(name)
+      else next.add(name)
+      return next
+    })
+  }
   useEffect(() => {
     let cancelled = false
     fetch('https://open.er-api.com/v6/latest/TWD')
@@ -103,7 +294,7 @@ export function InfoView() {
   }, [amount, from, to, perTwd])
 
   return (
-    <div className="page">
+    <div className="page info-page">
       <header className="page-head">
         <p className="eyebrow">Travel info</p>
         <h1>實用資訊</h1>
@@ -195,9 +386,11 @@ export function InfoView() {
           </p>
           <p className="weather-temps-note">三城差不多；薩爾斯堡／哈修塔特再低 2–3°C。</p>
           <span>體感</span>
-          <p>
-            穿好防風的話，逛起來大概就像台灣寒流 <strong>12–14°C</strong>
-            ——涼涼乾乾的，很好走，沒有濕冷那種黏。實際氣溫更低，可是中歐是乾冷，體感沒數字看起來可怕；空曠市集沒防風，就會再冷好幾度。
+          <p className="weather-temps">
+            約台灣寒流 <strong>12–14°C</strong>
+          </p>
+          <p className="weather-temps-note">
+            穿好防風的話，涼涼乾乾的很好走，沒有濕冷那種黏。實際氣溫更低，可是中歐是乾冷，體感沒數字看起來可怕；空曠市集沒防風，就會再冷好幾度。
           </p>
         </div>
 
@@ -234,6 +427,48 @@ export function InfoView() {
                 </span>
               </div>
               <p>{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2>訂位與預約清單</h2>
+        <p className="hero-sub pending-lead">
+          點一下可劃掉已完成；再點可取消。進度會存在這台裝置。聖誕旺季建議盡量提早。
+        </p>
+        <div className="booking-stack">
+          {bookingGroups.map((group) => (
+            <div key={group.when} className="booking-group">
+              <div className="booking-group-head">
+                <strong>{group.when}</strong>
+                <span>{group.hint}</span>
+              </div>
+              <div className="booking-list">
+                {group.items.map((item) => {
+                  const done = doneBookings.has(item.name)
+                  return (
+                    <button
+                      key={item.name}
+                      type="button"
+                      className={done ? 'booking-row done' : 'booking-row'}
+                      aria-pressed={done}
+                      onClick={() => toggleBookingDone(item.name)}
+                    >
+                      <span className="booking-check" aria-hidden="true">
+                        {done ? '✓' : ''}
+                      </span>
+                      <span className="booking-row-body">
+                        <strong>
+                          {item.food ? '🍴 ' : ''}
+                          {item.name}
+                        </strong>
+                        <span>{item.note}</span>
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
           ))}
         </div>

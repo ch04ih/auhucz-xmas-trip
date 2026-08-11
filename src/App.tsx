@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PlaceModal } from './components/PlaceModal'
+import { StayPlanProvider } from './lib/StayPlanContext'
 import { parseHash, toHash, type AppRoute } from './lib/route'
 import { BudgetView } from './views/BudgetView'
 import { HomeView } from './views/HomeView'
@@ -11,12 +12,12 @@ import type { Tab } from './data/types'
 const tabs: { id: Tab; label: string }[] = [
   { id: 'home', label: '總覽' },
   { id: 'itinerary', label: '行程' },
-  { id: 'budget', label: '預算' },
   { id: 'places', label: '景點' },
+  { id: 'budget', label: '預算' },
   { id: 'info', label: '資訊' },
 ]
 
-export default function App() {
+function AppShell() {
   const [route, setRoute] = useState<AppRoute>(() => parseHash())
   const [placeId, setPlaceId] = useState<string | null>(() => parseHash().placeId ?? null)
 
@@ -104,5 +105,13 @@ export default function App() {
         }}
       />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <StayPlanProvider>
+      <AppShell />
+    </StayPlanProvider>
   )
 }

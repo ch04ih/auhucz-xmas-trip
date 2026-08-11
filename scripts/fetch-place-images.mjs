@@ -42,6 +42,8 @@ const sources = {
   menza: { wiki: 'Hungarian cuisine', commons: 'roast duck Hungary' },
   'danube-cruise': { wiki: 'Hungarian Parliament Building', commons: 'Parliament Budapest night river' },
   'metro-m1': { wiki: 'Millennium Underground Railway' },
+  andrassy: { wiki: 'Andrássy Avenue' },
+  'heroes-square': { wiki: 'Heroes Square (Budapest)' },
   'rathaus-market': { wiki: 'Vienna City Hall', commons: 'Rathausplatz Christmas market Vienna' },
   rathaus: { wiki: 'Vienna City Hall' },
   stephansdom: { wiki: "St. Stephen's Cathedral, Vienna" },

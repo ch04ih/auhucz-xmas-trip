@@ -1,5 +1,7 @@
-import { days, flightLegs, tripMeta } from '../data/trip'
+import { stayPlans } from '../data/stayPlans'
+import { flightLegs, tripMeta } from '../data/trip'
 import type { DayPlan } from '../data/types'
+import { useStayPlan } from '../lib/StayPlanContext'
 import { shareLink } from '../lib/share'
 
 interface Props {
@@ -8,23 +10,18 @@ interface Props {
   onOpenPlaces: () => void
 }
 
-const cities = [
-  { name: '布達佩斯', nights: '3 晚', dates: '12/8–11' },
-  { name: '維也納', nights: '4 晚', dates: '12/11–15' },
-  { name: '布拉格', nights: '5 晚', dates: '12/15–20' },
-]
-
-function todayDay(): DayPlan | undefined {
+function todayDay(daysList: DayPlan[]): DayPlan | undefined {
   const now = new Date()
   const start = new Date(`${tripMeta.start}T00:00:00`)
   const end = new Date(`${tripMeta.end}T23:59:59`)
   if (now < start || now > end) return undefined
   const diff = Math.floor((now.getTime() - start.getTime()) / 86400000) + 1
-  return days.find((d) => d.day === Math.min(diff, 14))
+  return daysList.find((d) => d.day === Math.min(diff, 14))
 }
 
 export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
-  const current = todayDay()
+  const { planId, plan, setPlanId } = useStayPlan()
+  const current = todayDay(plan.days)
 
   return (
     <div className="page">
@@ -43,6 +40,27 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
         </button>
       </header>
 
+      <section className="section">
+        <div className="section-head">
+          <h2>住宿分配</h2>
+        </div>
+        <div className="stay-picker" role="tablist" aria-label="住宿晚數方案">
+          {stayPlans.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              role="tab"
+              aria-selected={p.id === planId}
+              className={p.id === planId ? 'active' : ''}
+              onClick={() => setPlanId(p.id)}
+            >
+              <strong>{p.label}</strong>
+              <span>{p.blurb}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
       {current ? (
         <button type="button" className="today-card" onClick={() => onOpenDay(current.day)}>
           <span className="today-label">今天行程</span>
@@ -58,7 +76,7 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
           <h2>三座城市</h2>
         </div>
         <div className="city-grid">
-          {cities.map((c) => (
+          {plan.cities.map((c) => (
             <div key={c.name} className="city-card">
               <strong>{c.name}</strong>
               <span>{c.nights}</span>
@@ -93,7 +111,7 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
           </button>
         </div>
         <div className="day-list">
-          {days.map((d) => (
+          {plan.days.map((d) => (
             <button
               key={d.day}
               type="button"

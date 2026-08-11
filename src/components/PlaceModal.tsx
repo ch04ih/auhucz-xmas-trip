@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { categoryLabels, cityLabels, getPlace, placeImage } from '../data/places'
-import { days, placesForDay } from '../data/trip'
+import { placesForDay } from '../data/trip'
+import { useStayPlan } from '../lib/StayPlanContext'
 
 interface Props {
   placeId: string | null
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
+  const { plan } = useStayPlan()
   const place = placeId ? getPlace(placeId) : undefined
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
 
   if (!placeId || !place) return null
 
-  const relatedDays = days.filter((d) => placesForDay(d).includes(place.id))
+  const relatedDays = plan.days.filter((d) => placesForDay(d).includes(place.id))
   const mapsUrl = place.mapsQuery
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.mapsQuery)}`
     : null
@@ -67,6 +69,12 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
         </h2>
         {place.nameEn && <p className="modal-en">{place.nameEn}</p>}
         <p className="modal-intro">{place.intro}</p>
+        {place.story && (
+          <div className="story">
+            <strong>小趣事</strong>
+            <p>{place.story}</p>
+          </div>
+        )}
         {place.tip && (
           <div className="tip">
             <strong>小提醒</strong>
