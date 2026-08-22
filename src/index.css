@@ -1871,19 +1871,27 @@ h3 {
 
 .city-map-frame {
   height: 300px;
+  min-height: 300px;
   border: 1px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow);
   background: #eef2f4;
+  position: relative;
+  flex-shrink: 0;
 }
 
-.city-map-frame.leaflet-container,
-.city-map-frame .leaflet-container {
-  height: 100%;
-  width: 100%;
-  font-family: var(--ui);
+.city-map-mount,
+.city-map-mount.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
   z-index: 0;
+  font-family: var(--ui);
+}
+
+.city-map-frame .leaflet-control-zoom {
+  border: none;
+  box-shadow: var(--shadow);
 }
 
 .city-map-frame .leaflet-control-attribution {

@@ -70,12 +70,9 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
         ))}
       </div>
 
-      <CityMapSection
-        city={city}
-        places={mapPlaces}
-        onOpenPlace={onOpenPlace}
-        active={active}
-      />
+      {active ? (
+        <CityMapSection city={city} places={mapPlaces} onOpenPlace={onOpenPlace} />
+      ) : null}
 
       {city === 'all' ? (
         <p className="city-map-hint">選擇上方城市標籤以顯示互動地圖</p>

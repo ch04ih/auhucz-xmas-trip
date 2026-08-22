@@ -17,12 +17,10 @@ interface Props {
   city: CityMapId
   places: Place[]
   onOpenPlace: (id: string) => void
-  active?: boolean
 }
 
-export function CityMap({ city, places, onOpenPlace, active = true }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<L.Map | null>(null)
+export function CityMap({ city, places, onOpenPlace }: Props) {
+  const mountRef = useRef<HTMLDivElement>(null)
   const onOpenPlaceRef = useRef(onOpenPlace)
   onOpenPlaceRef.current = onOpenPlace
 
@@ -40,63 +38,63 @@ export function CityMap({ city, places, onOpenPlace, active = true }: Props) {
     [places],
   )
 
+  const pinKey = useMemo(
+    () => pins.map(({ place }) => place.id).join(','),
+    [pins],
+  )
+
   useEffect(() => {
-    const el = containerRef.current
+    const el = mountRef.current
     if (!el || !pins.length) return
 
-    const map = L.map(el, {
-      center: config.center,
-      zoom: config.zoom,
-      scrollWheelZoom: false,
-      attributionControl: true,
-    })
-
-    L.tileLayer(CARTO_TILE_URL, {
-      attribution: CARTO_ATTRIBUTION,
-      subdomains: 'abcd',
-      maxZoom: 19,
-    }).addTo(map)
-
-    const markers: L.CircleMarker[] = []
-    for (const { place, pin } of pins) {
-      const marker = L.circleMarker([pin.lat, pin.lng], {
-        radius: 7,
-        fillColor: mapPinColors[place.category],
-        color: '#fffcf7',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.92,
+    let map: L.Map | null = null
+    const timer = window.setTimeout(() => {
+      map = L.map(el, {
+        center: config.center,
+        zoom: config.zoom,
+        scrollWheelZoom: false,
+        attributionControl: true,
       })
-      marker.bindTooltip(place.name, {
-        direction: 'top',
-        offset: [0, -6],
-        opacity: 0.95,
-      })
-      marker.on('click', () => onOpenPlaceRef.current(place.id))
-      marker.addTo(map)
-      markers.push(marker)
-    }
 
-    if (markers.length > 1) {
-      map.fitBounds(L.featureGroup(markers).getBounds().pad(0.14))
-    }
+      L.tileLayer(CARTO_TILE_URL, {
+        attribution: CARTO_ATTRIBUTION,
+        subdomains: 'abcd',
+        maxZoom: 19,
+      }).addTo(map)
 
-    mapRef.current = map
-    if (active) {
-      requestAnimationFrame(() => map.invalidateSize())
-    }
+      const markers: L.CircleMarker[] = []
+      for (const { place, pin } of pins) {
+        const marker = L.circleMarker([pin.lat, pin.lng], {
+          radius: 7,
+          fillColor: mapPinColors[place.category],
+          color: '#fffcf7',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.92,
+        })
+        marker.bindTooltip(place.name, {
+          direction: 'top',
+          offset: [0, -6],
+          opacity: 0.95,
+        })
+        marker.on('click', () => onOpenPlaceRef.current(place.id))
+        marker.addTo(map)
+        markers.push(marker)
+      }
+
+      map.invalidateSize(true)
+      if (markers.length > 1) {
+        map.fitBounds(L.featureGroup(markers).getBounds().pad(0.14))
+      } else if (markers.length === 1) {
+        map.setView([markers[0].getLatLng().lat, markers[0].getLatLng().lng], config.zoom)
+      }
+    }, 50)
 
     return () => {
-      map.remove()
-      mapRef.current = null
+      window.clearTimeout(timer)
+      map?.remove()
     }
-  }, [active, city, config.center, config.zoom, pins])
-
-  useEffect(() => {
-    if (!active || !mapRef.current) return
-    const id = requestAnimationFrame(() => mapRef.current?.invalidateSize())
-    return () => cancelAnimationFrame(id)
-  }, [active])
+  }, [city, pinKey, config.center, config.zoom, pins])
 
   if (!pins.length) return null
 
@@ -107,7 +105,9 @@ export function CityMap({ city, places, onOpenPlace, active = true }: Props) {
         <p>{config.hint}</p>
       </div>
 
-      <div className="city-map-frame" ref={containerRef} />
+      <div className="city-map-frame">
+        <div ref={mountRef} className="city-map-mount" />
+      </div>
 
       <div className="city-map-legend" aria-hidden="true">
         <span>
@@ -136,15 +136,11 @@ export function CityMapSection({
   city,
   places,
   onOpenPlace,
-  active = true,
 }: {
   city: CityId | 'all'
   places: Place[]
   onOpenPlace: (id: string) => void
-  active?: boolean
 }) {
   if (city === 'all' || !isCityMapId(city)) return null
-  return (
-    <CityMap city={city} places={places} onOpenPlace={onOpenPlace} active={active} />
-  )
+  return <CityMap city={city} places={places} onOpenPlace={onOpenPlace} />
 }
