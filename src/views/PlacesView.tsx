@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react'
+import { CityMapSection } from '../components/CityMap'
 import { FadeImage } from '../components/FadeImage'
 import { categoryLabels, cityLabels, placeImage, places } from '../data/places'
 import type { CityId } from '../data/types'
 
 interface Props {
   onOpenPlace: (id: string) => void
+  active?: boolean
 }
 
 const filters: { id: CityId | 'all'; label: string }[] = [
@@ -16,8 +18,8 @@ const filters: { id: CityId | 'all'; label: string }[] = [
   { id: 'prague', label: '布拉格' },
 ]
 
-export function PlacesView({ onOpenPlace }: Props) {
-  const [city, setCity] = useState<CityId | 'all'>('all')
+export function PlacesView({ onOpenPlace, active = true }: Props) {
+  const [city, setCity] = useState<CityId | 'all'>('budapest')
   const [q, setQ] = useState('')
 
   const list = useMemo(() => {
@@ -33,12 +35,17 @@ export function PlacesView({ onOpenPlace }: Props) {
     })
   }, [city, q])
 
+  const mapPlaces = useMemo(() => {
+    if (city === 'all') return []
+    return places.filter((p) => p.city === city)
+  }, [city])
+
   return (
     <div className="page">
       <header className="page-head">
         <p className="eyebrow">Places</p>
         <h1>景點與餐廳</h1>
-        <p className="hero-sub">點選即可查看簡介。行程裡標成膠囊的名稱也能點。</p>
+        <p className="hero-sub">切換城市可看簡圖地圖，點標記或列表即可查看簡介。</p>
       </header>
 
       <label className="search">
@@ -62,6 +69,17 @@ export function PlacesView({ onOpenPlace }: Props) {
           </button>
         ))}
       </div>
+
+      <CityMapSection
+        city={city}
+        places={mapPlaces}
+        onOpenPlace={onOpenPlace}
+        active={active}
+      />
+
+      {city === 'all' ? (
+        <p className="city-map-hint">選擇上方城市標籤以顯示互動地圖</p>
+      ) : null}
 
       <div className="place-list">
         {list.map((p) => (

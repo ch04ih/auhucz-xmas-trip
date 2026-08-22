@@ -1,4 +1,4 @@
-const CACHE = 'auhucz-v8'
+const CACHE = 'auhucz-v9'
 
 self.addEventListener('install', (event) => {
   self.skipWaiting()

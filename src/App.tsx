@@ -103,7 +103,7 @@ function AppShell() {
           hidden={route.tab !== 'places'}
           aria-hidden={route.tab !== 'places'}
         >
-          <PlacesView onOpenPlace={openPlace} />
+          <PlacesView onOpenPlace={openPlace} active={route.tab === 'places'} />
         </div>
         <div
           className="tab-panel"
