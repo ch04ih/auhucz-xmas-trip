@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { selectedHotelPlaceIdForCity } from '../data/stayPlans'
 import { cityLabels } from '../data/places'
 import { useStayPlan } from '../lib/StayPlanContext'
@@ -8,14 +8,11 @@ import {
   CARTO_ATTRIBUTION,
   CARTO_TILE_URL,
   cityMapConfigs,
-  defaultMapCategoryFilters,
   isCityMapId,
-  mapCategoryFilters,
   mapFeaturedAttractions,
   mapFeaturedKind,
   pinForPlace,
   type CityMapId,
-  type MapCategoryFilter,
 } from '../data/cityMapPins'
 import type { CityId, Place } from '../data/types'
 
@@ -66,7 +63,6 @@ export function CityMap({ city, places, onOpenPlace }: Props) {
   onOpenPlaceRef.current = onOpenPlace
   const { plan, hotelSelection } = useStayPlan()
 
-  const [filters, setFilters] = useState<MapCategoryFilter[]>(defaultMapCategoryFilters)
   const config = cityMapConfigs[city]
   const selectedHotelPlaceId = useMemo(() => {
     if (city !== 'budapest' && city !== 'vienna' && city !== 'prague') return undefined
@@ -79,21 +75,18 @@ export function CityMap({ city, places, onOpenPlace }: Props) {
       const pin = pinForPlace(place.id)
       if (!pin) continue
       const featured = mapFeaturedKind(city, place.id, selectedHotelPlaceId)
-      if (!featured || !filters.includes(featured)) continue
+      if (!featured) continue
       items.push({
         item: { place, pin },
         kind: featured === 'hotel' ? 'hotel' : 'sight',
       })
     }
     return items
-  }, [places, city, filters, selectedHotelPlaceId])
+  }, [places, city, selectedHotelPlaceId])
 
   const mapStateKey = useMemo(
-    () =>
-      [city, filters.slice().sort().join(','), filteredPins.map(({ item }) => item.place.id).join(',')].join(
-        '|',
-      ),
-    [city, filters, filteredPins],
+    () => [city, filteredPins.map(({ item }) => item.place.id).join(',')].join('|'),
+    [city, filteredPins],
   )
 
   useEffect(() => {
@@ -146,12 +139,6 @@ export function CityMap({ city, places, onOpenPlace }: Props) {
     }
   }, [mapStateKey, city, config.center, config.zoom, filteredPins])
 
-  const toggleFilter = (id: MapCategoryFilter) => {
-    setFilters((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id],
-    )
-  }
-
   const hasFeatured = useMemo(() => {
     const hasAttractions = mapFeaturedAttractions[city].some((id) =>
       places.some((p) => p.id === id),
@@ -169,27 +156,8 @@ export function CityMap({ city, places, onOpenPlace }: Props) {
         <p>{config.hint}</p>
       </div>
 
-      <div className="city-map-controls">
-        <div className="city-map-filters" role="group" aria-label="顯示類型">
-          {mapCategoryFilters.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              className={filters.includes(f.id) ? 'filter active' : 'filter'}
-              aria-pressed={filters.includes(f.id)}
-              onClick={() => toggleFilter(f.id)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="city-map-frame">
         <div ref={mountRef} className="city-map-mount" />
-        {filteredPins.length === 0 ? (
-          <p className="city-map-empty">請至少勾選一種類型</p>
-        ) : null}
       </div>
 
       <div className="city-map-legend" aria-hidden="true">

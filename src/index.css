@@ -1873,34 +1873,6 @@ h3 {
   color: var(--muted);
 }
 
-.city-map-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.city-map-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.city-map-mode {
-  align-self: flex-start;
-  border: 1px solid var(--line);
-  background: var(--card);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.city-map-mode.active {
-  background: var(--forest);
-  border-color: var(--forest);
-  color: #fff;
-}
-
 .city-map-frame {
   height: 300px;
   min-height: 300px;
@@ -1942,20 +1914,6 @@ h3 {
   border-radius: 8px;
   padding: 4px 8px;
   box-shadow: var(--shadow);
-}
-
-.city-map-empty {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  padding: 16px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  background: rgba(247, 242, 234, 0.88);
-  pointer-events: none;
 }
 
 .city-map-leaflet-popup .leaflet-popup-content-wrapper {

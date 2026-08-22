@@ -174,13 +174,6 @@ export const mapFeaturedHotels: Record<CityMapId, string[]> = {
 
 export type MapCategoryFilter = 'attraction' | 'hotel'
 
-export const mapCategoryFilters: { id: MapCategoryFilter; label: string }[] = [
-  { id: 'attraction', label: '主要景點' },
-  { id: 'hotel', label: '飯店' },
-]
-
-export const defaultMapCategoryFilters: MapCategoryFilter[] = ['attraction', 'hotel']
-
 export function mapFeaturedKind(
   city: CityMapId,
   placeId: string,
