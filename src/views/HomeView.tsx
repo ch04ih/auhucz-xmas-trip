@@ -1,5 +1,5 @@
-import { stayPlans } from '../data/stayPlans'
-import { flightLegs, tripMeta } from '../data/trip'
+import { tripMeta } from '../data/trip'
+import { FlightSummary } from '../components/FlightSummary'
 import type { DayPlan } from '../data/types'
 import { useStayPlan } from '../lib/StayPlanContext'
 import { shareLink } from '../lib/share'
@@ -20,7 +20,7 @@ function todayDay(daysList: DayPlan[]): DayPlan | undefined {
 }
 
 export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
-  const { planId, plan, setPlanId } = useStayPlan()
+  const { plan } = useStayPlan()
   const current = todayDay(plan.days)
 
   return (
@@ -39,27 +39,6 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
           分享給同行
         </button>
       </header>
-
-      <section className="section">
-        <div className="section-head">
-          <h2>住宿分配</h2>
-        </div>
-        <div className="stay-picker" role="tablist" aria-label="住宿晚數方案">
-          {stayPlans.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              role="tab"
-              aria-selected={p.id === planId}
-              className={p.id === planId ? 'active' : ''}
-              onClick={() => setPlanId(p.id)}
-            >
-              <strong>{p.label}</strong>
-              <span>{p.blurb}</span>
-            </button>
-          ))}
-        </div>
-      </section>
 
       {current ? (
         <button type="button" className="today-card" onClick={() => onOpenDay(current.day)}>
@@ -93,14 +72,7 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
             看預算
           </button>
         </div>
-        <div className="list-card">
-          {flightLegs.map((leg) => (
-            <div key={leg.route} className="list-row">
-              <strong>{leg.route}</strong>
-              <span>{leg.detail}</span>
-            </div>
-          ))}
-        </div>
+        <FlightSummary />
       </section>
 
       <section className="section">

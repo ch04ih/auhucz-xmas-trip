@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { FadeImage } from '../components/FadeImage'
+import { FlightSummary } from '../components/FlightSummary'
 import { placeImage } from '../data/places'
 import {
-  defaultFlightPlanId,
   defaultHotelSelection,
   flightPlans,
   formatTwd,
@@ -72,15 +72,13 @@ export function BudgetView({ onOpenPlace }: Props) {
   const ticketItems = plan.ticketItems
   const optionalTicketItems = plan.optionalTicketItems
 
-  const [flightPlanId, setFlightPlanId] = useState(defaultFlightPlanId)
-  const [cabin, setCabin] = useState(0)
+  const flightPlan = flightPlans[0]
+  const flight = flightPlan.cabins[0]
   const [hotelSelection, setHotelSelection] = useState(defaultHotelSelection)
   const [expandedCities, setExpandedCities] = useState<
     Partial<Record<HotelCityGroup['cityId'], boolean>>
   >({})
 
-  const flightPlan = flightPlans.find((p) => p.id === flightPlanId) ?? flightPlans[0]
-  const flight = flightPlan.cabins[cabin] ?? flightPlan.cabins[0]
   const transportSum = transportItems.reduce((s, i) => s + i.price, 0)
   const ticketSum = ticketItems.reduce((s, i) => s + i.price, 0)
   const hotelPerPerson = useMemo(
@@ -88,11 +86,6 @@ export function BudgetView({ onOpenPlace }: Props) {
     [hotelSelection, hotelCities],
   )
   const total = flight.price + hotelPerPerson + transportSum + ticketSum
-
-  const selectFlightPlan = (id: string) => {
-    setFlightPlanId(id)
-    setCabin(0)
-  }
 
   const selectHotel = (cityId: HotelCityGroup['cityId'], optionId: string) => {
     setHotelSelection((prev) => ({ ...prev, [cityId]: optionId }))
@@ -109,14 +102,12 @@ export function BudgetView({ onOpenPlace }: Props) {
         <p className="eyebrow">Budget / person</p>
         <h1>預算總覽</h1>
         <p className="hero-sub">
-          以每人計算；飯店價為雙床房總價。目前方案 {plan.label}。
+          以每人計算；飯店為雙人房總價除以 2。
         </p>
       </header>
 
       <div className="total-card">
-        <span>
-          預估每人 · {flightPlan.label} {flight.cabin}
-        </span>
+        <span>預估每人</span>
         <strong>{formatTwd(total)}</strong>
         <p>
           機票 {formatTwd(flight.price)}　住宿 {formatTwd(hotelPerPerson)}　交通{' '}
@@ -127,50 +118,8 @@ export function BudgetView({ onOpenPlace }: Props) {
       <section className="section">
         <div className="section-head">
           <h2>機票</h2>
-          <span className="muted">{formatTwd(flight.price)}</span>
         </div>
-        <div className="flight-picker">
-          <div className="flight-airlines" role="tablist" aria-label="航空公司">
-            {flightPlans.map((plan) => (
-              <button
-                key={plan.id}
-                type="button"
-                role="tab"
-                aria-selected={plan.id === flightPlan.id}
-                className={plan.id === flightPlan.id ? 'active' : ''}
-                onClick={() => selectFlightPlan(plan.id)}
-              >
-                {plan.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flight-cabins">
-            {flightPlan.cabins.map((opt, i) => (
-              <button
-                key={`${flightPlan.id}-${opt.cabin}`}
-                type="button"
-                className={i === cabin ? 'active' : ''}
-                onClick={() => setCabin(i)}
-              >
-                <span className="flight-radio" aria-hidden="true" />
-                <span className="flight-cabin-label">{opt.cabin}</span>
-                <em>{formatTwd(opt.price)}</em>
-              </button>
-            ))}
-          </div>
-
-          <div className="flight-legs">
-            {flightPlan.legs.map((leg) => (
-              <div key={`${flightPlan.id}-${leg.route}`} className="flight-leg">
-                <strong>{leg.route}</strong>
-                <span>{leg.detail}</span>
-              </div>
-            ))}
-          </div>
-
-          {flightPlan.note ? <p className="flight-note">{flightPlan.note}</p> : null}
-        </div>
+        <FlightSummary />
       </section>
 
       <section className="section">

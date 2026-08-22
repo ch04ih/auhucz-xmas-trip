@@ -43,6 +43,7 @@ const sources = {
   'danube-cruise': { wiki: 'Hungarian Parliament Building', commons: 'Parliament Budapest night river' },
   'metro-m1': { wiki: 'Millennium Underground Railway' },
   andrassy: { wiki: 'Andrássy Avenue' },
+  'miiro-spittelberg': { wiki: 'Museumsquartier', commons: 'Spittelberg Vienna' },
   'heroes-square': { wiki: 'Heroes Square (Budapest)' },
   'rathaus-market': { wiki: 'Vienna City Hall', commons: 'Rathausplatz Christmas market Vienna' },
   rathaus: { wiki: 'Vienna City Hall' },

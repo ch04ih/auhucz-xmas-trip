@@ -59,20 +59,20 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       hint: '聖誕旺季最容易搶光，能早訂就早訂',
       items: [
         { name: '維也納國家歌劇院', note: '熱門劇目／週末場常提前售完；站票也建議提早盯' },
-        { name: '飯店', note: '12 月聖誕市集檔期房很搶，訂金／取消條款先看清楚' },
-        { name: '華航／星宇機票', note: '若還沒定艙等，愈早愈有機會留到要的位子' },
+        { name: '飯店', note: 'BasiliQ、Miiro、希爾頓待訂；聖誕旺季建議提早' },
+        { name: '華航豪經艙', note: '已訂 · 12/10 去程、12/23 回程' },
         {
           name: 'Restaurant Bellevue',
           note: is444
-            ? '12/19 18:30 歡送晚宴，指定河景／橋景桌'
-            : '12/19 18:30 歡送晚宴，指定河景／橋景桌',
+            ? '12/22 18:30 歡送晚宴，指定河景／橋景桌'
+            : '12/22 18:30 歡送晚宴，指定河景／橋景桌',
           food: true,
         },
         {
           name: 'Mlynec',
           note: is444
-            ? '12/18 19:00 城堡日晚餐，橋景／窗邊位'
-            : '12/17 19:00 城堡日晚餐，橋景／窗邊位',
+            ? '12/21 19:00 城堡日晚餐，橋景／窗邊位'
+            : '12/20 19:00 城堡日晚餐，橋景／窗邊位',
           food: true,
         },
       ],
@@ -87,20 +87,20 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: 'Figlmüller',
           note: is444
-            ? '12/12 約 19:00 維也納第一晚炸牛排'
-            : '12/11 約 19:00 維也納第一晚炸牛排',
+            ? '12/15 約 19:00 維也納第一晚炸牛排'
+            : '12/14 約 19:00 維也納第一晚炸牛排',
           food: true,
         },
         {
           name: '紐約咖啡館',
-          note: '12/9 11:30 早午餐',
+          note: '12/12 11:30 早午餐',
           food: true,
         },
         {
           name: 'Plachutta',
           note: is444
-            ? '12/13 19:00 Tafelspitz 晚餐'
-            : '12/12 19:00 Tafelspitz 晚餐',
+            ? '12/16 19:00 Tafelspitz 晚餐'
+            : '12/15 19:00 Tafelspitz 晚餐',
           food: true,
         },
       ],
@@ -114,22 +114,22 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: 'Lokál Dlouhááá',
           note: is444
-            ? '12/16 20:15 抵達布拉格第一晚'
-            : '12/15 20:15 抵達布拉格第一晚',
+            ? '12/19 20:15 抵達布拉格第一晚'
+            : '12/18 20:15 抵達布拉格第一晚',
           food: true,
         },
         {
           name: '帝國咖啡館下午茶',
           note: is444
-            ? '12/18 約 14:30–17:00 城堡日下午茶'
-            : '12/17 約 14:30–17:00 城堡日下午茶',
+            ? '12/21 約 14:30–17:00 城堡日下午茶'
+            : '12/20 約 14:30–17:00 城堡日下午茶',
           food: true,
         },
         {
           name: 'Terasa U Zlaté studně',
           note: is444
-            ? '12/18 約 12:00 城堡景觀午餐，指定座位'
-            : '12/17 約 12:00 城堡景觀午餐，指定座位',
+            ? '12/21 約 12:00 城堡景觀午餐，指定座位'
+            : '12/20 約 12:00 城堡景觀午餐，指定座位',
           food: true,
         },
         ...(is444
@@ -137,7 +137,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
           : [
               {
                 name: 'V Zátiší',
-                note: '12/18 19:00 高堡日晚餐',
+                note: '12/21 19:00 高堡日晚餐',
                 food: true,
               } satisfies BookingItem,
             ]),
@@ -147,36 +147,36 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       when: '出發前幾天～當天早上',
       hint: '多數仍建議訂，臨時也常有位',
       items: [
-        { name: '多瑙河夜航', note: '12/10 20:30；可現場買，旺季先訂較安心' },
+        { name: '多瑙河夜航', note: '12/13 20:30；可現場買，旺季先訂較安心' },
         {
           name: 'Café Central',
           note: is444
-            ? '12/13 11:30 早午餐'
-            : '12/12 11:30 早午餐',
+            ? '12/16 11:30 早午餐'
+            : '12/15 11:30 早午餐',
           food: true,
         },
         {
           name: 'Zum Schwarzen Kameel',
           note: is444
-            ? '12/16 12:20 轉布拉格當日午餐'
-            : '12/15 12:20 轉布拉格當日午餐',
+            ? '12/19 12:20 轉布拉格當日午餐'
+            : '12/18 12:20 轉布拉格當日午餐',
           food: true,
         },
         {
           name: 'Kiskakukk',
-          note: '12/9 19:00 國會與城堡日晚餐',
+          note: '12/12 19:00 國會與城堡日晚餐',
           food: true,
         },
         {
           name: 'Menza',
-          note: '12/10 19:30 溫泉日晚餐',
+          note: '12/13 19:30 溫泉日晚餐',
           food: true,
         },
         {
           name: 'NENI',
           note: is444
-            ? '12/15 12:30 維也納放鬆日午餐'
-            : '12/14 12:30 維也納放鬆日午餐',
+            ? '12/18 12:30 維也納放鬆日午餐'
+            : '12/17 12:30 維也納放鬆日午餐',
           food: true,
         },
       ],
@@ -194,13 +194,13 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: 'U Fleků',
           note: is444
-            ? '12/17 約 19:00 可現場候位或提早到'
-            : '12/16 約 19:00 可現場候位或提早到',
+            ? '12/20 約 19:00 可現場候位或提早到'
+            : '12/19 約 19:00 可現場候位或提早到',
           food: true,
         },
         {
           name: 'Café Louvre',
-          note: '12/19 約 11:30 最後一天輕食，通常免訂',
+          note: '12/22 約 11:30 最後一天輕食，通常免訂',
           food: true,
         },
       ],

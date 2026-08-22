@@ -2,55 +2,31 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
-  useState,
   type ReactNode,
 } from 'react'
 import {
   defaultStayPlanId,
   getStayPlan,
-  stayPlans,
   type StayPlan,
   type StayPlanId,
 } from '../data/stayPlans'
 
-const STORAGE_KEY = 'auhucz-stay-plan'
-
 interface StayPlanContextValue {
   planId: StayPlanId
   plan: StayPlan
+  /** 4/4/4 已定案；保留 API 供日後切回 3/4/5 */
   setPlanId: (id: StayPlanId) => void
 }
 
 const StayPlanContext = createContext<StayPlanContextValue | null>(null)
 
-function readStoredPlanId(): StayPlanId {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw && stayPlans.some((p) => p.id === raw)) return raw as StayPlanId
-  } catch {
-    /* ignore */
-  }
-  return defaultStayPlanId
-}
-
 export function StayPlanProvider({ children }: { children: ReactNode }) {
-  const [planId, setPlanIdState] = useState<StayPlanId>(() =>
-    typeof window === 'undefined' ? defaultStayPlanId : readStoredPlanId(),
-  )
+  const planId: StayPlanId = defaultStayPlanId
 
-  const setPlanId = useCallback((id: StayPlanId) => {
-    setPlanIdState(id)
+  const setPlanId = useCallback((_id: StayPlanId) => {
+    /* 3/4/5 仍保留在 stayPlans，目前固定 4/4/4 */
   }, [])
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, planId)
-    } catch {
-      /* ignore */
-    }
-  }, [planId])
 
   const value = useMemo(
     () => ({
@@ -58,7 +34,7 @@ export function StayPlanProvider({ children }: { children: ReactNode }) {
       plan: getStayPlan(planId),
       setPlanId,
     }),
-    [planId, setPlanId],
+    [setPlanId],
   )
 
   return <StayPlanContext.Provider value={value}>{children}</StayPlanContext.Provider>

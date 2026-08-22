@@ -9,23 +9,21 @@ import {
 export const tripMeta = {
   title: '🎄 奧匈捷 14 天聖誕市集',
   nights: '14 天 13 夜',
-  start: '2026-12-07',
-  end: '2026-12-21',
-  dateRangeLabel: '12/7 – 12/21',
+  start: '2026-12-10',
+  end: '2026-12-24',
+  dateRangeLabel: '12/10 – 12/24',
   year: 2026,
 }
 
+/** 已訂：華航豪經艙。星宇方案保留供日後比較。 */
 export const flightPlans: FlightPlan[] = [
   {
     id: 'ci',
     label: '華航',
-    cabins: [
-      { cabin: '經濟艙', price: 33639 },
-      { cabin: '豪經艙', price: 68786 },
-    ],
+    cabins: [{ cabin: '豪經艙', price: 63375 }],
     legs: [
-      { route: '台北 ➜ 維也納', detail: '12/7 23:35 – 12/8 06:50　華航 CI63' },
-      { route: '布拉格 ➜ 台北', detail: '12/20 10:30 – 12/21 05:25　華航 CI68' },
+      { route: '台北 ➜ 維也納', detail: '12/10 23:35 – 12/11 06:50　華航 CI63' },
+      { route: '布拉格 ➜ 台北', detail: '12/23 10:30 – 12/24 05:25　華航 CI68' },
     ],
   },
   {
@@ -37,10 +35,10 @@ export const flightPlans: FlightPlan[] = [
       { cabin: '豪經艙', price: 60914 },
     ],
     legs: [
-      { route: '台北 ➜ 布拉格', detail: '12/8 00:05 – 12/8 08:15　星宇 JX101' },
+      { route: '台北 ➜ 布拉格', detail: '12/11 00:05 – 12/11 08:15　星宇 JX101' },
       {
         route: '布拉格 ➜ 台北',
-        detail: '12/22 10:25 – 12/23 05:20　星宇 JX102（或改 12/19–20）',
+        detail: '12/25 10:25 – 12/26 05:20　星宇 JX102（或改 12/22–23）',
       },
     ],
   },

@@ -30,7 +30,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '台灣主要國際門戶。本行程去程搭華航 CI63 直飛維也納，回程 CI68 直飛返台，建議至少於起飛前 2.5–3 小時抵達，預留冬季尖峰安檢與出境時間。',
-    tip: 'Day 1 建議 21:30 到機場。回程 12/20 07:30 退房後專車送機即可。',
+    tip: 'Day 1 建議 21:30 到機場。回程 12/23 07:30 退房後專車送機即可。',
     mapsQuery: 'Taiwan Taoyuan International Airport',
   },
   {
@@ -40,7 +40,7 @@ export const places: Place[] = [
     city: 'inflight',
     category: 'transport',
     intro:
-      '台北直飛維也納航班。12/7 23:35 起飛，12/8 06:50 抵達，機上過夜約 12 小時。經濟艙 $33,639，豪經艙 $68,786。',
+      '台北直飛維也納航班。12/10 23:35 起飛，12/11 06:50 抵達，機上過夜約 12 小時。已訂豪經艙，每人 $63,375。',
     tip: '這晚就是住宿，盡量在機上補眠，隔天落地後行程會直接轉往布達佩斯。',
   },
   {
@@ -50,7 +50,7 @@ export const places: Place[] = [
     city: 'inflight',
     category: 'transport',
     intro:
-      '布拉格直飛台北航班。12/20 10:30 起飛，12/21 05:25–05:25 左右抵達桃園。回程同樣是長程紅眼／清晨抵達。',
+      '布拉格直飛台北航班。12/23 10:30 起飛，12/24 05:25 左右抵達桃園。回程同樣是長程紅眼／清晨抵達。',
     tip: '布拉格機場建議提早 3 小時；07:30 退房搭專車，車程約 25 分鐘。',
   },
   {
@@ -93,8 +93,8 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'hotel',
     intro:
-      '2025 年開幕的四星新飯店，就在聖伊什特萬大教堂旁邊。行政房新淨實用；招牌套房可看大教堂，還含四客早餐。逛聖誕市集幾乎不用通勤，夜晚回房也安心。',
-    tip: '本行程預設住招牌套房。市集就在門口，行李可請飯店暫放。',
+      '2025 年開幕的四星新飯店，就在聖伊什特萬大教堂旁邊。高級房含兩客早餐；12/8 23:59 前可免費取消。逛聖誕市集幾乎不用通勤，夜晚回房也安心。',
+    tip: '12/11–15 四晚。市集就在門口，行李可請飯店暫放。',
     mapsQuery: 'BasiliQ Hotel Budapest',
   },
   {
@@ -365,13 +365,24 @@ export const places: Place[] = [
     mapsQuery: 'Spark by Hilton Vienna Donaustadt',
   },
   {
+    id: 'miiro-spittelberg',
+    name: 'Miiro Spittelberg',
+    nameEn: 'Miiro Spittelberg Vienna',
+    city: 'vienna',
+    category: 'hotel',
+    intro:
+      '鄰近老城區，位於Spittelberg文青巷、博物館區正後方。穿過博物館即達霍夫堡，維也納老城區能靠雙腳逛完。',
+    tip: '12/15–19 四晚。Day 10 退房後可先寄放行李，逛完再取行李搭 Bolt 去中央車站趕 15:10 火車。',
+    mapsQuery: 'Miiro Spittelberg Vienna',
+  },
+  {
     id: 'jaz-vienna',
     name: '維也納城市爵士飯店',
     nameEn: 'Jaz in the City Vienna',
     city: 'vienna',
     category: 'hotel',
     intro:
-      '2021 年開幕的四星音樂主題飯店，悠音房有設計感與音響氛圍。地鐵可達市中心，比車站飯店更有度假感，也比五星親民。本行程維也納預設住宿。',
+      '2021 年開幕的四星音樂主題飯店，悠音房有設計感與音響氛圍。地鐵可達市中心，比車站飯店更有度假感，預算頁仍保留作為備選比較。',
     tip: 'Day 10 退房後可先寄放行李，逛完再取行李搭 Bolt 去中央車站趕 15:10 火車。',
     mapsQuery: 'Jaz in the City Vienna',
   },
@@ -632,6 +643,17 @@ export const places: Place[] = [
     mapsQuery: 'Vienna State Opera',
   },
   {
+    id: 'musikverein',
+    name: '維也納金色大廳',
+    nameEn: 'Musikverein Große Saal',
+    city: 'vienna',
+    category: 'attraction',
+    intro:
+      '維也納音樂協會的金色大廳，音響舉世聞名。交響與室內樂在此上演，是除了歌劇院外，感受維也納古典夜的另一條路線。',
+    tip: '官網 Stehplatz 約 €8 起；一般預售開演前約兩個月。愛樂或熱門場次較難搶，可提早盯票。',
+    mapsQuery: 'Musikverein Wien',
+  },
+  {
     id: 'schwarzer-kameel',
     name: 'Zum Schwarzen Kameel',
     nameEn: 'Zum Schwarzen Kameel',
@@ -665,13 +687,24 @@ export const places: Place[] = [
     mapsQuery: 'Botanique Hotel Prague',
   },
   {
+    id: 'hotel-cube',
+    name: 'Hotel Cube',
+    nameEn: 'Hotel Cube Prague',
+    city: 'prague',
+    category: 'hotel',
+    intro:
+      '2022 年開幕的四星。精選四星飯店第2名，位於新城區河畔，鄰近國家歌劇院。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
+    tip: '12/19–23 四晚。含兩客早餐、不可退款。',
+    mapsQuery: 'Hotel Cube Prague',
+  },
+  {
     id: 'hilton-prague',
     name: '布拉格古城希爾頓飯店',
     nameEn: 'Hilton Prague Old Town',
     city: 'prague',
     category: 'hotel',
     intro:
-      '五星飯店，2016 年翻新。住在老城範圍內，走路可到廣場、天文鐘與查理大橋方向。晚歸、下雪天都比住郊區省事，是本行程布拉格預設住宿。',
+      '五星飯店，2016 年翻新。過馬路即進入老城徒步區，步行至老城廣場約10分鐘、查理大橋20分鐘，治安極佳，鄰近大型購物中心，但觀光人潮較多。',
     tip: 'Day 14 早上專車送機約 25 分。老城人多，進出大廳注意行李與隨身物。',
     mapsQuery: 'Hilton Prague Old Town',
   },

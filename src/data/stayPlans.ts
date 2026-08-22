@@ -33,7 +33,7 @@ const hotelCities345: HotelCityGroup[] = [
     cityId: 'budapest',
     city: '布達佩斯',
     nights: '3 晚',
-    dates: '12/8 – 12/11',
+    dates: '12/11 – 12/14',
     defaultOptionId: 'basiliq-suite',
     options: [
       {
@@ -83,7 +83,7 @@ const hotelCities345: HotelCityGroup[] = [
     cityId: 'vienna',
     city: '維也納',
     nights: '4 晚',
-    dates: '12/11 – 12/15',
+    dates: '12/14 – 12/18',
     defaultOptionId: 'jaz-vienna',
     options: [
       {
@@ -132,7 +132,7 @@ const hotelCities345: HotelCityGroup[] = [
     cityId: 'prague',
     city: '布拉格',
     nights: '5 晚',
-    dates: '12/15 – 12/20',
+    dates: '12/18 – 12/23',
     defaultOptionId: 'hilton-prague',
     options: [
       {
@@ -153,7 +153,8 @@ const hotelCities345: HotelCityGroup[] = [
         price: 38022,
         stars: 5,
         note: '不可退 · 2016 翻新',
-        summary: '住在老城裡，走路逛廣場與橋最輕鬆；五星規格，晚歸也安心。',
+        summary:
+          '過馬路即進入老城徒步區，步行至老城廣場約10分鐘、查理大橋20分鐘，治安極佳，鄰近大型購物中心，但觀光人潮較多。',
       },
     ],
   },
@@ -164,49 +165,20 @@ const hotelCities444: HotelCityGroup[] = [
     cityId: 'budapest',
     city: '布達佩斯',
     nights: '4 晚',
-    dates: '12/8 – 12/12',
-    defaultOptionId: 'basiliq-suite',
+    dates: '12/11 – 12/15',
+    defaultOptionId: 'basiliq-exec',
     options: [
-      {
-        id: 'hotel-vision',
-        placeId: 'hotel-vision',
-        name: '美景飯店－大陸集團',
-        room: '雙床房',
-        price: 24903,
-        stars: 4,
-        note: '可免費取消 · 2020 開幕',
-        summary: '市區方便、性價比高；房間較普通，適合想省預算。',
-      },
       {
         id: 'basiliq-exec',
         placeId: 'basiliq',
         name: 'BasiliQ Hotel',
         room: '高級房',
-        price: 27484,
+        price: 25794,
         stars: 4,
-        note: '含 2 客早餐 · 可免費取消 · 2025 開幕',
-        summary: '全新四星，走路就到聖殿大教堂市集；高級房新淨實用。',
+        note: '含 2 客早餐 · 12/8 23:59 前可免費取消 · 2025 開幕',
+        summary:
+          '全新四星，走路就到聖殿大教堂市集；高級房新淨實用，含兩客早餐，取消期限前可免費退改。',
         imageId: 'basiliq-room',
-      },
-      {
-        id: 'basiliq-suite',
-        placeId: 'basiliq',
-        name: 'BasiliQ Hotel',
-        room: '招牌套房（聖殿大教堂景觀）',
-        price: 36056,
-        stars: 4,
-        note: '含四客早餐 · 2025 開幕',
-        summary: '窗景正對大教堂，市集夜景超加分；空間比高級房寬，推薦首選。',
-      },
-      {
-        id: 'kempinski',
-        placeId: 'kempinski',
-        name: 'Kempinski Hotel Corvinus',
-        room: '高級雙床房',
-        price: 37186,
-        stars: 5,
-        note: '2025 翻新',
-        summary: '五星旗艦、服務與隔音最好；價格最高，住得最穩。',
       },
     ],
   },
@@ -214,28 +186,19 @@ const hotelCities444: HotelCityGroup[] = [
     cityId: 'vienna',
     city: '維也納',
     nights: '4 晚',
-    dates: '12/12 – 12/16',
-    defaultOptionId: 'jaz-vienna',
+    dates: '12/15 – 12/19',
+    defaultOptionId: 'miiro-spittelberg',
     options: [
       {
-        id: 'ibis-wien',
-        placeId: 'ibis-wien',
-        name: '宜必思維也納中央火車站飯店',
-        room: '雙床房',
-        price: 24112,
-        stars: 3,
-        note: '2017 開幕',
-        summary: '貼著中央車站，轉車最省事；房間基本，去老城要搭地鐵。',
-      },
-      {
-        id: 'spark-hilton',
-        placeId: 'spark-hilton',
-        name: '希爾頓維也納多瑙城區 Spark 飯店',
-        room: '雙床房',
-        price: 17885,
+        id: 'miiro-spittelberg',
+        placeId: 'miiro-spittelberg',
+        name: 'Miiro Spittelberg',
+        room: '典雅特大床間',
+        price: 31503,
         stars: 4,
-        note: '2022 開幕',
-        summary: '新、乾淨、價位友善；在多瑙城區，每天進老城通勤稍遠。',
+        note: '不可退款 · 2025 翻新',
+        summary:
+          '鄰近老城區，位於Spittelberg文青巷、博物館區正後方。穿過博物館即達霍夫堡，維也納老城區能靠雙腳逛完。',
       },
       {
         id: 'jaz-vienna',
@@ -247,35 +210,15 @@ const hotelCities444: HotelCityGroup[] = [
         note: '2021 開幕',
         summary: '設計感強、地鐵方便；氣氛好，比車站飯店更有度假感。',
       },
-      {
-        id: 'hilton-vienna-park',
-        placeId: 'hilton-vienna-park',
-        name: '希爾頓維也納公園飯店',
-        room: '雙床房',
-        price: 41653,
-        stars: 5,
-        note: '2020 翻新',
-        summary: '五星、靠市政廳公園與市集；位置與舒適度最好，也最貴。',
-      },
     ],
   },
   {
     cityId: 'prague',
     city: '布拉格',
     nights: '4 晚',
-    dates: '12/16 – 12/20',
-    defaultOptionId: 'hilton-prague',
+    dates: '12/19 – 12/23',
+    defaultOptionId: 'hotel-cube',
     options: [
-      {
-        id: 'botanique',
-        placeId: 'botanique',
-        name: '布拉格植物園飯店',
-        room: '雙床房',
-        price: 25338,
-        stars: 4,
-        note: '2024 翻新',
-        summary: '四星舒適、相對省錢；離老城稍遠，進出多半要叫車或搭電車。',
-      },
       {
         id: 'hilton-prague',
         placeId: 'hilton-prague',
@@ -284,7 +227,19 @@ const hotelCities444: HotelCityGroup[] = [
         price: 31100,
         stars: 5,
         note: '2016 翻新',
-        summary: '住在老城裡，走路逛廣場與橋最輕鬆；五星規格，晚歸也安心。',
+        summary:
+          '過馬路即進入老城徒步區，步行至老城廣場約10分鐘、查理大橋20分鐘，治安極佳，鄰近大型購物中心，但觀光人潮較多。',
+      },
+      {
+        id: 'hotel-cube',
+        placeId: 'hotel-cube',
+        name: 'Hotel Cube',
+        room: '高級房',
+        price: 26207,
+        stars: 4,
+        note: '不可退款 · 含 2 客早餐 · 2022 開幕',
+        summary:
+          '精選四星飯店第2名，位於新城區河畔，鄰近國家歌劇院。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
       },
     ],
   },
@@ -328,12 +283,6 @@ function ticketBundle(days: {
         price: 859,
         placeId: 'belvedere',
       },
-      {
-        label: '維也納國家歌劇院',
-        detail: `Day ${days.opera} · 官網站票 Parterre €18；座位視劇目另計`,
-        price: 672,
-        placeId: 'staatsoper',
-      },
     ],
     optionalTicketItems: [
       {
@@ -353,6 +302,18 @@ function ticketBundle(days: {
         detail: `Day ${days.pragueCastle} · 主迴路成人 450 CZK（聖維特、舊皇宮、黃金巷）`,
         price: 695,
         placeId: 'prague-castle',
+      },
+      {
+        label: '維也納國家歌劇院',
+        detail: `Day ${days.opera} · 官網站票 Parterre €18；座位視劇目另計`,
+        price: 672,
+        placeId: 'staatsoper',
+      },
+      {
+        label: '金色大廳音樂會',
+        detail: `Day ${days.opera} · 官網站票 Stehplatz €8 起；座位依節目 €30 起`,
+        price: 299,
+        placeId: 'musikverein',
       },
     ],
   }
@@ -378,9 +339,9 @@ export const stayPlans: StayPlan[] = [
     label: '3 / 4 / 5',
     blurb: '布達佩斯 3 晚、維也納 4 晚、布拉格 5 晚（含高堡日）',
     cities: [
-      { name: '布達佩斯', nights: '3 晚', dates: '12/8–11' },
-      { name: '維也納', nights: '4 晚', dates: '12/11–15' },
-      { name: '布拉格', nights: '5 晚', dates: '12/15–20' },
+      { name: '布達佩斯', nights: '3 晚', dates: '12/11–14' },
+      { name: '維也納', nights: '4 晚', dates: '12/14–18' },
+      { name: '布拉格', nights: '5 晚', dates: '12/18–23' },
     ],
     hotelCities: hotelCities345,
     days: days345,
@@ -391,9 +352,9 @@ export const stayPlans: StayPlan[] = [
     label: '4 / 4 / 4',
     blurb: '三城各 4 晚；布達多一天放鬆，布拉格拿掉高堡',
     cities: [
-      { name: '布達佩斯', nights: '4 晚', dates: '12/8–12' },
-      { name: '維也納', nights: '4 晚', dates: '12/12–16' },
-      { name: '布拉格', nights: '4 晚', dates: '12/16–20' },
+      { name: '布達佩斯', nights: '4 晚', dates: '12/11–15' },
+      { name: '維也納', nights: '4 晚', dates: '12/15–19' },
+      { name: '布拉格', nights: '4 晚', dates: '12/19–23' },
     ],
     hotelCities: hotelCities444,
     days: days444,
@@ -408,9 +369,9 @@ export function getStayPlan(id: StayPlanId): StayPlan {
 }
 
 export const defaultHotelSelection: Record<HotelCityGroup['cityId'], string> = {
-  budapest: 'basiliq-suite',
-  vienna: 'jaz-vienna',
-  prague: 'hilton-prague',
+  budapest: 'basiliq-exec',
+  vienna: 'miiro-spittelberg',
+  prague: 'hotel-cube',
 }
 
 export function hotelOptionById(
