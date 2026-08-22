@@ -19,6 +19,8 @@ export type PlaceCategory =
   | 'shop'
   | 'experience'
 
+export type PlacesListCategory = 'places' | 'dining'
+
 export interface Place {
   id: string
   name: string

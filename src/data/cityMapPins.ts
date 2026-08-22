@@ -69,9 +69,11 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
 
   // Vienna
   stephansdom: { lat: 48.2085, lng: 16.3731 },
+  'mozarthaus-vienna': { lat: 48.2069, lng: 16.374 },
   figlmuller: { lat: 48.2055, lng: 16.3735 },
   'rathaus-market': { lat: 48.2108, lng: 16.3577 },
   rathaus: { lat: 48.2108, lng: 16.3577 },
+  hofburg: { lat: 48.2066, lng: 16.365 },
   'cafe-central': { lat: 48.2102, lng: 16.3653 },
   'miiro-spittelberg': { lat: 48.2028, lng: 16.3545 },
   graben: { lat: 48.2087, lng: 16.3688 },
@@ -100,10 +102,12 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
   'kampa-park': { lat: 50.0855, lng: 14.4085 },
   'old-town-square': { lat: 50.0875, lng: 14.4213 },
   'astronomical-clock': { lat: 50.087, lng: 14.4207 },
+  'kafka-statue': { lat: 50.0817, lng: 14.4208 },
+  'powder-tower': { lat: 50.0872, lng: 14.4278 },
   'prague-christmas-market': { lat: 50.0875, lng: 14.4213 },
   lokal: { lat: 50.0903, lng: 14.4256 },
   'u-fleku': { lat: 50.075, lng: 14.418 },
-  'hotel-cube': { lat: 50.0755, lng: 14.43 },
+  'hotel-cube': { lat: 50.0797, lng: 14.4167 },
   'hilton-prague': { lat: 50.0885, lng: 14.4305 },
   'praha-hlavni': { lat: 50.083, lng: 14.436 },
   terasa: { lat: 50.0895, lng: 14.4 },
@@ -134,13 +138,66 @@ export function pinForPlace(id: string): MapPin | undefined {
   return placeMapPins[id]
 }
 
+/** 地圖只標主要景點 */
+export const mapFeaturedAttractions: Record<CityMapId, string[]> = {
+  budapest: [
+    'parliament',
+    'buda-castle',
+    'fishermans-bastion',
+    'st-stephen-basilica',
+    'great-market-hall',
+    'szechenyi',
+    'heroes-square',
+  ],
+  vienna: ['stephansdom', 'mozarthaus-vienna', 'hofburg', 'schonbrunn', 'belvedere', 'rathaus', 'staatsoper', 'musikverein'],
+  prague: [
+    'prague-castle',
+    'st-vitus',
+    'charles-bridge',
+    'old-town-square',
+    'astronomical-clock',
+    'powder-tower',
+    'kafka-statue',
+  ],
+  salzburg: ['salzburg'],
+  hallstatt: ['hallstatt'],
+}
+
+/** 地圖上的住宿（有座標的候選；實際顯示依預算頁選取） */
+export const mapFeaturedHotels: Record<CityMapId, string[]> = {
+  budapest: ['basiliq'],
+  vienna: ['miiro-spittelberg', 'jaz-vienna'],
+  prague: ['hotel-cube', 'hilton-prague'],
+  salzburg: [],
+  hallstatt: [],
+}
+
+export type MapCategoryFilter = 'attraction' | 'hotel'
+
+export const mapCategoryFilters: { id: MapCategoryFilter; label: string }[] = [
+  { id: 'attraction', label: '主要景點' },
+  { id: 'hotel', label: '飯店' },
+]
+
+export const defaultMapCategoryFilters: MapCategoryFilter[] = ['attraction', 'hotel']
+
+export function mapFeaturedKind(
+  city: CityMapId,
+  placeId: string,
+  selectedHotelPlaceId?: string,
+): MapCategoryFilter | undefined {
+  if (selectedHotelPlaceId && placeId === selectedHotelPlaceId) return 'hotel'
+  if (mapFeaturedAttractions[city].includes(placeId)) return 'attraction'
+  return undefined
+}
+
 /** Leaflet 用實色（CSS 變數在 canvas 無效） */
 export const mapPinColors: Record<PlaceCategory, string> = {
   attraction: '#7c2f38',
   market: '#a4844d',
   restaurant: '#8b5a3c',
   cafe: '#8b5a3c',
-  hotel: '#335043',
+  hotel: '#f0c419',
   transport: '#8f867c',
   shop: '#a4844d',
   experience: '#7c2f38',

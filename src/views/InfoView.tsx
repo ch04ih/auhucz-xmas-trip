@@ -189,7 +189,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         { name: '塞切尼溫泉', note: '現場買票；平日較不擠' },
         { name: '布達城堡纜車', note: '現場買；排隊長可改搭巴士' },
         { name: '查理大橋／老城廣場', note: '戶外免費逛' },
-        { name: '中央大市場／納許市場', note: '小吃與採買隨到隨吃' },
+        { name: '中央市場／納許市場', note: '小吃與採買隨到隨吃' },
         { name: '漁人堡／高堡區外圍', note: '散步即可' },
         {
           name: 'U Fleků',

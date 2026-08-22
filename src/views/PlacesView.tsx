@@ -1,31 +1,49 @@
 import { useMemo, useState } from 'react'
 import { CityMapSection } from '../components/CityMap'
 import { FadeImage } from '../components/FadeImage'
-import { categoryLabels, cityLabels, placeImage, places } from '../data/places'
-import type { CityId } from '../data/types'
+import {
+  categoryLabels,
+  cityLabels,
+  isPlaceOnPlacesList,
+  matchesPlacesCategoryFilter,
+  placeImage,
+  places,
+  placesListCategories,
+  placesListCategoryLabels,
+} from '../data/places'
+import type { CityId, PlacesListCategory } from '../data/types'
 
 interface Props {
   onOpenPlace: (id: string) => void
   active?: boolean
 }
 
-const filters: { id: CityId | 'all'; label: string }[] = [
-  { id: 'all', label: '全部' },
+const cityFilters: { id: CityId | 'all'; label: string }[] = [
   { id: 'budapest', label: '布達佩斯' },
   { id: 'vienna', label: '維也納' },
-  { id: 'salzburg', label: '薩爾斯堡' },
-  { id: 'hallstatt', label: '哈修塔特' },
   { id: 'prague', label: '布拉格' },
+  { id: 'all', label: '全部' },
+]
+
+const categoryFilters: { id: PlacesListCategory | 'all'; label: string }[] = [
+  { id: 'all', label: '全部' },
+  ...placesListCategories.map((id) => ({
+    id,
+    label: placesListCategoryLabels[id],
+  })),
 ]
 
 export function PlacesView({ onOpenPlace, active = true }: Props) {
   const [city, setCity] = useState<CityId | 'all'>('budapest')
+  const [category, setCategory] = useState<PlacesListCategory | 'all'>('all')
   const [q, setQ] = useState('')
 
   const list = useMemo(() => {
     const query = q.trim().toLowerCase()
     return places.filter((p) => {
+      if (!isPlaceOnPlacesList(p)) return false
       if (city !== 'all' && p.city !== city) return false
+      if (!matchesPlacesCategoryFilter(p, category)) return false
       if (!query) return true
       return (
         p.name.toLowerCase().includes(query) ||
@@ -33,7 +51,7 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
         p.intro.toLowerCase().includes(query)
       )
     })
-  }, [city, q])
+  }, [city, category, q])
 
   const mapPlaces = useMemo(() => {
     if (city === 'all') return []
@@ -45,7 +63,7 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
       <header className="page-head">
         <p className="eyebrow">Places</p>
         <h1>景點與餐廳</h1>
-        <p className="hero-sub">切換城市可看簡圖地圖，點標記或列表即可查看簡介。</p>
+        <p className="hero-sub">切換城市可看地圖；僅標主要景點與飯店，點標記查看簡介。</p>
       </header>
 
       <label className="search">
@@ -53,12 +71,12 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="搜尋景點、餐廳、飯店…"
+          placeholder="搜尋景點、餐廳、市集…"
         />
       </label>
 
       <div className="filter-row">
-        {filters.map((f) => (
+        {cityFilters.map((f) => (
           <button
             key={f.id}
             type="button"
@@ -77,6 +95,19 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
       {city === 'all' ? (
         <p className="city-map-hint">選擇上方城市標籤以顯示互動地圖</p>
       ) : null}
+
+      <div className="filter-row place-category-filters">
+        {categoryFilters.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            className={category === f.id ? 'filter active' : 'filter'}
+            onClick={() => setCategory(f.id)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
 
       <div className="place-list">
         {list.map((p) => (

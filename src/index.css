@@ -584,6 +584,10 @@ h3 {
 }
 
 .day-list,
+.place-category-filters {
+  margin-top: 4px;
+}
+
 .place-list,
 .stack {
   display: flex;
@@ -1869,6 +1873,34 @@ h3 {
   color: var(--muted);
 }
 
+.city-map-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.city-map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.city-map-mode {
+  align-self: flex-start;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.city-map-mode.active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #fff;
+}
+
 .city-map-frame {
   height: 300px;
   min-height: 300px;
@@ -1912,10 +1944,154 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.city-map-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  background: rgba(247, 242, 234, 0.88);
+  pointer-events: none;
+}
+
+.city-map-leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 0;
+}
+
+.city-map-leaflet-popup .leaflet-popup-content {
+  margin: 10px 12px;
+  min-width: 180px;
+}
+
+.city-map-popup-title {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.city-map-popup-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.city-map-popup-list button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.city-map-popup-list button:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.map-symbol-wrap {
+  background: transparent !important;
+  border: none !important;
+}
+
+.map-symbol {
+  display: block;
+  box-shadow: 0 2px 8px rgba(43, 36, 31, 0.18);
+}
+
+.map-symbol-sight {
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+  background: #7c2f38;
+  border: 1.5px solid #fffcf7;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.map-symbol-food {
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+  background: #8b5a3c;
+  border: 1.5px solid #fffcf7;
+  border-radius: 6px;
+}
+
+.map-symbol-hotel {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 3px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transform: none;
+  box-shadow: none;
+  filter: drop-shadow(0 1px 3px rgba(43, 36, 31, 0.22));
+}
+
+.map-symbol-hotel::before,
+.map-symbol-hotel::after {
+  content: '';
+  position: absolute;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+.map-symbol-hotel::before {
+  inset: 0;
+  background: #fffcf7;
+}
+
+.map-symbol-hotel::after {
+  inset: 3.5px;
+  background: #f0c419;
+}
+
+.map-symbol-zone {
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+  background: #7c2f38;
+  border: 2px solid #fffcf7;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+  font-family: var(--ui);
+}
+
 .city-map-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 12px;
+  gap: 8px 14px;
   font-size: 11px;
   color: var(--muted);
 }
@@ -1923,7 +2099,76 @@ h3 {
 .city-map-legend span {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+}
+
+.map-symbol-legend {
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.map-symbol-legend.map-symbol-sight {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  border-width: 1.5px;
+}
+
+.map-symbol-legend.map-symbol-food {
+  width: 11px;
+  height: 11px;
+  margin: 0;
+  border-width: 1.5px;
+}
+
+.map-symbol-legend.map-symbol-hotel {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transform: none;
+  filter: none;
+}
+
+.map-symbol-legend.map-symbol-hotel::before,
+.map-symbol-legend.map-symbol-hotel::after {
+  content: '';
+  position: absolute;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+.map-symbol-legend.map-symbol-hotel::before {
+  inset: 0;
+  background: #fffcf7;
+}
+
+.map-symbol-legend.map-symbol-hotel::after {
+  inset: 3.5px;
+  background: #f0c419;
+}
+
+.map-symbol-legend.map-symbol-zone {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  font-size: 8px;
+  line-height: 14px;
+  border-width: 1.5px;
 }
 
 .city-map-legend .dot {

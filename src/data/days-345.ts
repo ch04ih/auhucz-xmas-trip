@@ -162,7 +162,7 @@ export const days345: DayPlan[] = [
     day: 4,
     date: '12/13',
     weekday: '日',
-    title: '中央大市場・溫泉・多瑙河夜航',
+    title: '中央市場・溫泉・多瑙河夜航',
     cityLabel: '布達佩斯',
     cityIds: ['budapest'],
     coverPlaceId: 'szechenyi',
@@ -170,7 +170,7 @@ export const days345: DayPlan[] = [
       { time: '11:00', title: '睡飽飽出門' },
       {
         time: '11:30 – 13:00',
-        title: '中央大市場＋午餐',
+        title: '中央市場＋午餐',
         transit: 'Bolt · 約 10–12 分',
         note: '採買鵝肝醬、紅椒粉與刺繡藝品',
         placeIds: ['great-market-hall', 'langos'],
@@ -199,7 +199,7 @@ export const days345: DayPlan[] = [
     ],
     meals: {
       lunch: {
-        label: '中央大市場二樓 Lángos 炸餅',
+        label: '中央市場二樓 Lángos 炸餅',
         time: '13:00',
         placeIds: ['langos', 'great-market-hall'],
       },
@@ -252,8 +252,8 @@ export const days345: DayPlan[] = [
         time: '19:00 – 20:30',
         title: '聖史蒂芬大教堂・老城散步＋晚餐',
         transit: '步行 · 約 10–15 分',
-        note: '逛完市政廳市集走進老城，晚餐可吃 Figlmüller 炸牛排。',
-        placeIds: ['stephansdom'],
+        note: '逛完市政廳市集走進老城；聖史蒂芬旁即莫札特之家，若已關門可改 Day 9 白天參觀',
+        placeIds: ['stephansdom', 'mozarthaus-vienna'],
       },
     ],
     meals: {
@@ -363,11 +363,18 @@ export const days345: DayPlan[] = [
         placeIds: ['naschmarkt', 'neni'],
       },
       {
-        time: '14:30 – 17:00',
-        title: '老城區晃晃',
+        time: '14:30 – 15:30',
+        title: '莫札特之家',
         transit: '地鐵／步行 · 約 10–15 分',
-        note: '格拉本大街、科爾市場等精品街',
-        placeIds: ['graben', 'kohlmarkt'],
+        note: 'Domgasse 5，聖史蒂芬旁；官網通常 10:00–18:00',
+        placeIds: ['mozarthaus-vienna', 'stephansdom'],
+      },
+      {
+        time: '15:30 – 17:00',
+        title: '老城區晃晃',
+        transit: '步行 · 約 2–5 分',
+        note: '格拉本、科爾市場，順路看霍夫堡外觀',
+        placeIds: ['graben', 'kohlmarkt', 'hofburg'],
       },
       {
         time: '17:00 – 18:30',

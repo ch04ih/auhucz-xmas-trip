@@ -398,3 +398,106 @@ export function hotelPerPersonFromSelection(
   }, 0)
   return Math.round(total / 2)
 }
+
+export function selectedHotelOptionForCity(
+  cityId: HotelCityGroup['cityId'],
+  selection: Record<HotelCityGroup['cityId'], string>,
+  cities: HotelCityGroup[],
+): HotelCityGroup['options'][number] | undefined {
+  const city = cities.find((c) => c.cityId === cityId)
+  if (!city) return undefined
+  return (
+    city.options.find((o) => o.id === selection[cityId]) ??
+    city.options.find((o) => o.id === city.defaultOptionId) ??
+    city.options[0]
+  )
+}
+
+export function selectedHotelPlaceIdForCity(
+  cityId: HotelCityGroup['cityId'],
+  selection: Record<HotelCityGroup['cityId'], string>,
+  cities: HotelCityGroup[],
+): string | undefined {
+  return selectedHotelOptionForCity(cityId, selection, cities)?.placeId
+}
+
+function hotelPlaceIdToCityMap(
+  cities: HotelCityGroup[],
+): Map<string, HotelCityGroup['cityId']> {
+  const map = new Map<string, HotelCityGroup['cityId']>()
+  for (const city of cities) {
+    for (const opt of city.options) {
+      if (opt.placeId) map.set(opt.placeId, city.cityId)
+    }
+  }
+  return map
+}
+
+function replaceHotelPlaceIds(
+  ids: string[] | undefined,
+  hotelMap: Map<string, HotelCityGroup['cityId']>,
+  selection: Record<HotelCityGroup['cityId'], string>,
+  cities: HotelCityGroup[],
+): string[] | undefined {
+  if (!ids) return ids
+  return ids.map((id) => {
+    const cityId = hotelMap.get(id)
+    if (!cityId) return id
+    return selectedHotelPlaceIdForCity(cityId, selection, cities) ?? id
+  })
+}
+
+/** 依預算頁飯店選擇，替換行程中的住宿文案與 placeId */
+export function applyHotelSelectionToDay(
+  day: DayPlan,
+  selection: Record<HotelCityGroup['cityId'], string>,
+  cities: HotelCityGroup[],
+): DayPlan {
+  const hotelMap = hotelPlaceIdToCityMap(cities)
+
+  let lodging = day.lodging
+  let lodgingPlaceId = day.lodgingPlaceId
+
+  if (lodgingPlaceId) {
+    const cityId = hotelMap.get(lodgingPlaceId)
+    if (cityId) {
+      const opt = selectedHotelOptionForCity(cityId, selection, cities)
+      if (opt?.placeId) {
+        lodgingPlaceId = opt.placeId
+        const nightMatch = day.lodging.match(/（(\d+\/\d+ 晚)）/)
+        lodging = nightMatch ? `${opt.name}（${nightMatch[1]}）` : opt.name
+      }
+    }
+  }
+
+  const mapMeal = (meal: DayPlan['meals']['breakfast']) =>
+    meal
+      ? {
+          ...meal,
+          placeIds: replaceHotelPlaceIds(meal.placeIds, hotelMap, selection, cities),
+        }
+      : meal
+
+  return {
+    ...day,
+    lodging,
+    lodgingPlaceId,
+    schedule: day.schedule.map((item) => ({
+      ...item,
+      placeIds: replaceHotelPlaceIds(item.placeIds, hotelMap, selection, cities),
+    })),
+    meals: {
+      breakfast: mapMeal(day.meals.breakfast),
+      lunch: mapMeal(day.meals.lunch),
+      dinner: mapMeal(day.meals.dinner),
+    },
+  }
+}
+
+export function applyHotelSelectionToDays(
+  days: DayPlan[],
+  selection: Record<HotelCityGroup['cityId'], string>,
+  cities: HotelCityGroup[],
+): DayPlan[] {
+  return days.map((day) => applyHotelSelectionToDay(day, selection, cities))
+}

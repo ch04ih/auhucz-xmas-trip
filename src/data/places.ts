@@ -1,4 +1,4 @@
-import type { CityId, Place, PlaceCategory } from './types'
+import type { CityId, Place, PlaceCategory, PlacesListCategory } from './types'
 
 export const cityLabels: Record<CityId, string> = {
   taipei: '台北',
@@ -19,6 +19,53 @@ export const categoryLabels: Record<PlaceCategory, string> = {
   transport: '交通',
   shop: '購物',
   experience: '體驗',
+}
+
+/** 景點頁列表篩選分組 */
+export const placesListCategories: PlacesListCategory[] = ['places', 'dining']
+
+export const placesListCategoryLabels: Record<PlacesListCategory, string> = {
+  places: '景點/體驗',
+  dining: '餐廳/咖啡',
+}
+
+export function placesListGroup(place: Place): PlacesListCategory | null {
+  if (
+    place.category === 'attraction' ||
+    place.category === 'shop' ||
+    place.category === 'market' ||
+    place.category === 'experience'
+  ) {
+    return 'places'
+  }
+  if (place.category === 'restaurant' || place.category === 'cafe') return 'dining'
+  return null
+}
+
+/** 4/4/4 方案已移除的飯店，不在景點頁列表顯示 */
+export const excludedHotelPlaceIds = new Set([
+  'hotel-vision',
+  'kempinski',
+  'ibis-wien',
+  'spark-hilton',
+  'hilton-vienna-park',
+  'botanique',
+])
+
+export function isPlaceOnPlacesList(place: Place): boolean {
+  if (excludedHotelPlaceIds.has(place.id)) return false
+  if (place.category === 'hotel' || place.category === 'transport') return false
+  if (place.city === 'taipei' || place.city === 'inflight') return false
+  return true
+}
+
+/** 列表類型篩選 */
+export function matchesPlacesCategoryFilter(
+  place: Place,
+  category: PlacesListCategory | 'all',
+): boolean {
+  if (category === 'all') return true
+  return placesListGroup(place) === category
 }
 
 export const places: Place[] = [
@@ -115,7 +162,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'shop',
     intro:
-      '布達佩斯最知名的步行購物街，連接弗洛斯馬提廣場與中央大市場方向，兩側是紀念品店、時裝店、餐廳與街頭藝人，適合落地後先熟悉城市節奏。',
+      '布達佩斯最知名的步行購物街，連接弗洛斯馬提廣場與中央市場方向，兩側是紀念品店、時裝店、餐廳與街頭藝人，適合落地後先熟悉城市節奏。',
     tip: '觀光區餐廳偏貴，午餐可隨便小吃即可，把正餐留給晚上。',
     mapsQuery: 'Váci utca Budapest',
   },
@@ -228,7 +275,7 @@ export const places: Place[] = [
   },
   {
     id: 'great-market-hall',
-    name: '中央大市場',
+    name: '中央市場',
     nameEn: 'Great Market Hall (Nagyvásárcsarnok)',
     city: 'budapest',
     category: 'market',
@@ -244,7 +291,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'restaurant',
     intro:
-      '匈牙利國民小吃：發酵麵團油炸後抹蒜、酸奶油，再加起司或其他配料。外酥內軟、份量很大，在中央大市場二樓吃最有在地感。',
+      '匈牙利國民小吃：發酵麵團油炸後抹蒜、酸奶油，再加起司或其他配料。外酥內軟、份量很大，在中央市場二樓吃最有在地感。',
     tip: '一份很能飽，兩人可分享。趁熱吃，別點太多配料反而吃不完。',
     mapsQuery: 'Great Market Hall Budapest Langos',
   },
@@ -420,6 +467,19 @@ export const places: Place[] = [
     mapsQuery: 'Wiener Rathaus',
   },
   {
+    id: 'hofburg',
+    name: '霍夫堡皇宮',
+    nameEn: 'Hofburg Palace',
+    city: 'vienna',
+    category: 'attraction',
+    intro:
+      '哈布斯堡王朝的冬宮，座落維也納市中心，由多座宮殿、中庭與博物館群組成。從英雄廣場、米夏埃爾廣場到宮殿內院，是理解維也納「皇城」氛圍的核心；西翼有銀器館、茜茜博物館等，也可在外圍拍照不走完全部展廳。',
+    story:
+      '這裡曾是哈布斯堡統治者 winter residence，與西南郊的美泉宮夏宮相對。皇宮不斷加建，所以現在看起來像好幾個時代拼在一起；維也納人說，想懂這座城市的「帝國感」，霍夫堡比任何一條精品街都更直接。',
+    tip: '外觀與中庭免費可逛。若進博物館，茜茜博物館＋銀器館等可買組合票；從格拉本／科爾市場步行約 5 分鐘。住 Miiro 也可穿博物館區走過來。',
+    mapsQuery: 'Hofburg Vienna',
+  },
+  {
     id: 'stephansdom',
     name: '聖史蒂芬大教堂',
     nameEn: 'Stephansdom',
@@ -431,6 +491,19 @@ export const places: Place[] = [
       '彩色屋頂上有哈布斯堡的「雙老鷹」圖案；大鐘「Pummerin」曾在戰爭中毀壞後重鑄，音色低沉。當地人常開玩笑說：聽到它響，才算真正到了維也納。',
     tip: '教堂本身可進參觀；若只是路過看夜景與屋頂也足夠。附近餐廳多，Figlmüller 就在不遠處。',
     mapsQuery: 'St. Stephen\'s Cathedral Vienna',
+  },
+  {
+    id: 'mozarthaus-vienna',
+    name: '莫札特之家',
+    nameEn: 'Mozarthaus Vienna',
+    city: 'vienna',
+    category: 'attraction',
+    intro:
+      '1784–1787 年莫札特在維也納創作高峰期的故居，位於聖史蒂芬大教堂旁 Domgasse 5。館內重現當時的客廳、臥室與創作脈絡，他在這裡寫下《費加羅的婚禮》等作品。',
+    story:
+      '這不是莫札特在維也納的第一落腳處，卻是他名氣最響、作品最密集的一段。館方常強調：走進這幾間普通市民公寓，會發現天才的日常生活其實也滿「人」——帶著孩子、趕稿、為房租發愁。',
+    tip: '官網成人 €15 起；通常 10:00–18:00（最後入場約 17:30，冬季以官網為準）。距 Stephansdom 步行 2–3 分鐘，適合排進老城白天行程。',
+    mapsQuery: 'Mozarthaus Vienna',
   },
   {
     id: 'figlmuller',
@@ -766,6 +839,32 @@ export const places: Place[] = [
       '流傳最廣的傳說是：鐘匠把天文鐘做得太好，當局怕他再為別的城市打造，竟弄瞎了他的眼睛。故事偏殘忍、也未必屬實，卻讓這座整點報時的鐘，多了一層神秘又心疼的色彩。',
     tip: '表演本身很短，重點是氣氛。站外圈也能看，不必擠最前面。可順便登老市政廳塔俯瞰廣場。',
     mapsQuery: 'Prague Astronomical Clock',
+  },
+  {
+    id: 'kafka-statue',
+    name: '卡夫卡雕塑',
+    nameEn: 'Statue of Franz Kafka',
+    city: 'prague',
+    category: 'attraction',
+    intro:
+      '捷克藝術家 David Černý 的動態雕塑，由 42 層可旋轉的不鏽鋼片拼成卡夫卡頭像，就立在 Quadrio 商場旁、Národní 大街口。是布拉格最常被拍照的現代地標之一，路過時幾乎一定會看到它在慢慢轉動。',
+    story:
+      '卡夫卡出生在布拉格，一生大多在這座城市度過。《變形記》那種說不清的荒謬，和這尊「會拆開又拼回去」的頭像，常被放在一起談——既是隱喻，也是很適合駐足幾分鐘的公共藝術。',
+    tip: '免費參觀。完整旋轉一圈約 40 分鐘，拍照常要排隊。從老城廣場步行約 8–10 分鐘，或搭 B 線到 Národní třída。',
+    mapsQuery: 'Statue of Franz Kafka Prague',
+  },
+  {
+    id: 'powder-tower',
+    name: '火藥塔',
+    nameEn: 'Powder Tower (Prašná brána)',
+    city: 'prague',
+    category: 'attraction',
+    intro:
+      '1475 年動工的哥德式城門高塔，原是布拉格 13 座城門之一，後來曾作為火藥庫而得名。塔身細長、雕飾繁複，是從新城走向老城的標誌性入口；登塔可俯瞰 Na Příkopě 大街與舊城方向。',
+    story:
+      '當年加冕遊行常從這裡進城，連接皇宮與老城。19 世紀後這裡改存火藥，「火藥塔」之名才固定下來；如今它更像一座從中世紀走來的門樓，站在底下抬頭看，會覺得舊城真的還在呼吸。',
+    tip: '外觀路過必看。若要登塔，官網成人約 350 CZK；從老城廣場走約 5 分鐘，共和廣場也在旁邊。',
+    mapsQuery: 'Powder Tower Prague',
   },
   {
     id: 'prague-christmas-market',

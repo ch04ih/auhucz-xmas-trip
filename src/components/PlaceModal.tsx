@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
-  const { plan } = useStayPlan()
+  const { resolvedDays } = useStayPlan()
   const place = placeId ? getPlace(placeId) : undefined
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
 
   if (!placeId || !place) return null
 
-  const relatedDays = plan.days.filter((d) => placesForDay(d).includes(place.id))
+  const relatedDays = resolvedDays.filter((d) => placesForDay(d).includes(place.id))
   const mapsUrl = place.mapsQuery
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.mapsQuery)}`
     : null

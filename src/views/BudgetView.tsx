@@ -3,7 +3,6 @@ import { FadeImage } from '../components/FadeImage'
 import { FlightSummary } from '../components/FlightSummary'
 import { placeImage } from '../data/places'
 import {
-  defaultHotelSelection,
   flightPlans,
   formatTwd,
   hotelPerPersonFromSelection,
@@ -67,14 +66,13 @@ function hotelMeta(opt: HotelOption) {
 }
 
 export function BudgetView({ onOpenPlace }: Props) {
-  const { plan } = useStayPlan()
+  const { plan, hotelSelection, selectHotel } = useStayPlan()
   const hotelCities = plan.hotelCities
   const ticketItems = plan.ticketItems
   const optionalTicketItems = plan.optionalTicketItems
 
   const flightPlan = flightPlans[0]
   const flight = flightPlan.cabins[0]
-  const [hotelSelection, setHotelSelection] = useState(defaultHotelSelection)
   const [expandedCities, setExpandedCities] = useState<
     Partial<Record<HotelCityGroup['cityId'], boolean>>
   >({})
@@ -87,8 +85,8 @@ export function BudgetView({ onOpenPlace }: Props) {
   )
   const total = flight.price + hotelPerPerson + transportSum + ticketSum
 
-  const selectHotel = (cityId: HotelCityGroup['cityId'], optionId: string) => {
-    setHotelSelection((prev) => ({ ...prev, [cityId]: optionId }))
+  const chooseHotel = (cityId: HotelCityGroup['cityId'], optionId: string) => {
+    selectHotel(cityId, optionId)
     setExpandedCities((prev) => ({ ...prev, [cityId]: false }))
   }
 
@@ -172,7 +170,7 @@ export function BudgetView({ onOpenPlace }: Props) {
                         <button
                           type="button"
                           className="hotel-option-main"
-                          onClick={() => selectHotel(city.cityId, opt.id)}
+                          onClick={() => chooseHotel(city.cityId, opt.id)}
                         >
                           <FadeImage src={placeImage(imgId)} alt="" />
                           <div className="hotel-option-body">

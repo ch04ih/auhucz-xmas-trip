@@ -38,8 +38,7 @@ function MealBlock({
 }
 
 export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
-  const { plan } = useStayPlan()
-  const days = plan.days
+  const { resolvedDays: days } = useStayPlan()
   const day: DayPlan = days.find((d) => d.day === dayNumber) ?? days[0]
   const prev = days.find((d) => d.day === day.day - 1)
   const next = days.find((d) => d.day === day.day + 1)
