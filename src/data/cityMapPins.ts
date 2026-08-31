@@ -48,6 +48,8 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
   'st-stephen-basilica': { lat: 47.5008, lng: 19.0537 },
   'st-stephen-market': { lat: 47.501, lng: 19.0535 },
   basiliq: { lat: 47.5014, lng: 19.0541 },
+  'hotel-moments': { lat: 47.5019, lng: 19.0583 },
+  'hotel-vision': { lat: 47.4889, lng: 19.0567 },
   'vaci-utca': { lat: 47.4965, lng: 19.055 },
   parliament: { lat: 47.5075, lng: 19.0458 },
   'fishermans-bastion': { lat: 47.5029, lng: 19.0344 },
@@ -165,7 +167,7 @@ export const mapFeaturedAttractions: Record<CityMapId, string[]> = {
 
 /** 地圖上的住宿（有座標的候選；實際顯示依預算頁選取） */
 export const mapFeaturedHotels: Record<CityMapId, string[]> = {
-  budapest: ['basiliq'],
+  budapest: ['hotel-moments', 'hotel-vision'],
   vienna: ['miiro-spittelberg', 'jaz-vienna'],
   prague: ['hotel-cube', 'hilton-prague'],
   salzburg: [],

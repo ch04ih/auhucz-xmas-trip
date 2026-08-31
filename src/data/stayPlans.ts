@@ -39,12 +39,12 @@ const hotelCities345: HotelCityGroup[] = [
       {
         id: 'hotel-vision',
         placeId: 'hotel-vision',
-        name: '美景飯店－大陸集團',
-        room: '雙床房',
+        name: '布達佩斯美景飯店',
+        room: 'Superior Twin（雙床）',
         price: 16314,
         stars: 4,
         note: '2020 開幕',
-        summary: '市區方便、性價比高；房間較普通，適合想省預算。',
+        summary: '多瑙河岸核心位置，近中央市場；溫泉、代客停車，河岸大路交通方便。',
       },
       {
         id: 'basiliq-exec',
@@ -166,19 +166,30 @@ const hotelCities444: HotelCityGroup[] = [
     city: '布達佩斯',
     nights: '4 晚',
     dates: '12/11 – 12/15',
-    defaultOptionId: 'basiliq-exec',
+    defaultOptionId: 'hotel-moments',
     options: [
       {
-        id: 'basiliq-exec',
-        placeId: 'basiliq',
-        name: 'BasiliQ Hotel',
-        room: '高級房',
-        price: 25794,
+        id: 'hotel-moments',
+        placeId: 'hotel-moments',
+        name: '布達佩斯時光飯店',
+        room: '高級房（雙床）',
+        price: 30506,
         stars: 4,
-        note: '含 2 客早餐 · 12/8 23:59 前可免費取消 · 2025 開幕',
+        note: '含 2 客早餐 · 2024 翻新',
         summary:
-          '全新四星，走路就到聖殿大教堂市集；高級房新淨實用，含兩客早餐，取消期限前可免費退改。',
-        imageId: 'basiliq-room',
+          '安德拉希大道核心，聖殿市集與瓦茨街步行可達；觀光區治安好、夜歸安心，附 wellness。',
+        imageId: 'hotel-moments',
+      },
+      {
+        id: 'hotel-vision',
+        placeId: 'hotel-vision',
+        name: '布達佩斯美景飯店',
+        room: 'Superior Twin（雙床）',
+        price: 25181,
+        stars: 4,
+        note: '可免費取消 · 2020 開幕',
+        summary:
+          '多瑙河岸絕佳位置，近中央市場；溫泉、代客停車，大路叫車卸行李都方便。',
       },
     ],
   },
@@ -187,7 +198,7 @@ const hotelCities444: HotelCityGroup[] = [
     city: '維也納',
     nights: '4 晚',
     dates: '12/15 – 12/19',
-    defaultOptionId: 'miiro-spittelberg',
+    defaultOptionId: 'jaz-vienna',
     options: [
       {
         id: 'miiro-spittelberg',
@@ -217,14 +228,14 @@ const hotelCities444: HotelCityGroup[] = [
     city: '布拉格',
     nights: '4 晚',
     dates: '12/19 – 12/23',
-    defaultOptionId: 'hotel-cube',
+    defaultOptionId: 'hilton-prague',
     options: [
       {
         id: 'hilton-prague',
         placeId: 'hilton-prague',
         name: '布拉格古城希爾頓飯店',
         room: '希爾頓雙床房',
-        price: 31100,
+        price: 29948,
         stars: 5,
         note: '2016 翻新',
         summary:
@@ -369,9 +380,9 @@ export function getStayPlan(id: StayPlanId): StayPlan {
 }
 
 export const defaultHotelSelection: Record<HotelCityGroup['cityId'], string> = {
-  budapest: 'basiliq-exec',
-  vienna: 'miiro-spittelberg',
-  prague: 'hotel-cube',
+  budapest: 'hotel-moments',
+  vienna: 'jaz-vienna',
+  prague: 'hilton-prague',
 }
 
 export function hotelOptionById(

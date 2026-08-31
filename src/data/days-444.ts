@@ -71,7 +71,7 @@ export const days444: DayPlan[] = [
         time: '12:35 – 13:10',
         title: '飯店放行李',
         transit: '抵達後 Bolt／步行 · 約 10–15 分',
-        placeIds: ['basiliq'],
+        placeIds: ['hotel-moments'],
       },
       {
         time: '13:30 – 15:00',
@@ -84,7 +84,7 @@ export const days444: DayPlan[] = [
         time: '15:00 – 17:00',
         title: '飯店 check-in 休息',
         transit: '步行回飯店 · 約 8–12 分',
-        placeIds: ['basiliq'],
+        placeIds: ['hotel-moments'],
       },
       {
         time: '17:00 – 19:00',
@@ -107,8 +107,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: '機場地底搭電車至維也納中央車站，轉乘特快火車頭等艙直達布達佩斯；市區步行／Bolt。',
-    lodging: 'BasiliQ Hotel（1/4 晚）',
-    lodgingPlaceId: 'basiliq',
+    lodging: '布達佩斯時光飯店（1/4 晚）',
+    lodgingPlaceId: 'hotel-moments',
   },
   {
     day: 3,
@@ -155,8 +155,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: '市內全搭 Bolt；城堡區搭復古纜車（Funicular）上山。',
-    lodging: 'BasiliQ Hotel（2/4 晚）',
-    lodgingPlaceId: 'basiliq',
+    lodging: '布達佩斯時光飯店（2/4 晚）',
+    lodgingPlaceId: 'hotel-moments',
   },
   {
     day: 4,
@@ -210,8 +210,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: '景點間以 Bolt 接駁；可體驗黃線地鐵 M1。',
-    lodging: 'BasiliQ Hotel（3/4 晚）',
-    lodgingPlaceId: 'basiliq',
+    lodging: '布達佩斯時光飯店（3/4 晚）',
+    lodgingPlaceId: 'hotel-moments',
   },
   {
     day: 5,
@@ -265,8 +265,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: '安德拉希大道可步行或搭黃線地鐵 M1；英雄廣場／城市公園用 Bolt 或地鐵。',
-    lodging: 'BasiliQ Hotel（4/4 晚）',
-    lodgingPlaceId: 'basiliq',
+    lodging: '布達佩斯時光飯店（4/4 晚）',
+    lodgingPlaceId: 'hotel-moments',
   },
   {
     day: 6,
@@ -282,7 +282,7 @@ export const days444: DayPlan[] = [
         time: '11:00',
         title: '退房、吃東西',
         note: '12:00 前退房',
-        placeIds: ['basiliq'],
+        placeIds: ['hotel-moments'],
       },
       {
         time: '12:30 – 15:20',
@@ -294,7 +294,7 @@ export const days444: DayPlan[] = [
         time: '15:30 – 17:00',
         title: '飯店 check-in 休息',
         transit: '抵達後 Bolt · 約 15–20 分',
-        placeIds: ['miiro-spittelberg'],
+        placeIds: ['jaz-vienna'],
       },
       {
         time: '17:00 – 19:00',
@@ -323,8 +323,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: 'ÖBB 特快火車頭等艙；老城區市集與餐廳皆可步行。',
-    lodging: 'Miiro Spittelberg（1/4 晚）',
-    lodgingPlaceId: 'miiro-spittelberg',
+    lodging: 'Jaz in the City Vienna（1/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 7,
@@ -371,8 +371,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: '市區至美泉宮與美景宮搭 Bolt 或地鐵 U-Bahn。',
-    lodging: 'Miiro Spittelberg（2/4 晚）',
-    lodgingPlaceId: 'miiro-spittelberg',
+    lodging: 'Jaz in the City Vienna（2/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 8,
@@ -399,8 +399,8 @@ export const days444: DayPlan[] = [
       dinner: { label: '飯店附近吃' },
     },
     transport: '巴士一日遊',
-    lodging: 'Miiro Spittelberg（3/4 晚）',
-    lodgingPlaceId: 'miiro-spittelberg',
+    lodging: 'Jaz in the City Vienna（3/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 9,
@@ -458,8 +458,8 @@ export const days444: DayPlan[] = [
       },
     },
     transport: 'Bolt 或地鐵 U-Bahn。',
-    lodging: 'Miiro Spittelberg（4/4 晚）',
-    lodgingPlaceId: 'miiro-spittelberg',
+    lodging: 'Jaz in the City Vienna（4/4 晚）',
+    lodgingPlaceId: 'jaz-vienna',
   },
   {
     day: 10,
@@ -474,7 +474,7 @@ export const days444: DayPlan[] = [
         time: '12:00',
         title: '退房，行李寄放飯店',
         note: '先放行李再出門；回程再取行李搭 Bolt 去中央車站',
-        placeIds: ['miiro-spittelberg'],
+        placeIds: ['jaz-vienna'],
       },
       {
         time: '12:20 – 13:30',
@@ -494,7 +494,7 @@ export const days444: DayPlan[] = [
         title: '回飯店取行李，Bolt 前往中央車站',
         transit: '回飯店後 Bolt · 約 20–25 分含取行李',
         note: '預留塞車，目標 14:50 前到站',
-        placeIds: ['miiro-spittelberg', 'wien-hbf'],
+        placeIds: ['jaz-vienna', 'wien-hbf'],
       },
       {
         time: '15:10 – 19:23',

@@ -44,7 +44,7 @@ export function placesListGroup(place: Place): PlacesListCategory | null {
 
 /** 4/4/4 方案已移除的飯店，不在景點頁列表顯示 */
 export const excludedHotelPlaceIds = new Set([
-  'hotel-vision',
+  'basiliq',
   'kempinski',
   'ibis-wien',
   'spark-hilton',
@@ -123,15 +123,26 @@ export const places: Place[] = [
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
+    id: 'hotel-moments',
+    name: '布達佩斯時光飯店',
+    nameEn: 'Hotel Moments Budapest',
+    city: 'budapest',
+    category: 'hotel',
+    intro:
+      '座落世界遺產安德拉希大道，步行 3 分鐘到聖伊什特萬大教堂與聖誕市集，歌劇院、瓦茨街與佩斯市中心景點都在腳程內。觀光核心區大路寬、夜晚燈光明亮，走回飯店很安心。附 wellness 與餐廳，櫃台服務評價佳，房間典雅寬敞。',
+    tip: '周邊精品店、咖啡館與餐廳密集，逛完市集不必搭車就能回房；安德拉希搭 M1 地鐵去英雄廣場也方便。',
+    mapsQuery: 'Hotel Moments Budapest Andrássy út 8',
+  },
+  {
     id: 'hotel-vision',
-    name: '美景飯店－大陸集團',
+    name: '布達佩斯美景飯店',
     nameEn: 'Hotel Vision Budapest',
     city: 'budapest',
     category: 'hotel',
     intro:
-      '布達佩斯四星，2020 年開幕。市區位置方便，瓦茨街與大教堂市集都好到達。房價最親民，適合想把預算留給吃喝與門票的人；房間標準實用，沒有太多設計感。',
-    tip: 'Day 2 中午可先放行李再逛街。治安與一般市中心觀光區差不多，晚上回飯店建議走大路或叫車。',
-    mapsQuery: 'Hotel Vision Budapest',
+      '多瑙河南岸一線，可眺望鏈橋與對岸國會、城堡景致。步行可達中央市場，河岸大路寬敞、計程車好停，大行李卸放省力。附溫泉、桑拿與代客停車，精品旅店服務細緻，房間安靜乾淨。',
+    tip: '河堤散步看夜景很方便；門口有電車，去塞切尼溫泉、瓦茨街方向搭車也快。',
+    mapsQuery: 'Hotel Vision Budapest Belgrád rakpart 24',
   },
   {
     id: 'basiliq',
