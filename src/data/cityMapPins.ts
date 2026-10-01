@@ -18,27 +18,27 @@ export const cityMapConfigs: Record<CityMapId, CityMapConfig> = {
   budapest: {
     center: [47.502, 19.045],
     zoom: 13,
-    hint: 'CartoDB 輕量底圖 · 左岸布達、右岸佩斯',
+    hint: '左岸布達、右岸佩斯',
   },
   vienna: {
     center: [48.206, 16.37],
     zoom: 13,
-    hint: 'CartoDB 輕量底圖 · 一區老城與環城大道',
+    hint: '一區老城與環城大道',
   },
   prague: {
     center: [50.087, 14.42],
     zoom: 14,
-    hint: 'CartoDB 輕量底圖 · 城堡區、舊城與新城',
+    hint: '城堡區、舊城與新城',
   },
   salzburg: {
     center: [47.803, 13.043],
     zoom: 14,
-    hint: 'CartoDB 輕量底圖 · 舊城與要塞山',
+    hint: '舊城與要塞山',
   },
   hallstatt: {
     center: [47.562, 13.649],
     zoom: 15,
-    hint: 'CartoDB 輕量底圖 · 哈爾施塔特湖邊',
+    hint: '哈爾施塔特湖邊',
   },
 }
 
@@ -126,11 +126,11 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
   hallstatt: { lat: 47.5622, lng: 13.6493 },
 }
 
-export const CARTO_TILE_URL =
-  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+/** CARTO basemaps now require an API key; OSM standard tiles work keyless with attribution. */
+export const MAP_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-export const CARTO_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+export const MAP_ATTRIBUTION =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 
 export function isCityMapId(city: CityId): city is CityMapId {
   return city in cityMapConfigs

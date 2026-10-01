@@ -5,8 +5,8 @@ import { selectedHotelPlaceIdForCity } from '../data/stayPlans'
 import { cityLabels } from '../data/places'
 import { useStayPlan } from '../lib/StayPlanContext'
 import {
-  CARTO_ATTRIBUTION,
-  CARTO_TILE_URL,
+  MAP_ATTRIBUTION,
+  MAP_TILE_URL,
   cityMapConfigs,
   isCityMapId,
   mapFeaturedAttractions,
@@ -102,9 +102,8 @@ export function CityMap({ city, places, onOpenPlace }: Props) {
         attributionControl: true,
       })
 
-      L.tileLayer(CARTO_TILE_URL, {
-        attribution: CARTO_ATTRIBUTION,
-        subdomains: 'abcd',
+      L.tileLayer(MAP_TILE_URL, {
+        attribution: MAP_ATTRIBUTION,
         maxZoom: 19,
       }).addTo(map)
 
