@@ -58,7 +58,12 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       when: '出發前 2–3 個月',
       hint: '聖誕旺季最容易搶光，能早訂就早訂',
       items: [
-        { name: '維也納國家歌劇院', note: '熱門劇目／週末場常提前售完；站票也建議提早盯' },
+        {
+          name: '維也納國家歌劇院',
+          note: is444
+            ? '已購 · 12/18 19:00《魔笛》2 張'
+            : '熱門劇目／週末場常提前售完；站票也建議提早盯',
+        },
         { name: '飯店', note: 'BasiliQ、Miiro、希爾頓待訂；聖誕旺季建議提早' },
         { name: '華航豪經艙', note: '已訂 · 12/10 去程、12/23 回程' },
         {

@@ -261,8 +261,21 @@ function ticketBundle(days: {
   opera: number
   schonbrunn: number
   pragueCastle: number
+  operaBooked?: boolean
 }): { ticketItems: BudgetLine[]; optionalTicketItems: BudgetLine[] } {
-  return {
+  const bookedOpera: BudgetLine = {
+    label: '維也納國家歌劇院《魔笛》',
+    detail: `Day ${days.opera} · 12/18 19:00 · 已購 2 張共 $6,170`,
+    price: 3085,
+    placeId: 'staatsoper',
+  }
+  const optionalOpera: BudgetLine = {
+    label: '維也納國家歌劇院',
+    detail: `Day ${days.opera} · 官網站票 Parterre €18；座位視劇目另計`,
+    price: 672,
+    placeId: 'staatsoper',
+  }
+  const bundle: { ticketItems: BudgetLine[]; optionalTicketItems: BudgetLine[] } = {
     ticketItems: [
       {
         label: '薩爾斯堡 & 哈修塔特一日遊',
@@ -315,12 +328,6 @@ function ticketBundle(days: {
         placeId: 'prague-castle',
       },
       {
-        label: '維也納國家歌劇院',
-        detail: `Day ${days.opera} · 官網站票 Parterre €18；座位視劇目另計`,
-        price: 672,
-        placeId: 'staatsoper',
-      },
-      {
         label: '金色大廳音樂會',
         detail: `Day ${days.opera} · 官網站票 Stehplatz €8 起；座位依節目 €30 起`,
         price: 299,
@@ -328,6 +335,12 @@ function ticketBundle(days: {
       },
     ],
   }
+  if (days.operaBooked) {
+    bundle.ticketItems.push(bookedOpera)
+  } else {
+    bundle.optionalTicketItems.splice(3, 0, optionalOpera)
+  }
+  return bundle
 }
 
 const tickets345 = ticketBundle({
@@ -342,6 +355,7 @@ const tickets444 = ticketBundle({
   opera: 9,
   schonbrunn: 7,
   pragueCastle: 12,
+  operaBooked: true,
 })
 
 export const stayPlans: StayPlan[] = [
