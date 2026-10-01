@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { FadeImage } from '../components/FadeImage'
 import { FlightSummary } from '../components/FlightSummary'
-import { placeImage } from '../data/places'
+import { placeThumb } from '../data/places'
 import {
   flightPlans,
   formatTwd,
@@ -172,7 +172,7 @@ export function BudgetView({ onOpenPlace }: Props) {
                           className="hotel-option-main"
                           onClick={() => chooseHotel(city.cityId, opt.id)}
                         >
-                          <FadeImage src={placeImage(imgId)} alt="" />
+                          <FadeImage src={placeThumb(imgId)} alt="" />
                           <div className="hotel-option-body">
                             <strong>{opt.name}</strong>
                             <span>{hotelMeta(opt)}</span>

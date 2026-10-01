@@ -1,4 +1,4 @@
-import { placeImage, places } from '../data/places'
+import { placeImage, placeThumb, places } from '../data/places'
 import type { DayPlan } from '../data/types'
 
 const warmed = new Set<string>()
@@ -25,10 +25,10 @@ export function warmDayCovers(days: DayPlan[], aroundDay?: number) {
   }
 }
 
-/** Warm place photos in the background after first paint. */
+/** Warm list thumbnails in the background after first paint; large photos load on demand. */
 export function scheduleWarmAllPlaceImages() {
   const run = () => {
-    for (const p of places) warmPlaceImage(p)
+    for (const p of places) warmImage(placeThumb(p))
   }
   if (typeof window.requestIdleCallback === 'function') {
     window.requestIdleCallback(run, { timeout: 4000 })

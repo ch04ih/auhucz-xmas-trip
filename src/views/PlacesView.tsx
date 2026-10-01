@@ -6,7 +6,7 @@ import {
   cityLabels,
   isPlaceOnPlacesList,
   matchesPlacesCategoryFilter,
-  placeImage,
+  placeThumb,
   places,
   placesListCategories,
   placesListCategoryLabels,
@@ -119,7 +119,7 @@ export function PlacesView({ onOpenPlace, active = true }: Props) {
           >
             <FadeImage
               className="place-thumb"
-              src={placeImage(p)}
+              src={placeThumb(p)}
               alt=""
               loading="lazy"
               onError={(e) => {

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:pages": "BASE_PATH=/auhucz-xmas-trip/ tsc -b && BASE_PATH=/auhucz-xmas-trip/ vite build",
+    "images": "node scripts/optimize-place-images.mjs",
+    "build": "npm run images && tsc -b && vite build",
+    "build:pages": "npm run images && BASE_PATH=/auhucz-xmas-trip/ tsc -b && BASE_PATH=/auhucz-xmas-trip/ vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -22,6 +23,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.75.0",
+    "sharp": "^0.35.5",
     "typescript": "~6.0.2",
     "vite": "^8.2.0"
   }

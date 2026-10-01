@@ -3,7 +3,8 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const outDir = join(root, 'public', 'places')
+/** Originals live here; run `npm run images` afterwards to build the web-sized copies. */
+const outDir = join(root, 'images-src', 'places')
 const UA = 'AuhuczChristmasTrip/1.0 (personal travel webapp; Wikimedia images)'
 
 /** @type {Record<string, { wiki?: string, commons?: string }>} */
