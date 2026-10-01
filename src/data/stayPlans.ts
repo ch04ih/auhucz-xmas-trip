@@ -180,17 +180,6 @@ const hotelCities444: HotelCityGroup[] = [
           '安德拉希大道核心，聖殿市集與瓦茨街步行可達；觀光區治安好、夜歸安心，附 wellness。',
         imageId: 'hotel-moments',
       },
-      {
-        id: 'hotel-vision',
-        placeId: 'hotel-vision',
-        name: '布達佩斯美景飯店',
-        room: 'Superior Twin（雙床）',
-        price: 25181,
-        stars: 4,
-        note: '可免費取消 · 2020 開幕',
-        summary:
-          '多瑙河岸絕佳位置，近中央市場；溫泉、代客停車，大路叫車卸行李都方便。',
-      },
     ],
   },
   {
