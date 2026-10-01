@@ -172,10 +172,10 @@ const hotelCities444: HotelCityGroup[] = [
         id: 'hotel-moments',
         placeId: 'hotel-moments',
         name: '布達佩斯時光飯店',
-        room: '高級房（雙床）',
-        price: 30506,
+        room: '高級房（2 張單人床）',
+        price: 31217,
         stars: 4,
-        note: '含 2 客早餐 · 2024 翻新',
+        note: '已訂 · 含 2 客早餐 · 2024 翻新',
         summary:
           '安德拉希大道核心，聖殿市集與瓦茨街步行可達；觀光區治安好、夜歸安心，附 wellness。',
         imageId: 'hotel-moments',

@@ -64,7 +64,12 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
             ? '已購 · 12/18 19:00《魔笛》2 張'
             : '熱門劇目／週末場常提前售完；站票也建議提早盯',
         },
-        { name: '飯店', note: 'BasiliQ、Miiro、希爾頓待訂；聖誕旺季建議提早' },
+        {
+          name: '飯店',
+          note: is444
+            ? '布達佩斯時光飯店已訂；維也納、布拉格待訂'
+            : 'BasiliQ、Jaz、希爾頓待訂；聖誕旺季建議提早',
+        },
         { name: '華航豪經艙', note: '已訂 · 12/10 去程、12/23 回程' },
         {
           name: 'Restaurant Bellevue',
