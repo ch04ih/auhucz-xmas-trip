@@ -1,4 +1,4 @@
-const CACHE = 'auhucz-v10'
+const CACHE = 'auhucz-v11'
 
 self.addEventListener('install', (event) => {
   self.skipWaiting()
@@ -18,23 +18,39 @@ self.addEventListener('activate', (event) => {
   )
 })
 
+function putInCache(request, response) {
+  if (response.ok && response.type === 'basic') {
+    const copy = response.clone()
+    caches.open(CACHE).then((cache) => cache.put(request, copy))
+  }
+  return response
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event
   if (request.method !== 'GET') return
+  if (new URL(request.url).origin !== self.location.origin) return
 
+  // Pages: network first so a new deploy shows up on the next open.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => putInCache(request, response))
+        .catch(() =>
+          caches.match(request).then((cached) => cached || caches.match('./index.html')),
+        ),
+    )
+    return
+  }
+
+  // Hashed assets and photos: cache first; never answer a photo with index.html.
   event.respondWith(
-    caches.match(request).then((cached) => {
-      const fetched = fetch(request)
-        .then((response) => {
-          if (response.ok) {
-            const copy = response.clone()
-            caches.open(CACHE).then((cache) => cache.put(request, copy))
-          }
-          return response
-        })
-        .catch(() => cached || caches.match('./index.html'))
-
-      return cached || fetched
-    }),
+    caches.match(request).then(
+      (cached) =>
+        cached ||
+        fetch(request)
+          .then((response) => putInCache(request, response))
+          .catch(() => Response.error()),
+    ),
   )
 })
