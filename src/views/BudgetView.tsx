@@ -9,6 +9,7 @@ import {
   transportItems,
 } from '../data/trip'
 import type { HotelCityGroup, HotelOption } from '../data/types'
+import { payAtHotelTwd } from '../data/stayPlans'
 import { useStayPlan } from '../lib/StayPlanContext'
 
 interface Props {
@@ -62,6 +63,9 @@ function BudgetCards({
 function hotelMeta(opt: HotelOption) {
   const bits = [`${'★'.repeat(opt.stars)}`, opt.room]
   if (opt.note) bits.push(opt.note)
+  if (opt.payAtHotelEur) {
+    bits.push(`到店另付 €${opt.payAtHotelEur.toFixed(2)}（約 ${formatTwd(payAtHotelTwd(opt))}）`)
+  }
   return bits.join(' · ')
 }
 
@@ -100,7 +104,7 @@ export function BudgetView({ onOpenPlace }: Props) {
         <p className="eyebrow">Budget / person</p>
         <h1>預算總覽</h1>
         <p className="hero-sub">
-          以每人計算；飯店為雙人房總價除以 2。
+          以每人計算；飯店為雙人房總價（含到店另付）除以 2。
         </p>
       </header>
 

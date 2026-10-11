@@ -88,6 +88,8 @@ export interface HotelOption {
   name: string
   room: string
   price: number
+  /** 到飯店現場另付的歐元（預付價 price 不含） */
+  payAtHotelEur?: number
   stars: number
   note?: string
   summary: string

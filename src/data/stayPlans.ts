@@ -1,6 +1,6 @@
 import { days345 } from './days-345'
 import { days444 } from './days-444'
-import type { DayPlan, HotelCityGroup } from './types'
+import type { DayPlan, HotelCityGroup, HotelOption } from './types'
 
 export type StayPlanId = '3-4-5' | '4-4-4'
 
@@ -174,6 +174,7 @@ const hotelCities444: HotelCityGroup[] = [
         name: '布達佩斯時光飯店',
         room: '高級房（2 張單人床）',
         price: 31217,
+        payAtHotelEur: 32.55,
         stars: 4,
         note: '已訂 · 含 2 客早餐 · 2024 翻新',
         summary:
@@ -190,24 +191,13 @@ const hotelCities444: HotelCityGroup[] = [
     defaultOptionId: 'jaz-vienna',
     options: [
       {
-        id: 'miiro-spittelberg',
-        placeId: 'miiro-spittelberg',
-        name: 'Miiro Spittelberg',
-        room: '典雅特大床間',
-        price: 31503,
-        stars: 4,
-        note: '不可退款 · 2025 翻新',
-        summary:
-          '鄰近老城區，位於Spittelberg文青巷、博物館區正後方。穿過博物館即達霍夫堡，維也納老城區能靠雙腳逛完。',
-      },
-      {
         id: 'jaz-vienna',
         placeId: 'jaz-vienna',
         name: '維也納城市爵士飯店',
         room: '悠音房',
-        price: 22991,
+        price: 22785,
         stars: 4,
-        note: '2021 開幕',
+        note: '已訂 · 2021 開幕',
         summary: '設計感強、地鐵方便；氣氛好，比車站飯店更有度假感。',
       },
     ],
@@ -217,27 +207,17 @@ const hotelCities444: HotelCityGroup[] = [
     city: '布拉格',
     nights: '4 晚',
     dates: '12/19 – 12/23',
-    defaultOptionId: 'hilton-prague',
+    defaultOptionId: 'hotel-cube',
     options: [
-      {
-        id: 'hilton-prague',
-        placeId: 'hilton-prague',
-        name: '布拉格古城希爾頓飯店',
-        room: '希爾頓雙床房',
-        price: 29948,
-        stars: 5,
-        note: '2016 翻新',
-        summary:
-          '過馬路即進入老城徒步區，步行至老城廣場約10分鐘、查理大橋20分鐘，治安極佳，鄰近大型購物中心，但觀光人潮較多。',
-      },
       {
         id: 'hotel-cube',
         placeId: 'hotel-cube',
         name: 'Hotel Cube',
         room: '高級房',
-        price: 26207,
+        price: 28437,
+        payAtHotelEur: 16.4,
         stars: 4,
-        note: '不可退款 · 含 2 客早餐 · 2022 開幕',
+        note: '已訂 · 含 2 客早餐 · 2022 開幕',
         summary:
           '精選四星飯店第2名，位於新城區河畔，鄰近國家歌劇院。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
       },
@@ -385,7 +365,7 @@ export function getStayPlan(id: StayPlanId): StayPlan {
 export const defaultHotelSelection: Record<HotelCityGroup['cityId'], string> = {
   budapest: 'hotel-moments',
   vienna: 'jaz-vienna',
-  prague: 'hilton-prague',
+  prague: 'hotel-cube',
 }
 
 export function hotelOptionById(
@@ -399,6 +379,13 @@ export function hotelOptionById(
   return undefined
 }
 
+/** 與交通頁歐元項目相同的換算（如 €32 ≈ $1,195） */
+export const EUR_TO_TWD = 37.35
+
+export function payAtHotelTwd(opt: HotelOption): number {
+  return opt.payAtHotelEur ? Math.round(opt.payAtHotelEur * EUR_TO_TWD) : 0
+}
+
 export function hotelPerPersonFromSelection(
   selection: Record<HotelCityGroup['cityId'], string>,
   cities: HotelCityGroup[],
@@ -408,7 +395,7 @@ export function hotelPerPersonFromSelection(
       city.options.find((o) => o.id === selection[city.cityId]) ??
       city.options.find((o) => o.id === city.defaultOptionId) ??
       city.options[0]
-    return sum + opt.price
+    return sum + opt.price + payAtHotelTwd(opt)
   }, 0)
   return Math.round(total / 2)
 }

@@ -67,7 +67,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: '飯店',
           note: is444
-            ? '布達佩斯時光飯店已訂；維也納、布拉格待訂'
+            ? '三城皆已訂 · 時光飯店、城市爵士飯店、Hotel Cube'
             : 'BasiliQ、Jaz、希爾頓待訂；聖誕旺季建議提早',
         },
         { name: '華航豪經艙', note: '已訂 · 12/10 去程、12/23 回程' },
