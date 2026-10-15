@@ -10,6 +10,13 @@ export const cityLabels: Record<CityId, string> = {
   inflight: '旅途中',
 }
 
+/** Google 地圖美食清單 */
+export const foodListUrls: Partial<Record<CityId, string>> = {
+  budapest: 'https://maps.app.goo.gl/CUQEpZSyeqneAfEk8',
+  vienna: 'https://maps.app.goo.gl/zu8wrjbStSEjWgnHA',
+  prague: 'https://maps.app.goo.gl/iFmEkcLNhAsv5xXe6',
+}
+
 export const categoryLabels: Record<PlaceCategory, string> = {
   attraction: '景點',
   market: '市集',
@@ -129,7 +136,7 @@ export const places: Place[] = [
     city: 'budapest',
     category: 'hotel',
     intro:
-      '座落世界遺產安德拉希大道起點。往國家歌劇院這段是布達佩斯的精品街，有「布達佩斯香榭大道」之稱，Louis Vuitton、Gucci 等名牌集中；附近 Deák 廣場旁的 Fashion Street（Deák Ferenc utca）則有 Zara、Mango 等平價品牌。步行 3 分鐘到聖伊什特萬大教堂與聖誕市集，歌劇院、瓦茨街也都在腳程內。大路寬、夜晚燈光明亮，走回飯店很安心。附 wellness 與餐廳，櫃台服務評價佳，房間典雅寬敞。',
+      '座落世界遺產安德拉希大道起點。往國家歌劇院這段是布達佩斯的精品街，有「布達佩斯香榭大道」之稱，Louis Vuitton、Gucci 等名牌集中；附近 Deák 廣場旁的 Fashion Street（Deák Ferenc utca）有 Massimo Dutti、COS、BOSS，再走幾分鐘到瓦茨街就有 Zara、Mango 等平價品牌。步行 3 分鐘到聖伊什特萬大教堂與聖誕市集，歌劇院、瓦茨街也都在腳程內。大路寬、夜晚燈光明亮，走回飯店很安心。附 wellness 與餐廳，櫃台服務評價佳，房間典雅寬敞。',
     tip: '已訂 12/11–15 四晚 · 高級房 2 張單人床，$31,217（含 2 客早餐）；到店另付 €32.55。周邊咖啡館與餐廳密集，逛完市集不必搭車就能回房；安德拉希搭 M1 地鐵去英雄廣場也方便。',
     mapsQuery: 'Hotel Moments Budapest Andrássy út 8',
   },
@@ -172,9 +179,10 @@ export const places: Place[] = [
     nameEn: 'Váci utca',
     city: 'budapest',
     category: 'shop',
-    intro:
-      '布達佩斯最知名的步行購物街，連接弗洛斯馬提廣場與中央市場方向，兩側是紀念品店、時裝店、餐廳與街頭藝人，適合落地後先熟悉城市節奏。',
-    tip: '觀光區餐廳偏貴，午餐可隨便小吃即可，把正餐留給晚上。',
+    intro: '布達佩斯最知名的步行購物街，從弗洛斯馬提廣場一路通往中央市場，兩側是紀念品店、品牌服飾與餐廳。',
+    hours: '商店多為 10:00–20:00',
+    duration: '約 30–60 分鐘',
+    tip: '觀光區餐廳偏貴，午餐簡單吃就好。',
     mapsQuery: 'Váci utca Budapest',
   },
   {
@@ -183,9 +191,11 @@ export const places: Place[] = [
     nameEn: "St. Stephen's Basilica Christmas Market",
     city: 'budapest',
     category: 'market',
-    intro:
-      '布達佩斯規模最大、最華麗的聖誕市集之一，以聖伊什特萬大教堂為背景。傍晚燈光亮起後氣氛最好，常有光影投影秀打在教堂立面。',
-    tip: '17:00–19:00 是看燈與逛攤的黃金時段。可順便嚐熱紅酒、煙囪捲 Chimney cake。',
+    intro: '布達佩斯最受歡迎的聖誕市集，以聖伊什特萬大教堂為背景，天黑後教堂立面會有光影投影秀。',
+    price: '免費入場',
+    hours: '週五 11:00–23:00、其他天 11:00–22:00；燈光秀 17:30 起每 30 分鐘一場',
+    duration: '約 1 小時',
+    tip: '必吃煙囪捲（Kürtőskalács）配熱紅酒。人多注意隨身包包。',
     mapsQuery: "St. Stephen's Basilica Christmas Market Budapest",
   },
   {
@@ -194,23 +204,16 @@ export const places: Place[] = [
     nameEn: "St. Stephen's Basilica",
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '布達佩斯最重要的天主教堂，供奉匈牙利首位國王聖伊什特萬的右手聖骸。新古典圓頂是市區天際線地標，夜晚被燈光照亮非常壯觀。',
-    story:
-      '教堂供奉的是匈牙利首位國王聖伊什特萬的「右手聖骸」。這隻聖手在歷史上曾被藏匿、流亡國外，輾轉多年才重回布達佩斯；聖誕市集的光影秀也常打在教堂立面上，夜晚特別有戲劇感。',
-    tip: '若時間夠可上樓觀景台俯瞰市區；市集就在教堂前廣場。',
+    intro: '布達佩斯最大的天主教堂，新古典圓頂是市區天際線地標。',
+    story: [
+      '右手聖骸：教堂供奉匈牙利開國國王聖伊什特萬的右手，放在左側禮拜堂的金色聖匣裡。',
+      '96 公尺：教堂和國會大廈都是 96 公尺高，紀念 896 年匈牙利建國。',
+    ].join('\n'),
+    price: '教堂 2,600 HUF；圓頂觀景台＋珍寶館 5,000 HUF；套票 6,800 HUF',
+    hours: '教堂週一至六 9:00–17:45；觀景台每日 9:00–19:00',
+    duration: '約 30–45 分鐘（登圓頂再加 30 分鐘）',
+    tip: '週一 16:30 有管風琴音樂會，持教堂票即可入場。',
     mapsQuery: "St. Stephen's Basilica Budapest",
-  },
-  {
-    id: 'bors-gastrobar',
-    name: 'Bors GastroBar',
-    nameEn: 'Bors GastroBar',
-    city: 'budapest',
-    category: 'restaurant',
-    intro:
-      '布達佩斯超人氣小店，以創意湯品、三明治與在地風味小食聞名，份量實在、周轉快，常有排隊。適合市集逛完後來一碗熱湯暖身。',
-    tip: '店面不大，尖峰可能需等候。也可改吃市集小吃，看當天體力與排隊狀況。',
-    mapsQuery: 'Bors GastroBar Budapest',
   },
   {
     id: 'new-york-cafe',
@@ -218,11 +221,12 @@ export const places: Place[] = [
     nameEn: 'New York Café',
     city: 'budapest',
     category: 'cafe',
-    intro:
-      '常被稱為「全世界最美咖啡館」之一。金箔、壁畫、水晶燈與巴洛克大廳極盡華麗，19 世紀末曾是作家與記者聚集地。適合當成一頓儀式感早午餐，而不只是喝杯咖啡。',
-    story:
-      '19 世紀末文人常泡在這裡寫稿。傳說當時老闆心一橫，乾脆把店「賣」給常客，代價只要一杯咖啡，好讓作家天天來坐；後來又悄悄買回來，這份任性成了鎮店八卦，也讓它多了一層文藝傳奇色彩。',
-    tip: '強烈建議訂位。點套餐或早午餐比較划算；進去先拍照再慢慢吃。',
+    intro: '常被稱為「全世界最美咖啡館」，金箔、壁畫和水晶燈的華麗大廳，19 世紀末是作家和記者的聚集地。',
+    story: '傳說 1894 年開幕當晚，作家們把大門鑰匙丟進多瑙河，讓這裡「永遠不打烊」。',
+    price: '每人約 10,000–16,000 HUF（另加 15% 服務費）',
+    hours: '每日 7:00 起；早餐只供應到 11:00，11:00–12:00 只有甜點',
+    duration: '約 1–1.5 小時',
+    tip: '18:00 前不接受訂位，週六早上要排隊，建議提早到。',
     mapsQuery: 'New York Café Budapest',
   },
   {
@@ -231,11 +235,15 @@ export const places: Place[] = [
     nameEn: 'Hungarian Parliament Building',
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '多瑙河畔的新哥德式巨構，也是匈牙利最大建築之一。外觀對稱華麗，內部導覽可見圓頂大廳、階梯與聖史蒂芬王冠。無論白天或夜景都是布達佩斯招牌畫面。',
-    story:
-      '據說整棟建築共有 365 座尖塔，剛好對應一年的天數。內部還收藏匈牙利聖冠；晚上從河面或對岸望去，金燈點點，特別像一座被點亮的童話宮殿。',
-    tip: '非歐盟成人 14,000 HUF，票價含語音導覽；官網 jegymester.hu 先訂場次，進場後選中文耳機。外面拍照最佳角度在對岸漁人堡或船上。',
+    intro: '多瑙河畔的新哥德式建築，也是匈牙利最大的建築。導覽會走過金色主階梯和圓頂大廳，親眼看到匈牙利聖冠。',
+    story: [
+      '96 公尺：建築高 96 公尺，紀念 896 年建國；市區規定建築不能比它高。',
+      '聖冠：匈牙利國寶，二戰後由美國代為保管，1978 年才歸還，現在有衛兵在圓頂大廳守護。',
+    ].join('\n'),
+    price: '非歐盟成人 14,000 HUF（含語音導覽）',
+    hours: '每日 8:00–16:00',
+    duration: '導覽約 45 分鐘，另外提早 15–20 分鐘到場安檢',
+    tip: '在 Jegymester.hu 預約場次，選中文語音導覽。入場有安檢，提早 15 分到。',
     mapsQuery: 'Hungarian Parliament Building',
   },
   {
@@ -244,11 +252,12 @@ export const places: Place[] = [
     nameEn: "Fisherman's Bastion",
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '布達山丘上的新羅馬式白色廊台與尖塔，建於 19–20 世紀之交，用來紀念守護這片城牆的漁民公會。由此俯瞰國會大廈與多瑙河，是看夕陽的經典位置。',
-    story:
-      '名字真的跟「漁夫」有關，不是後來硬取的浪漫地名。中世紀這段城牆曾由漁民公會負責看守，今日的白色廊台是後世重建的紀念建築，用來向當年守城的人致敬。',
-    tip: '主廊台部分收費，周圍仍有很多免費觀景點。冬天日短，15:00–16:30 就要就位看夕陽。',
+    intro: '布達山丘上的白色新羅馬式廊台與尖塔，正對多瑙河與國會大廈，是看夕陽的經典位置。',
+    story: '七座尖塔代表 896 年定居匈牙利的七個馬札爾部落；名字則來自中世紀負責守這段城牆的漁民公會。',
+    price: '上層觀景台 1,700 HUF（只收卡）；下層免費',
+    hours: '上層 9:00–19:00 收費，其他時間免費',
+    duration: '約 30–45 分鐘',
+    tip: '12 月約 16:00 日落，15:30 前就位。',
     mapsQuery: "Fisherman's Bastion Budapest",
   },
   {
@@ -257,9 +266,11 @@ export const places: Place[] = [
     nameEn: 'Buda Castle',
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '布達佩斯城堡區核心，曾是匈牙利王宮所在。現為國家藝廊與歷史博物館等文化空間，廣場、城牆與遠眺市景本身就很值得走一圈。',
-    tip: '可與漁人堡同一下午走完。搭復古纜車上山最省力，下山可步行或搭公車。',
+    intro: '城堡山上的舊王宮，現在是國家藝廊與布達佩斯歷史博物館；廣場與城牆可以免費走走、俯瞰市景。',
+    price: '戶外免費；博物館另購票',
+    hours: '戶外全天開放',
+    duration: '外圍散步約 1 小時',
+    tip: '和漁人堡同一趟走完；下山可步行或搭 16 路公車。',
     mapsQuery: 'Buda Castle',
   },
   {
@@ -279,9 +290,11 @@ export const places: Place[] = [
     nameEn: 'Kiskakukk Étterem',
     city: 'budapest',
     category: 'restaurant',
-    intro:
-      '傳統匈牙利餐廳，氣氛較古典，適合品嚐國菜燉牛肉湯 Goulash、燉菜與餃子類主食。Day 3 晚餐首選，吃完一天的宮廷與城堡行程。',
-    tip: 'Goulash 在匈牙利比較接近濃湯而非乾炒牛肉；可再點一道主餐分享。',
+    intro: '老牌匈牙利餐廳，氣氛古典，適合吃燉牛肉湯 Goulash 等國菜。',
+    price: '每人約 10,000–16,000 HUF（另加 13% 服務費）',
+    hours: '每日 12:00–23:00',
+    duration: '約 1.5 小時',
+    tip: '建議訂位。匈牙利 Goulash 是湯不是燉肉，可以再點一道主菜分著吃。',
     mapsQuery: 'Kiskakukk Étterem Budapest',
   },
   {
@@ -290,9 +303,11 @@ export const places: Place[] = [
     nameEn: 'Great Market Hall (Nagyvásárcsarnok)',
     city: 'budapest',
     category: 'market',
-    intro:
-      '1897 年啟用的室內市集，彩色磁磚屋頂與鋼鐵骨架很有年代感。一樓賣香料、香腸、鵝肝醬、紅椒粉與農產，二樓是小吃與刺繡、桌巾等伴手禮。',
-    tip: '午餐吃二樓 Lángos（大蒜酸奶油炸餅）最經典。紅椒粉與鵝肝醬是常見伴手禮，比瓦茨街便宜。',
+    intro: '1897 年啟用的室內市場，彩色磁磚屋頂很有特色。一樓賣紅椒粉、香腸、鵝肝醬，二樓是小吃與刺繡伴手禮。',
+    price: '免費入場',
+    hours: '週日 10:00–16:00（平日 6:00–18:00）',
+    duration: '約 1–1.5 小時（含午餐）',
+    tip: '週日部分攤位不開。紅椒粉、鵝肝醬當伴手禮，比瓦茨街便宜。',
     mapsQuery: 'Great Market Hall Budapest',
   },
   {
@@ -301,9 +316,10 @@ export const places: Place[] = [
     nameEn: 'Lángos',
     city: 'budapest',
     category: 'restaurant',
-    intro:
-      '匈牙利國民小吃：發酵麵團油炸後抹蒜、酸奶油，再加起司或其他配料。外酥內軟、份量很大，在中央市場二樓吃最有在地感。',
-    tip: '一份很能飽，兩人可分享。趁熱吃，別點太多配料反而吃不完。',
+    intro: '匈牙利國民小吃，發酵麵團油炸後抹蒜汁、酸奶油再撒起司，外酥內軟。',
+    price: '每份約 2,000–3,500 HUF',
+    duration: '約 20–30 分鐘',
+    tip: '一份很大，兩人分一份就好；趁熱吃。',
     mapsQuery: 'Great Market Hall Budapest Langos',
   },
   {
@@ -312,11 +328,12 @@ export const places: Place[] = [
     nameEn: 'Széchenyi Thermal Bath',
     city: 'budapest',
     category: 'experience',
-    intro:
-      '布達佩斯最著名的溫泉浴場，黃色巴洛克宮殿環繞數座戶外熱池。冬天蒸汽與熱氣在冷空氣中升起，是「冰火溫泉」的招牌畫面，也是本行程放鬆核心。',
-    story:
-      '在匈牙利，泡溫泉有點像社交日常。塞切尼戶外池邊常有人泡在熱水裡下西洋棋——一邊冒著蒸汽，一邊盯著黑白棋子，是冬天最有畫面、也最能感受在地節奏的一幕。',
-    tip: '平日全日票含置物櫃 13,200 HUF；12/19 起旺季 15,800 HUF。記得帶泳衣，戶外池才是重點。',
+    intro: '布達佩斯最大的溫泉浴場，黃色巴洛克建築圍著戶外熱池，冬天熱氣蒸騰最有氣氛。',
+    story: '戶外池邊常看到當地人泡在熱水裡下西洋棋，是這裡的招牌畫面。',
+    price: '週末一日票含置物櫃 14,800 HUF',
+    hours: '週末 8:00–20:00（售票到 19:00）',
+    duration: '約 2–3 小時',
+    tip: '自備泳衣和拖鞋，毛巾可現場租。戶外池最值得泡。',
     mapsQuery: 'Széchenyi Thermal Bath',
   },
   {
@@ -325,9 +342,11 @@ export const places: Place[] = [
     nameEn: 'Vajdahunyad Castle Christmas Market',
     city: 'budapest',
     category: 'market',
-    intro:
-      '位於城市公園內的沃伊達奇城堡前，建築本身融合多種歷史風格，晚上燈光照在城堡與冰場上，聖誕市集氣氛偏童話、比大教堂市集更安靜浪漫。',
-    tip: '可與塞切尼溫泉同一天，溫泉出來吹風後去市集喝熱飲剛剛好。',
+    intro: '城市公園裡的冬季市集 VarázsLiget，就在沃伊達奇城堡前，旁邊是大型戶外溜冰場，氣氛比大教堂市集安靜。',
+    price: '免費入場；溜冰成人約 4,500 HUF（租鞋另計）',
+    hours: '週五至日 10:00–21:00（2025 年資料）',
+    duration: '約 1 小時',
+    tip: '溫泉出來走幾分鐘就到，喝杯熱飲剛好。',
     mapsQuery: 'Vajdahunyad Castle Christmas Market',
   },
   {
@@ -336,23 +355,13 @@ export const places: Place[] = [
     nameEn: 'Vajdahunyad Castle',
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '為 1896 年千年慶而建的展示建築，把匈牙利各地建築風格濃縮成一座城堡，座落城市公園湖畔。冬天常有冰場，外觀非常上相。',
-    story:
-      '這座城堡原本是 1896 年千年國慶的「臨時展示屋」，把全國各地建築風格拼成一座樣品屋。沒想到太受歡迎，後來乾脆改建成永久建築，像一塊捨不得拆的巨大布景板。',
-    tip: '不一定要進館，外觀與市集就很值得。白天與晚上氛圍差很多。',
+    intro: '1896 年建國千年慶時蓋的城堡，把匈牙利各地不同年代的建築風格拼在一起，座落城市公園湖畔。',
+    story: '原本只是用木頭和紙板搭的臨時展覽館，因為太受歡迎，後來改用石材重建成永久建築。',
+    price: '庭院與外觀免費',
+    hours: '庭院全天開放',
+    duration: '看外觀約 20–30 分鐘',
+    tip: '外觀和中庭免費，不用進館。',
     mapsQuery: 'Vajdahunyad Castle',
-  },
-  {
-    id: 'menza',
-    name: 'Menza Étterem és Kávéház',
-    nameEn: 'Menza',
-    city: 'budapest',
-    category: 'restaurant',
-    intro:
-      '位於李斯特廣場附近的摩登匈牙利餐廳，裝潢有復古食堂感，菜色道地但呈現較新。招牌鴨胸常被推薦，適合想吃好料又不想太正裝的晚上。',
-    tip: '建議訂位。吃完再走去碼頭搭多瑙河夜航。',
-    mapsQuery: 'Menza Étterem Budapest',
   },
   {
     id: 'danube-cruise',
@@ -360,9 +369,11 @@ export const places: Place[] = [
     nameEn: 'Danube Evening Cruise',
     city: 'budapest',
     category: 'experience',
-    intro:
-      '夜遊多瑙河是看國會大廈、塞切尼鍊橋與城堡燈飾的最佳方式。金黃色燈光倒映水面，從船上拍國會幾乎不會失手，也是布達佩斯最值得排進晚上的體驗。',
-    tip: '20:30–22:00 場次。Legenda 等業者晚間航程約 €25，多含中文語音。記得帶外套，甲板風大。',
+    intro: '夜遊多瑙河，從河上看點燈的國會大廈、鏈橋和布達城堡，是布達佩斯最經典的夜景體驗。',
+    price: 'Legenda 成人 €25（含 1 杯飲料，約 1 小時）',
+    hours: '16:20–21:00 每 20 分鐘一班',
+    duration: '約 1 小時',
+    tip: '從 Vigadó tér 7 號碼頭出發。甲板風很大，要穿暖；建議事先線上訂票。',
     mapsQuery: 'Danube cruise Budapest Parliament',
   },
   {
@@ -384,9 +395,9 @@ export const places: Place[] = [
     nameEn: 'Andrássy Avenue',
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '布達佩斯最氣派的林蔭大道，世界遺產之一。兩側是劇院、精品與華麗公寓，從市中心一路通往英雄廣場，適合慢慢散步或搭黃線地鐵分段體驗。',
-    tip: 'Day 5 放鬆日主軸。冷的話可邊走邊進咖啡廳暖身，不必硬走全程。',
+    intro: '世界遺產林蔭大道，從市中心一路通到英雄廣場，兩旁是國家歌劇院、精品店和華麗公寓。',
+    duration: '散步約 1–1.5 小時',
+    tip: '冷了隨時進咖啡館暖身，不用走完全程。大道正下方就是 M1 地鐵，走累可以搭。',
     mapsQuery: 'Andrássy Avenue Budapest',
   },
   {
@@ -395,9 +406,12 @@ export const places: Place[] = [
     nameEn: 'Heroes Square',
     city: 'budapest',
     category: 'attraction',
-    intro:
-      '千年紀念柱與匈牙利歷史英雄雕像環繞的大廣場，後方接城市公園。冬天廣場開闊、光線漂亮，也是拍建築與天際線的好點。',
-    tip: 'Day 5 下午來，看完可順道晃沃伊達奇城堡外圍；風大記得戴帽子。',
+    intro: '為建國千年而建的大廣場，中央是 36 公尺高的千年紀念柱，兩側柱廊站著匈牙利歷代君王雕像。',
+    story: '柱頂是大天使加百列，傳說他在夢中把王冠交給開國國王聖伊什特萬；底座七位騎士是帶領馬札爾人來到這裡的七位部落首領。',
+    price: '免費',
+    hours: '全天開放',
+    duration: '約 20–30 分鐘',
+    tip: '廣場空曠風大，記得戴帽子。',
     mapsQuery: 'Hősök tere Budapest',
   },
   {
@@ -461,9 +475,11 @@ export const places: Place[] = [
     nameEn: 'Wiener Christkindlmarkt am Rathausplatz',
     city: 'vienna',
     category: 'market',
-    intro:
-      '歐洲最著名、規模最大的聖誕市集之一。新哥德市政廳前搭起巨大聖誕樹、燈飾隧道與數十個木屋攤位，賣手工藝、熱紅酒與甜食，夜晚燈飾極華麗。',
-    tip: '17:00 後燈光全開最美。人潮多，貴重物品留意一下。可先在市集喝熱飲，再到附近吃正餐。',
+    intro: '維也納最大的聖誕市集，新哥德式市政廳前有巨大聖誕樹、燈飾隧道和上百個木屋攤位。',
+    price: '免費入場',
+    hours: '每日 10:00–22:00',
+    duration: '約 1–1.5 小時',
+    tip: '熱紅酒的馬克杯要付押金，喝完退杯拿回押金，或把杯子帶走當紀念。人多注意隨身物。',
     mapsQuery: 'Rathaus Christmas Market Vienna',
   },
   {
@@ -472,9 +488,9 @@ export const places: Place[] = [
     nameEn: 'Wiener Rathaus',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '新哥德式市政廳，尖塔與雕像林立，是環城大道 Ringstrasse 上的重要地標。聖誕期間整座建築成為市集背景，白天看建築、晚上看燈。',
-    tip: '市集廣場也可溜冰。若想拍少人空景，可清晨再來一次。',
+    intro: '環城大道上的新哥德式市政廳，中央塔頂站著「市政廳騎士」雕像，聖誕期間是市集的背景。',
+    story: '中央塔高 98 公尺，故意比旁邊的沃蒂夫教堂矮一點；但塔頂加上市政廳騎士後，總高度就超過教堂了。',
+    duration: '看外觀約 15 分鐘',
     mapsQuery: 'Wiener Rathaus',
   },
   {
@@ -483,11 +499,11 @@ export const places: Place[] = [
     nameEn: 'Hofburg Palace',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '哈布斯堡王朝的冬宮，座落維也納市中心，由多座宮殿、中庭與博物館群組成。從英雄廣場、米夏埃爾廣場到宮殿內院，是理解維也納「皇城」氛圍的核心；西翼有銀器館、茜茜博物館等，也可在外圍拍照不走完全部展廳。',
-    story:
-      '這裡曾是哈布斯堡統治者 winter residence，與西南郊的美泉宮夏宮相對。皇宮不斷加建，所以現在看起來像好幾個時代拼在一起；維也納人說，想懂這座城市的「帝國感」，霍夫堡比任何一條精品街都更直接。',
-    tip: '外觀與中庭免費可逛。若進博物館，茜茜博物館＋銀器館等可買組合票；從格拉本／科爾市場步行約 5 分鐘。住 Miiro 也可穿博物館區走過來。',
+    intro: '哈布斯堡王朝的冬宮，由多座宮殿、中庭與博物館組成，茜茜公主博物館、皇帝寢宮和銀器館都在這裡。',
+    price: '茜茜博物館＋皇帝寢宮＋銀器館成人約 €20 起（11 月改裝後新票價未公布）',
+    hours: '每日 9:00–17:30（最後入場 16:30）',
+    duration: '看外觀約 15–20 分鐘；進博物館約 1.5–2 小時',
+    tip: '外觀和中庭免費可逛，本行程路過拍照即可。',
     mapsQuery: 'Hofburg Vienna',
   },
   {
@@ -496,12 +512,35 @@ export const places: Place[] = [
     nameEn: 'Stephansdom',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '維也納老城心臟，以彩色菱格屋頂與南塔聞名。周圍是卡恩特納大街、格拉本等核心步行區，晚餐前後散步經過，很能感受舊城夜生活。',
-    story:
-      '彩色屋頂上有哈布斯堡的「雙老鷹」圖案；大鐘「Pummerin」曾在戰爭中毀壞後重鑄，音色低沉。當地人常開玩笑說：聽到它響，才算真正到了維也納。',
-    tip: '教堂本身可進參觀；若只是路過看夜景與屋頂也足夠。附近餐廳多，Figlmüller 就在不遠處。',
+    intro: '維也納的地標大教堂，以彩色菱格屋頂和 136 公尺高的南塔聞名，就在老城正中心。',
+    story: [
+      '屋頂：用了約 23 萬片彩色瓦片，拼出哈布斯堡雙頭鷹和奧地利國徽。',
+      '普默林大鐘：奧地利最大的鐘，二戰時燒毀後用原本的碎片重鑄，平常只在重要節日敲響，例如跨年夜。',
+    ].join('\n'),
+    price: '入口區免費；中殿語音導覽 €8；全含套票 €25–29（中殿、地下墓穴、南北塔）',
+    hours: '每日 6:00–22:00；中殿參觀週一至六 9:00–11:30、13:00–16:30（中午不開放）',
+    duration: '中殿約 40 分鐘；加地下墓穴和北塔約 1–1.5 小時',
+    tip: '地下墓穴要跟導覽，下午 13:30、14:30 各一場，約 30 分鐘。北塔搭電梯上去看普默林大鐘；南塔要爬 343 階。遇彌撒中殿會暫停開放。',
     mapsQuery: 'St. Stephen\'s Cathedral Vienna',
+  },
+  {
+    id: 'votivkirche',
+    name: '沃蒂夫教堂',
+    nameEn: 'Votivkirche',
+    city: 'vienna',
+    category: 'attraction',
+    intro:
+      '環城大道上的新哥德式教堂，雙塔高 99 公尺。2025 年 12 月起，兩座尖塔之間掛上藝術家 Billi Thanner 的燈光雕塑「無限光環」：28 × 8 公尺的橫躺 8 字，由 4,900 個光點組成，天黑後點亮。',
+    story: [
+      '為什麼蓋：1853 年法蘭茲·約瑟夫皇帝在附近遇刺僥倖生還，為了感謝而募款興建，所以叫「還願教堂」。',
+      '無限光環：8 字形象徵無限，也呼應陽光從太陽到地球大約要 8 分鐘。藝術家放棄酬勞，作品展到 2027 年 5 月。',
+    ].join('\n'),
+    price: '免費',
+    hours: '光環天黑後點亮；教堂內部週二至五 10:00–16:00',
+    duration: '約 30 分鐘',
+    tip: '站在前方 Sigmund-Freud-Park 草地拍光環最好看。晚上另有付費燈光秀 Light of Creation。走到市政廳聖誕市集約 5 分鐘。',
+    mapsQuery: 'Votivkirche Wien',
+    imagePosition: 'top',
   },
   {
     id: 'mozarthaus-vienna',
@@ -509,11 +548,11 @@ export const places: Place[] = [
     nameEn: 'Mozarthaus Vienna',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '1784–1787 年莫札特在維也納創作高峰期的故居，位於聖史蒂芬大教堂旁 Domgasse 5。館內重現當時的客廳、臥室與創作脈絡，他在這裡寫下《費加羅的婚禮》等作品。',
-    story:
-      '這不是莫札特在維也納的第一落腳處，卻是他名氣最響、作品最密集的一段。館方常強調：走進這幾間普通市民公寓，會發現天才的日常生活其實也滿「人」——帶著孩子、趕稿、為房租發愁。',
-    tip: '官網成人 €15 起；通常 10:00–18:00（最後入場約 17:30，冬季以官網為準）。距 Stephansdom 步行 2–3 分鐘，適合排進老城白天行程。',
+    intro: '莫札特在維也納住最久的公寓（1784–1787），他在這裡寫出《費加洛婚禮》，館內介紹他的生活與作品。',
+    price: '成人 €16',
+    hours: '每日 10:00–19:00（最後入場 18:30）',
+    duration: '約 1 小時',
+    tip: '不進館的話，門口有招牌可以拍；旁邊 Domgasse、Blutgasse 一帶的中世紀窄巷很好拍。',
     mapsQuery: 'Mozarthaus Vienna',
   },
   {
@@ -522,11 +561,11 @@ export const places: Place[] = [
     nameEn: 'Figlmüller Wollzeile',
     city: 'vienna',
     category: 'restaurant',
-    intro:
-      '維也納炸牛排 Schnitzel 傳奇老店，薄而巨大的炸小牛肉常超出盤子，配馬鈴薯沙拉。Wollzeile 店靠近聖史蒂芬大教堂，是經典觀光美食。',
-    story:
-      '店家據說故意把炸小牛肉做得「看起來比盤子還大」，薄薄一片常超出盤緣，成了觀光客必拍的梗圖。重點其實不只是誇張賣相，而是那層酥脆外皮與多汁肉質的反差。',
-    tip: '一定要訂位。一份很大，可考慮分享；也可點小份或加配菜。',
+    intro: '1905 年創立的維也納炸豬排老店，招牌炸肉排又薄又大、超出盤子，配馬鈴薯沙拉。',
+    price: '招牌炸豬排 €21.90；每人約 €30–40',
+    hours: '每日 11:00–22:30',
+    duration: '約 1–1.5 小時',
+    tip: '一定要訂位。一份很大，兩人分一份再點沙拉剛好。',
     mapsQuery: 'Figlmüller Wollzeile Vienna',
   },
   {
@@ -535,11 +574,11 @@ export const places: Place[] = [
     nameEn: 'Café Central',
     city: 'vienna',
     category: 'cafe',
-    intro:
-      '維也納最負盛名的傳統咖啡館之一。拱頂大廳、鋼琴演奏與經典蛋糕，曾是弗洛伊德、托洛茨基、作家與音樂家出沒之地。用來吃一頓從容的早午餐剛剛好。',
-    story:
-      '托洛茨基流亡維也納時，據說常來這裡看書寫字，店員未必認得他是誰。對當時的知識分子來說，咖啡館幾乎就是行動辦公室——一杯咖啡能坐一下午，邊聊政治邊改稿。',
-    tip: '熱門時段常排隊，可先訂位或稍早到。招牌可點咖啡配蛋糕，或直接當成午餐。',
+    intro: '維也納最有名的傳統咖啡館，拱頂大廳搭配鋼琴演奏，佛洛伊德、托洛茨基都曾是常客。',
+    price: '咖啡＋蛋糕約 €13–15',
+    hours: '⚠️ 2026 年 3 月起整修停業，預計年底重開，日期未定',
+    duration: '約 1 小時',
+    tip: '出發前確認是否重新開幕；還沒開的話，改去附近 Freyung 的 DECENTRAL（每日 8:00–22:00）。',
     mapsQuery: 'Café Central Vienna',
   },
   {
@@ -548,12 +587,31 @@ export const places: Place[] = [
     nameEn: 'Schönbrunn Palace',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '哈布斯堡王朝夏宮，台灣多稱美泉宮。黃牆宮殿、法式花園與背後的凱旋門山丘，是維也納必訪。聖誕期間宮殿前方會舉辦大型聖誕市集。',
-    story:
-      'Schönbrunn 原意是「美麗的泉」：傳說皇帝狩獵時發現清泉，才決定在此蓋夏宮。園區後方還有世界最古老的動物園之一；冬天來，宮殿黃牆配上聖誕市集的木屋燈火特別迷人。',
-    tip: '進宮選 Palace Ticket，官網成人約 €42（含語音導覽，冬季價可能微調）。時間有限至少走前庭、市集與花園軸線。',
+    intro: '哈布斯堡王朝的夏宮，共有 1,441 個房間，黃色宮殿、法式花園和山丘上的凱旋門都是世界遺產。',
+    story: [
+      '名字由來：Schönbrunn 是「美麗的泉」，傳說皇帝打獵時在這裡發現清泉。',
+      '鏡廳：6 歲的莫札特在這裡為瑪麗亞·特蕾莎女皇演奏。',
+      '大畫廊：1961 年甘迺迪與赫魯雪夫在這裡會面。',
+      '皇帝寢宮：法蘭茲·約瑟夫睡簡樸的行軍床，1916 年在這裡過世。',
+    ].join('\n'),
+    price: 'Palace Ticket 成人 €42；State Apartments €30（都含語音導覽）',
+    hours: '每日 8:30–17:00（最後入場 16:15）；花園 6:30–17:30',
+    duration: 'Palace Ticket 約 1 小時；State Apartments 約 40 分鐘',
+    tip: '16:15 最後入場。建議買 Palace Ticket，才看得到茜茜公主和皇帝的房間。',
     mapsQuery: 'Schönbrunn Palace',
+  },
+  {
+    id: 'imperial-lights',
+    name: '美泉宮帝國燈光秀',
+    nameEn: 'Imperial Lights',
+    city: 'vienna',
+    category: 'experience',
+    intro: '冬天晚上限定的美泉宮花園燈光步道，沿路是仿帝國時期的巴洛克燈飾，還有維也納最大的聲光秀。邊走邊看，不需要看懂文字。',
+    price: '成人 €24 起（要選入場時段）',
+    hours: '11/6–1/6 每日 16:30–22:00（最後入場 20:30），12/24 休',
+    duration: '約 1–1.5 小時',
+    tip: '入口在花園東側的 Meidlinger Tor，從宮殿正門出去右轉、過 U4 Schönbrunn 站再走一小段，花園裡面走不過去。要準時到，遲到不能入場。照指標繞一圈，精彩的裝置多在後段，出口就在宮殿旁。全程在戶外，帽子、手套、圍巾要帶；現場有熱紅酒和小點心，沒有寄物處。票先在官網或 Fever 買，現場只有一個售票口、只收卡。',
+    mapsQuery: 'Imperial Lights Schönbrunn Meidlinger Tor',
   },
   {
     id: 'schonbrunn-market',
@@ -561,9 +619,11 @@ export const places: Place[] = [
     nameEn: 'Schönbrunn Christmas Market',
     city: 'vienna',
     category: 'market',
-    intro:
-      '以美泉宮為背景的大型聖誕市集，氣氛比市政廳稍緩，攤位品質高，適合邊逛邊拍宮殿與木屋。下午來可同時看宮殿與市集。',
-    tip: '13:30–16:00 的行程剛好趕下午光線。想進宮就先排宮殿再逛市集。',
+    intro: '美泉宮前廣場的聖誕市集，以黃色宮殿為背景，攤位以手工藝品為主，氣氛比市政廳悠閒。',
+    price: '免費入場',
+    hours: '每日 10:00–21:00',
+    duration: '約 45–60 分鐘',
+    tip: '天剛黑、點燈後最漂亮。',
     mapsQuery: 'Schönbrunn Christmas Market',
   },
   {
@@ -572,9 +632,11 @@ export const places: Place[] = [
     nameEn: 'Belvedere Palace',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '歐根親王的巴洛克夏宮，分上宮與下宮，中間是幾何花園與水池。上宮收藏克林姆特《吻》等奧地利名畫，是藝術迷必訪；花園倒影在冬天也很好拍。',
-    tip: '看《吻》要進上宮，官網成人 €23，建議線上購票。看完可直接逛宮前／園區聖誕市集。',
+    intro: '歐根親王的巴洛克宮殿，分上宮和下宮，中間是階梯式花園與水池。上宮收藏全世界最多的克林姆特畫作，包括《吻》。',
+    price: '上宮成人 €23（依日期浮動）',
+    hours: '每日 9:00–18:00',
+    duration: '上宮約 1.5 小時',
+    tip: '看《吻》買上宮票就好，建議線上預約時段。',
     mapsQuery: 'Belvedere Palace Vienna',
   },
   {
@@ -583,11 +645,12 @@ export const places: Place[] = [
     nameEn: 'Gustav Klimt, The Kiss',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '維也納分離派大師克林姆特的代表作，金箔與圖案包裹一對相擁的戀人，收藏於美景宮上宮。是奧地利最出名的畫作之一，現場尺寸與金光比印刷品震撼。',
-    story:
-      '畫作剛問世時，有人覺得金箔鋪得太滿、太誇張；如今卻成了奧地利國民級圖騰，連伴手禮都看得見它。現場看會發現金屬光澤與畫幅尺寸，比印刷品震撼太多。',
-    tip: '展廳可能人多，先看畫再慢慢逛其他克林姆特與席勒作品。',
+    intro: '克林姆特 1908 年的代表作，金箔包裹一對相擁的戀人，是奧地利最有名的畫作。',
+    story: '第一次展出時就被奧地利政府買下，從此一直留在維也納。畫布是 180 × 180 公分的正方形，現場比想像中大很多。',
+    price: '含在上宮門票',
+    hours: '同上宮，每日 9:00–18:00',
+    duration: '在畫前約 10–15 分鐘',
+    tip: '畫前人很多，可以先看其他展廳再回來。',
     mapsQuery: 'Upper Belvedere The Kiss',
   },
   {
@@ -596,9 +659,10 @@ export const places: Place[] = [
     nameEn: 'Belvedere Christmas Market',
     city: 'vienna',
     category: 'market',
-    intro:
-      '美景宮園區的聖誕市集，規模小於市政廳，但巴洛克宮殿與水池燈飾很有質感，適合看完畫後慢慢逛，作為 Day 7 的收尾。',
-    tip: '16:30–18:30 天色漸暗，燈飾會愈來愈好看。',
+    intro: '上宮前廣場的聖誕市集，規模不大但很有質感，宮殿和水池點燈後很漂亮。',
+    price: '免費入場',
+    hours: '平日 11:00–21:00',
+    duration: '約 30 分鐘',
     mapsQuery: 'Belvedere Christmas Market Vienna',
   },
   {
@@ -609,8 +673,22 @@ export const places: Place[] = [
     category: 'restaurant',
     intro:
       '維也納清燉牛肉 Tafelspitz 的代表餐廳。牛肉與高湯、蘋果辣根、菠菜等配菜分批上桌，吃法講究，是奧地利經典家常菜的精緻版。',
-    tip: '務必訂位。兩人可點一份 Tafelspitz 再加前菜或甜點。Wollzeile 店最知名。',
+    duration: '約 1.5 小時',
+    tip: '務必訂位。兩人可點一份 Tafelspitz 再加前菜或甜點。鍋裡的牛骨髓抹在黑麥吐司上、撒點鹽，是內行吃法。Wollzeile 店最知名。',
     mapsQuery: 'Plachutta Wollzeile',
+  },
+  {
+    id: 'plachutta-hietzing',
+    name: 'Plachutta Hietzing',
+    nameEn: 'Plachutta Hietzing',
+    city: 'vienna',
+    category: 'restaurant',
+    intro: '清燉牛肉名店 Plachutta 在美泉宮旁的分店。招牌 Tafelspitz 整鍋上桌：先喝湯，再吃牛肉配蘋果辣根醬和細香蔥醬。',
+    price: 'Tafelspitz €34.80；每人約 €45–60',
+    hours: '平日 11:30–15:00、18:00–23:00',
+    duration: '約 1.5 小時',
+    tip: '務必訂位；兩人點一份 Tafelspitz 加一道前菜就很飽。鍋裡的牛骨髓抹在黑麥吐司上、撒點鹽，是內行吃法。吃完到 Hietzing 站搭 U4 回市區。',
+    mapsQuery: 'Plachutta Hietzing',
   },
   {
     id: 'klook-daytrip',
@@ -618,9 +696,11 @@ export const places: Place[] = [
     nameEn: 'Salzburg & Hallstatt Day Trip',
     city: 'salzburg',
     category: 'experience',
-    intro:
-      '從維也納出發的 Klook 一日遊，約 07:30–20:00，車程長但可一天看完莫札特故鄉與世界遺產湖區小鎮。門票約 $3,733。這是本行程最辛苦的一天。',
-    tip: '前一晚早睡，帶水和零食。隔天 Day 9 刻意排成放鬆日。哈修塔特午餐時間有限，看好集合時間。',
+    intro: '從維也納出發的一日遊，一天走完莫札特故鄉薩爾斯堡和湖畔小鎮哈修塔特，車程很長。',
+    price: '每人約 $3,733',
+    hours: '約 07:30–20:00，集合時間以確認信為準',
+    duration: '全天約 12.5 小時',
+    tip: '前一晚早睡，帶水和零食。在哈修塔特時間有限，記好集合時間。',
     mapsQuery: 'Hallstatt Austria',
   },
   {
@@ -629,9 +709,10 @@ export const places: Place[] = [
     nameEn: 'Salzburg',
     city: 'salzburg',
     category: 'attraction',
-    intro:
-      '莫札特出生地，也是《真善美》取景地之一。老城在薩爾察赫河兩岸，有要塞、主教宮殿、巴洛克教堂與精緻街巷。十二月常有聖誕市集，氛圍濃厚。',
-    tip: '一日遊停留時間有限，以老城散步、教堂廣場與市集為主，別貪多。',
+    intro: '莫札特出生地，也是電影《真善美》的拍攝地。老城是世界遺產，河岸兩側有要塞、大教堂和巴洛克街道。',
+    hours: '大教堂廣場聖誕市集 週四 10:00–20:30',
+    duration: '一日遊停留約 2 小時（依當天行程）',
+    tip: '停留時間短，逛老城和大教堂廣場的聖誕市集就好。莫札特出生的黃色房子在 Getreidegasse 9，路過可以拍照。',
     mapsQuery: 'Salzburg Old Town',
   },
   {
@@ -640,11 +721,10 @@ export const places: Place[] = [
     nameEn: 'Hallstatt',
     city: 'hallstatt',
     category: 'attraction',
-    intro:
-      '阿爾卑斯山湖畔的世界遺產小鎮，木屋、教堂尖塔與倒影湖面構成經典明信片畫面。冬天若下雪更美，但也更冷、日照短，人潮仍可能不少。',
-    story:
-      '因為太像明信片，中國曾仿建一座「山寨哈修塔特」小鎮，真假對照一度登上國際新聞。親身站在湖邊看木屋與山壁倒影，才會懂為什麼大家搶著複製——也更能珍惜眼前這一幕。',
-    tip: '經典拍照點在湖對岸觀景台或沿湖步道。午餐就在鎮上解決，準時回到集合點。',
+    intro: '阿爾卑斯山湖畔的世界遺產小鎮，木屋、教堂尖塔和湖面倒影是經典明信片畫面。',
+    story: '中國廣東惠州曾仿建一座一模一樣的「哈修塔特」小鎮，2012 年開幕時還登上國際新聞。',
+    duration: '一日遊停留約 2–3 小時（依當天行程）',
+    tip: '經典拍照點在小鎮北側沿湖步道；午餐在鎮上解決，準時回集合點。',
     mapsQuery: 'Hallstatt Market Square',
   },
   {
@@ -653,9 +733,9 @@ export const places: Place[] = [
     nameEn: 'Naschmarkt',
     city: 'vienna',
     category: 'market',
-    intro:
-      '維也納最有生活感的長條市場，賣香料、蔬果、起司、中東食材與各國小吃。週末還有跳蚤市場延伸。很適合放鬆日晚起後來吃一頓豐富午餐。',
-    tip: 'NENI 在市場裡很受歡迎；也可以逛攤位吃海鮮或沙拉，比較隨性。',
+    intro: '維也納最大的露天市場，長約 1.5 公里，賣香料、起司、醃菜、海鮮和各國小吃。',
+    hours: '週一至六（週日休），多數攤位 18:00–19:30 收',
+    duration: '約 1–1.5 小時（含午餐）',
     mapsQuery: 'Naschmarkt Vienna',
   },
   {
@@ -664,9 +744,11 @@ export const places: Place[] = [
     nameEn: 'NENI am Naschmarkt',
     city: 'vienna',
     category: 'restaurant',
-    intro:
-      '納許市場裡的人氣餐廳，菜色偏中東／地中海：胡姆斯、沙拉、烤菜與香料味濃的熱食，適合多人分食。氛圍輕鬆，是市場午餐的穩妥選擇。',
-    tip: '熱門時段建議訂位或稍候。也可改吃市場內海鮮攤，看當天心情。',
+    intro: '納許市場裡的人氣以色列／地中海料理，胡姆斯、沙拉和烤物適合點幾樣一起分。',
+    price: '每人約 €20–30',
+    hours: '週一至六 8:00–23:00',
+    duration: '約 1 小時',
+    tip: '熱門時段建議訂位。',
     mapsQuery: 'NENI am Naschmarkt',
   },
   {
@@ -675,9 +757,9 @@ export const places: Place[] = [
     nameEn: 'Graben',
     city: 'vienna',
     category: 'shop',
-    intro:
-      '維也納老城最氣派的步行大街之一，連接聖史蒂芬大教堂與霍夫堡方向。街中央有瘟疫紀念柱 Pestsäule，兩旁是精品店、咖啡與聖誕燈飾。',
-    tip: '適合飯前飯後散步逛街，不必強迫消費。冬天傍晚燈飾很好看。',
+    intro: '老城最氣派的步行大街，連接聖史蒂芬大教堂與霍夫堡方向，聖誕期間掛滿水晶吊燈造型的燈飾。',
+    story: '街中央的巴洛克黑死病紀念柱，是 1679 年大瘟疫後，皇帝利奧波德一世許願建造的。',
+    duration: '約 30 分鐘',
     mapsQuery: 'Graben Vienna',
   },
   {
@@ -686,32 +768,9 @@ export const places: Place[] = [
     nameEn: 'Kohlmarkt',
     city: 'vienna',
     category: 'shop',
-    intro:
-      '連接格拉本與霍夫堡的精品街，聚集珠寶、時裝與傳統店鋪，路面與櫥窗都很精緻，是維也納最「貴氣」的幾條街之一。',
-    tip: '以逛櫥窗為主。可一路走到霍夫堡外圍再折返。',
+    intro: '連接格拉本與霍夫堡的精品街，珠寶、名牌和老字號店鋪林立，盡頭正對霍夫堡的米夏埃爾門。',
+    duration: '約 20–30 分鐘',
     mapsQuery: 'Kohlmarkt Vienna',
-  },
-  {
-    id: 'ribs-of-vienna',
-    name: 'Ribs of Vienna',
-    nameEn: 'Ribs of Vienna',
-    city: 'vienna',
-    category: 'restaurant',
-    intro:
-      '以地窖空間與超長烤豬排聞名的主題餐廳，氣氛熱鬧，份量驚人。想吃得豪邁、和歌劇院行程形成對比時很適合。',
-    tip: '一米長豬排通常是多人分享。若想吃精緻奧地利菜可改選 Lugeck。',
-    mapsQuery: 'Ribs of Vienna',
-  },
-  {
-    id: 'lugeck',
-    name: 'Lugeck',
-    nameEn: 'Lugeck',
-    city: 'vienna',
-    category: 'restaurant',
-    intro:
-      '摩登奧地利餐館，把傳統菜做得較清爽精緻，裝潢明亮現代，適合不想太觀光食堂風、又想吃在地味道的一餐。',
-    tip: '與 Ribs of Vienna 二選一。看歌劇的話，選離歌劇院較近、用餐節奏可控的那間。',
-    mapsQuery: 'Lugeck Vienna',
   },
   {
     id: 'staatsoper',
@@ -719,11 +778,10 @@ export const places: Place[] = [
     nameEn: 'Wiener Staatsoper',
     city: 'vienna',
     category: 'attraction',
-    intro:
-      '世界頂尖歌劇院之一，環城大道上的新文藝復興建築。晚上來看歌劇或芭蕾，是維也納最有儀式感的體驗。即使只看外觀與大廳，也值得。',
-    story:
-      '維也納有獨特的「站票文化」：便宜站票常被學生與樂迷秒殺，有人穿得很正式，卻甘願站完全場。對他們來說，聽現場比坐哪一排更重要；也因此國家歌劇院的門檻，其實沒想像中遙遠。',
-    tip: '站票官網 €13–18（Parterre €18 視野最好）；座位視劇目。服裝整齊大方即可，預留安檢入場。',
+    intro: '世界頂尖的歌劇院，1869 年開幕時上演的第一部作品就是莫札特的《唐·喬凡尼》。',
+    price: '已購票 2 張（共 $6,170）',
+    duration: '演出約 3 小時（含中場休息），提早 30 分鐘到',
+    tip: '沒有服裝規定，像去好餐廳吃飯的打扮就好；夾腳拖、背心當上衣、很短的短褲可能被拒絕入場。大衣和包包要寄放在免費衣帽間，提早 30 分到。座位前的小螢幕可以選中文字幕。',
     mapsQuery: 'Vienna State Opera',
   },
   {
@@ -734,6 +792,7 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '維也納音樂協會的金色大廳，音響舉世聞名。交響與室內樂在此上演，是除了歌劇院外，感受維也納古典夜的另一條路線。',
+    duration: '演出約 2 小時，提早 30 分鐘到',
     tip: '官網 Stehplatz 約 €8 起；一般預售開演前約兩個月。愛樂或熱門場次較難搶，可提早盯票。',
     mapsQuery: 'Musikverein Wien',
   },
@@ -743,9 +802,11 @@ export const places: Place[] = [
     nameEn: 'Zum Schwarzen Kameel',
     city: 'vienna',
     category: 'restaurant',
-    intro:
-      '開業超過 400 年的維也納老店，就在格拉本旁。以開放式小三明治、冷熱拼盤與簡致熱食聞名，氣氛典雅但不沉重，適合退房後、搭車前的最後一頓維也納午餐。',
-    tip: '建議訂位。吃完直接逛格拉本與科爾市場買紀念品，再搭 U1 回中央車站。',
+    intro: '1618 年創立的老店，招牌是各式開放式小三明治，站在吧台配一杯酒吃最道地。',
+    price: '開放式小三明治約 €3／個；每人約 €15–30',
+    hours: '每日 8:00–24:00',
+    duration: '約 45–60 分鐘',
+    tip: '吃完直接逛格拉本和科爾市場。',
     mapsQuery: 'Zum Schwarzen Kameel Vienna',
   },
   {
@@ -777,8 +838,8 @@ export const places: Place[] = [
     city: 'prague',
     category: 'hotel',
     intro:
-      '2022 年開幕的四星。精選四星飯店第2名，位於新城區河畔，鄰近國家歌劇院。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
-    tip: '已訂 12/19–23 四晚 · 高級房，$28,437（含 2 客早餐）；到店另付 €16.40。走到查理大橋約 12 分，去老城廣場搭電車約 5 分。',
+      '2022 年開幕的四星。精選四星飯店第2名，位於新城區 Křemencova 18，鄰近國家劇院與 Národní 大街。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。飯店內有得獎的新式捷克料理餐廳 ALMA。',
+    tip: '已訂 12/19–23 四晚 · 高級房，$28,437（含 2 客早餐）；到店另付 €16.40。U Fleků 就在同一條街，走路 1–2 分。走到查理大橋約 12 分，去老城廣場搭電車約 5 分。',
     mapsQuery: 'Hotel Cube Prague',
   },
   {
@@ -798,9 +859,11 @@ export const places: Place[] = [
     nameEn: 'Lokál Dlouhááá',
     city: 'prague',
     category: 'restaurant',
-    intro:
-      '布拉格超人氣在地捷克餐廳，以新鮮生啤酒、炸起司、豬膝與家常菜聞名，店名故意把 Dlouhá 拉得很長。氣氛熱鬧、價格相對親民。',
-    tip: '幾乎一定要訂位。適合抵達布拉格第一晚，吃得飽又有在地感。',
+    intro: '布拉格超人氣捷克餐廳，招牌是桶裝新鮮 Pilsner 生啤、炸起司和炸豬排。',
+    price: '0.5L 生啤 74 CZK；每人約 400–600 CZK',
+    hours: '週日 11:00–22:00（其他天到 24:00）',
+    duration: '約 1.5 小時',
+    tip: '一定要訂位。週日 22:00 打烊。',
     mapsQuery: 'Lokál Dlouhááá Prague',
   },
   {
@@ -809,23 +872,16 @@ export const places: Place[] = [
     nameEn: 'Charles Bridge',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '1357 年開始興建的石橋，連接老城與小城／城堡方向，橋上有 30 尊巴洛克聖徒雕像，是布拉格最重要的象徵。晨昏與雪景都極美，白天則有畫家與樂手。',
-    story:
-      '傳說查理四世特意選在 1357 年 7 月 9 日 5:31 動工，好讓年、月、日、時、分排成一串吉利數字。另有民間故事說建橋砂漿裡加了蛋，好讓橋更堅固——真偽難辨，卻讓過橋多了一點想像空間。',
-    tip: '11:30 已會有人潮。想拍空橋要起很早；本行程走經典白天路線，重點放在雕像與兩岸景色。',
+    intro: '布拉格最古老的石橋，1357 年開始興建，橋上有 30 尊巴洛克聖徒雕像。',
+    story: [
+      '動工時間：查理四世選在 1357 年 7 月 9 日 5 點 31 分動工，寫成 135797531 是對稱的回文數字。',
+      '摸雕像：聖約翰·內波穆克雕像底座的銅版被摸到發亮，傳說摸了會帶來好運，還會再回到布拉格。',
+    ].join('\n'),
+    price: '免費；橋塔登頂 250 CZK',
+    hours: '全天開放',
+    duration: '約 45–60 分鐘',
+    tip: '白天人很多，注意扒手。',
     mapsQuery: 'Charles Bridge Prague',
-  },
-  {
-    id: 'kampa-park',
-    name: 'Kampa Park',
-    nameEn: 'Kampa Park Restaurant',
-    city: 'prague',
-    category: 'restaurant',
-    intro:
-      '查理大橋旁河岸的景觀餐廳，窗景可看大橋拱圈、河水與城堡方向。適合當成「伏爾塔瓦河景觀午餐」，把吃飯和風景合在一起。',
-    tip: '景觀餐廳價格偏高，先確認窗邊座位。也可選附近其他河畔餐廳，原則是「看得到橋或城堡」。',
-    mapsQuery: 'Kampa Park Restaurant Prague',
   },
   {
     id: 'old-town-square',
@@ -833,9 +889,11 @@ export const places: Place[] = [
     nameEn: 'Old Town Square',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '布拉格最核心的廣場，周圍是泰恩教堂、老市政廳天文鐘、彩色民居。聖誕期間會豎起常被評為「全歐最美」之一的巨大聖誕樹，並舉辦市集，白天夜晚都值得待。',
-    tip: '整點前後去看天文鐘報時。晚上再來一次，樹與市集燈火是布拉格聖誕的高潮。',
+    intro: '布拉格最核心的廣場，周圍有泰恩教堂、老市政廳天文鐘和彩色房子，聖誕期間中央立起巨大聖誕樹。',
+    story: '老市政廳前的地上有 27 個白色十字，紀念 1621 年在這裡被處決的 27 位新教起義領袖。',
+    price: '免費',
+    hours: '全天開放',
+    duration: '約 1–2 小時（含市集）',
     mapsQuery: 'Old Town Square Prague',
   },
   {
@@ -844,25 +902,26 @@ export const places: Place[] = [
     nameEn: 'Prague Astronomical Clock',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '安裝於老市政廳的中世紀天文鐘，整點會有使徒小雕像報時表演。鐘面同時顯示時間、星象與曆法，是老城廣場最聚集人潮的點。',
-    story:
-      '流傳最廣的傳說是：鐘匠把天文鐘做得太好，當局怕他再為別的城市打造，竟弄瞎了他的眼睛。故事偏殘忍、也未必屬實，卻讓這座整點報時的鐘，多了一層神秘又心疼的色彩。',
-    tip: '表演本身很短，重點是氣氛。站外圈也能看，不必擠最前面。可順便登老市政廳塔俯瞰廣場。',
+    intro: '1410 年裝上的天文鐘，是世界上還在運作的最古老天文鐘；每個整點有十二使徒木偶出來報時。',
+    story: '傳說鐘匠做得太好，市議會怕他幫別的城市做一座，就把他弄瞎了（只是傳說）。',
+    price: '報時免費；登市政廳塔 350 CZK',
+    hours: '每整點報時；登塔每日 9:00–20:00',
+    duration: '報時約 1 分鐘，提早 10 分鐘卡位',
+    tip: '報時表演只有幾十秒，站外圍也看得到。老市政廳塔可以登頂俯瞰廣場。',
     mapsQuery: 'Prague Astronomical Clock',
   },
   {
     id: 'kafka-statue',
-    name: '卡夫卡雕塑',
-    nameEn: 'Statue of Franz Kafka',
+    name: '卡夫卡旋轉頭像',
+    nameEn: 'Head of Franz Kafka (David Černý)',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '捷克藝術家 David Černý 的動態雕塑，由 42 層可旋轉的不鏽鋼片拼成卡夫卡頭像，就立在 Quadrio 商場旁、Národní 大街口。是布拉格最常被拍照的現代地標之一，路過時幾乎一定會看到它在慢慢轉動。',
-    story:
-      '卡夫卡出生在布拉格，一生大多在這座城市度過。《變形記》那種說不清的荒謬，和這尊「會拆開又拼回去」的頭像，常被放在一起談——既是隱喻，也是很適合駐足幾分鐘的公共藝術。',
-    tip: '免費參觀。完整旋轉一圈約 40 分鐘，拍照常要排隊。從老城廣場步行約 8–10 分鐘，或搭 B 線到 Národní třída。',
-    mapsQuery: 'Statue of Franz Kafka Prague',
+    intro: '捷克藝術家 David Černý 的動態雕塑，由 42 層不鏽鋼片組成的卡夫卡頭像，高約 11 公尺，每一層會分別旋轉。',
+    price: '免費',
+    hours: '每個整點的前 15 分鐘轉動（9:00–23:00）',
+    duration: '約 15–20 分鐘',
+    tip: '提早幾分鐘到，晚上有打燈更好看。約每兩週保養一次，偶爾不會轉。猶太區還有另一座卡夫卡雕像，不是這座。',
+    mapsQuery: 'Head of Franz Kafka Quadrio Prague',
   },
   {
     id: 'powder-tower',
@@ -870,11 +929,12 @@ export const places: Place[] = [
     nameEn: 'Powder Tower (Prašná brána)',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '1475 年動工的哥德式城門高塔，原是布拉格 13 座城門之一，後來曾作為火藥庫而得名。塔身細長、雕飾繁複，是從新城走向老城的標誌性入口；登塔可俯瞰 Na Příkopě 大街與舊城方向。',
-    story:
-      '當年加冕遊行常從這裡進城，連接皇宮與老城。19 世紀後這裡改存火藥，「火藥塔」之名才固定下來；如今它更像一座從中世紀走來的門樓，站在底下抬頭看，會覺得舊城真的還在呼吸。',
-    tip: '外觀路過必看。若要登塔，官網成人約 350 CZK；從老城廣場走約 5 分鐘，共和廣場也在旁邊。',
+    intro: '1475 年動工的哥德式城門塔，18 世紀拿來存放火藥而得名，是從新城走進老城的地標。',
+    story: '這裡是波希米亞國王加冕遊行「國王之路」的起點，一路經過老城廣場、查理大橋走到城堡。',
+    price: '登塔 200 CZK',
+    hours: '每日 10:00–19:30',
+    duration: '看外觀約 10 分鐘；登塔約 30 分鐘',
+    tip: '外觀路過看即可；登塔要爬 186 階，沒有電梯。',
     mapsQuery: 'Powder Tower Prague',
   },
   {
@@ -883,9 +943,11 @@ export const places: Place[] = [
     nameEn: 'Old Town Square Christmas Market',
     city: 'prague',
     category: 'market',
-    intro:
-      '以巨大聖誕樹為中心的市集，攤位賣熱果汁、蜂蜜酒、香腸、甜食與手工藝。夜晚燈光與泰恩教堂雙塔一起入鏡，是本行程聖誕氛圍的最高點之一。',
-    tip: '捷克熱紅酒／熱果汁很甜，可當點心。最後一晚 Day 13 再來喝一杯做收尾。',
+    intro: '以巨大聖誕樹為中心的市集，賣熱紅酒、蜂蜜酒、烤火腿和煙囪捲。',
+    price: '免費入場',
+    hours: '每日 10:00–22:00',
+    duration: '約 1 小時',
+    tip: '攤位烤火腿是秤重計價，點之前先問清楚多少錢。',
     mapsQuery: 'Old Town Square Christmas Market Prague',
   },
   {
@@ -894,11 +956,11 @@ export const places: Place[] = [
     nameEn: 'U Fleků',
     city: 'prague',
     category: 'restaurant',
-    intro:
-      '營業超過 500 年的釀酒廠餐廳，只供應自家黑啤酒，配烤鴨、豬膝、酸菜與麵糰。大廳有民歌與啤酒館氣氛，是很「捷克」的一餐。',
-    story:
-      '這間釀酒廠餐廳營業超過五百年，菜單可以跟著時代變，啤酒卻幾乎只賣自家深色啤酒。來這裡點餐，某種程度上就是為了喝那一杯又苦又香的黑啤，感受老啤酒館的煙火氣。',
-    tip: '觀光成分高但體驗獨特。啤酒只賣自家黑啤，接受再去。可訂位或提早到。',
+    intro: '1499 年就開始釀酒的啤酒館，只賣自家 13 度黑啤酒，配烤鴨、豬膝和麵糰子。',
+    price: '自釀黑啤 0.4L 99 CZK；每人約 500–800 CZK',
+    hours: '每日 10:00–23:00',
+    duration: '約 1.5 小時',
+    tip: '服務生會一直送上黑啤和小杯烈酒，烈酒每杯 79 CZK 要另外付，不想要就說不。和 Hotel Cube 同一條街，週六晚建議訂位。',
     mapsQuery: 'U Fleků Prague',
   },
   {
@@ -907,9 +969,11 @@ export const places: Place[] = [
     nameEn: 'Prague Castle',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '據稱是世界上最大的古城堡建築群，包含聖維特大教堂、舊皇宮、聖喬治教堂、黃金巷等。建議搭車到頂，再一路往下走回小城與查理大橋，最省力。',
-    tip: '主迴路成人 450 CZK，含聖維特、舊皇宮、黃金巷。安檢要一點時間，11:30 出發剛剛好。',
+    intro: '金氏世界紀錄中最大的古城堡建築群，包含聖維特大教堂、舊皇宮、黃金巷等，也是捷克總統府所在地。',
+    price: '主線聯票成人 450 CZK（含聖維特、舊皇宮、黃金巷）',
+    hours: '建築冬季 9:00–16:00；城堡區 6:00–22:00',
+    duration: '約 2–3 小時',
+    tip: '入口要安檢。中午 12:00 第一中庭有衛兵交接儀式，配樂隊最隆重。',
     mapsQuery: 'Prague Castle',
   },
   {
@@ -918,9 +982,11 @@ export const places: Place[] = [
     nameEn: 'St. Vitus Cathedral',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '城堡區核心的哥德式大教堂，尖塔主宰布拉格天際線。內部有彩繪玻璃、聖溫塞斯拉斯禮拜堂與王室墓室，是捷克最重要的教堂。',
-    tip: '外觀免費看，進入主要中殿通常需城堡票。彩繪玻璃值得抬頭慢慢看。',
+    intro: '城堡區的哥德式大教堂，前後花了近 600 年才蓋完，裡面有慕夏設計的彩繪玻璃和聖溫塞斯拉斯禮拜堂。',
+    price: '含在城堡聯票',
+    hours: '週一至六 9:00–16:00（週日 12:00 起）',
+    duration: '約 45 分鐘',
+    tip: '左側第三個禮拜堂的慕夏彩繪玻璃一定要看。',
     mapsQuery: 'St. Vitus Cathedral Prague',
   },
   {
@@ -929,11 +995,15 @@ export const places: Place[] = [
     nameEn: 'Old Royal Palace',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '城堡內的古老王宮，最著名的是弗拉迪斯拉夫大廳：巨大無柱的晚期哥德廳堂，曾舉辦加冕、宴會甚至室內騎士比武。',
-    story:
-      '弗拉迪斯拉夫大廳寬到幾乎沒有柱子，以前甚至能讓騎士騎馬進來比武。在室內辦馬術競賽聽起來很浮誇，卻是真的發生過——站在大廳裡抬頭看拱頂，特別能想像當年的場面。',
-    tip: '走馬看花 20–30 分鐘即可，重點看大廳尺度與窗外景色。',
+    intro: '歷代波希米亞國王的王宮，重點是寬敞無柱的弗拉迪斯拉夫大廳。',
+    story: [
+      '騎士階梯：通往大廳的樓梯又寬又緩，讓騎士可以直接騎馬進來比武。',
+      '擲出窗外事件：1618 年新教貴族把皇帝的兩位使者從這裡的窗戶丟出去，引發了三十年戰爭。',
+    ].join('\n'),
+    price: '含在城堡聯票',
+    hours: '冬季每日 9:00–16:00',
+    duration: '約 20–30 分鐘',
+    tip: '20–30 分鐘就能看完。',
     mapsQuery: 'Old Royal Palace Prague Castle',
   },
   {
@@ -942,23 +1012,13 @@ export const places: Place[] = [
     nameEn: 'Golden Lane',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '城堡牆邊一排迷你彩色小屋，曾住過砲手、金匠與僕役，卡夫卡也曾在此住過短時間。巷弄很窄很上相，現多為小博物館與商店。',
-    story:
-      '民間愛說這裡曾住煉金術士，「黃金巷」之名由此而來；較實際的說法是砲手與工匠宿舍。卡夫卡也曾在 22 號短暫住過、寫作，因此這條迷你彩色小屋巷，同時混著傳說與文學氣息。',
-    tip: '通常需門票。人多時單向移動，別逆行。走到尾端可順勢下山。',
+    intro: '城堡牆邊一排迷你彩色小屋，以前住著守衛和工匠，現在是小展覽和商店。',
+    story: '卡夫卡 1916–1917 年在 22 號的藍色小屋住過、寫作。',
+    price: '含在城堡聯票；16:00 後可免費走巷子',
+    hours: '冬季每日 9:00–16:00',
+    duration: '約 30 分鐘',
+    tip: '人多時跟著單向動線走。',
     mapsQuery: 'Golden Lane Prague',
-  },
-  {
-    id: 'terasa',
-    name: 'Terasa U Zlaté studně',
-    nameEn: 'Terasa U Zlaté studně',
-    city: 'prague',
-    category: 'restaurant',
-    intro:
-      '城堡山下著名景觀餐廳，露台／窗邊可俯瞰紅瓦屋頂、聖維特與城市全景。適合城堡行程中的午餐，把「看風景」變成一餐。',
-    tip: '價位高，需訂位並指定景觀座位。時間不夠也可選城堡區其他簡餐，原則是往下走、別再爬回去。',
-    mapsQuery: 'Terasa U Zlaté studně',
   },
   {
     id: 'cafe-imperial',
@@ -966,9 +1026,11 @@ export const places: Place[] = [
     nameEn: 'Café Imperial',
     city: 'prague',
     category: 'cafe',
-    intro:
-      '布拉格最華麗的咖啡館之一，以馬賽克磁磚、陶飾與新藝術／裝飾藝術大廳聞名。下午茶、蛋糕與咖啡都很適合當成城堡日的收尾儀式。',
-    tip: '建議訂下午茶時段。結束後可步行或短程車去買菠丹妮等伴手禮。',
+    intro: '1914 年開幕的咖啡館，牆面和天花板貼滿原創陶瓷磁磚，是布拉格最華麗的咖啡館之一。',
+    price: '蛋糕＋咖啡每人約 270–300 CZK',
+    hours: '每日 7:00–23:00',
+    duration: '約 1 小時',
+    tip: '建議訂位。',
     mapsQuery: 'Café Imperial Prague',
   },
   {
@@ -977,9 +1039,10 @@ export const places: Place[] = [
     nameEn: 'Botanicus',
     city: 'prague',
     category: 'shop',
-    intro:
-      '捷克知名天然保養與香氛品牌，產品有草本、玫瑰、薰衣草等氣味，包裝有手作感，是常見伴手禮。老城有多家門市。',
-    tip: '乳液、皂、室內香氛都好帶。注意液體安檢與托運重量。',
+    intro: '捷克天然保養品牌，玫瑰、薰衣草系列的乳液和香皂是熱門伴手禮。',
+    hours: '每日 10:00–19:00',
+    duration: '約 20–30 分鐘',
+    tip: '提恩教堂後方的 Ungelt 庭院有門市。液體記得放托運。',
     mapsQuery: 'Botanicus Prague Old Town',
   },
   {
@@ -988,9 +1051,11 @@ export const places: Place[] = [
     nameEn: 'Mlýnec Restaurant',
     city: 'prague',
     category: 'restaurant',
-    intro:
-      '查理大橋橋頭附近的現代精緻捷克菜餐廳，夜晚可欣賞大橋燈飾與河景，氣氛比啤酒館更正式，適合城堡日的晚餐。',
-    tip: '務必訂窗邊或橋景座位。晚餐 19:00 開始，天已黑，夜景是重點。',
+    intro: '查理大橋旁的精緻捷克菜餐廳，窗邊看得到打燈的大橋與河景。',
+    price: '4 道套餐 1,995 CZK；每人約 2,000–3,500 CZK',
+    hours: '平日 11:30–15:00、17:00–22:00',
+    duration: '約 2 小時',
+    tip: '訂位時指定窗邊座位；4 道套餐要在 21:30 前點。',
     mapsQuery: 'Mlýnec Restaurant Prague',
   },
   {
@@ -1001,8 +1066,23 @@ export const places: Place[] = [
     category: 'attraction',
     intro:
       '比布拉格城堡更早的傳說王城所在，現為公園化的城堡遺址。有聖彼得與保羅教堂、城牆步道與俯瞰伏爾塔瓦河、紅瓦屋頂的開闊視野，在地人愛來，觀光客相對少。',
+    duration: '約 1.5–2 小時',
     tip: '冬天若下雪，這裡的空曠感與遠景特別美。搭 Uber/Bolt 約 10 分鐘，回程可散步回城。',
     mapsQuery: 'Vyšehrad Prague',
+  },
+  {
+    id: 'mucha-museum',
+    name: '慕夏博物館',
+    nameEn: 'Mucha Museum (Panská 7)',
+    city: 'prague',
+    category: 'attraction',
+    intro: '1998 年開館的第一間慕夏博物館，在巴洛克宮殿裡展出約 100 件原作，多是網球名將藍道（Ivan Lendl）收藏的巴黎時期海報、素描和裝飾畫。',
+    story: '1894 年聖誕節，慕夏替女星莎拉・伯恩哈特臨時趕出《吉斯蒙達》海報，一夕爆紅，細長構圖從此成了他的招牌風格。',
+    price: '成人 300 CZK',
+    hours: '每日 10:00–18:00',
+    duration: '約 1 小時（紀念品店另留 15 分鐘）',
+    tip: '布拉格有兩間慕夏博物館，買票前認明地址 Panská 7（另一間在 Na Příkopě 10 的薩瓦林宮）。',
+    mapsQuery: 'Mucha Museum Panská 7 Prague',
   },
   {
     id: 'municipal-house',
@@ -1010,9 +1090,12 @@ export const places: Place[] = [
     nameEn: 'Municipal House (Obecní dům)',
     city: 'prague',
     category: 'attraction',
-    intro:
-      '布拉格新藝術風格代表建築，外觀馬賽克與雕塑華麗，內部有音樂廳、餐廳與咖啡館。在此喝下午茶，等於同時參觀一棟藝術品。',
-    tip: '可只去咖啡館／餐廳，不一定要買導覽票。鄰近粉末塔與共和廣場，逛完可走向瓦茨拉夫廣場。',
+    intro: '布拉格新藝術風格代表建築，正面有大型馬賽克壁畫，內部有史麥塔納音樂廳和慕夏裝飾的廳室。',
+    story: '1918 年捷克斯洛伐克就是在這裡宣布獨立。',
+    price: '導覽成人 320 CZK；咖啡館蛋糕約 190 CZK',
+    hours: '咖啡館每日 8:00–21:00',
+    duration: '看外觀約 10 分鐘；導覽約 1 小時',
+    tip: '不參加導覽也能進一樓咖啡館看內裝。',
     mapsQuery: 'Municipal House Prague',
   },
   {
@@ -1023,6 +1106,7 @@ export const places: Place[] = [
     category: 'market',
     intro:
       '其實是一條寬闊的林蔭大道式廣場，國家博物館在頂端，聖溫塞斯拉斯騎馬像是地標。聖誕期間常有市集，空間比老城廣場開闊，適合散步消化下午茶。',
+    duration: '約 30 分鐘',
     tip: '17:00–18:30 逛一圈即可，不必久留。注意扒手，大馬路比較觀光。',
     mapsQuery: 'Wenceslas Square Christmas Market',
   },
@@ -1034,6 +1118,7 @@ export const places: Place[] = [
     category: 'restaurant',
     intro:
       '老城附近的精緻捷克創意料理，曾獲米其林相關推薦，服務細緻、空間溫馨，把傳統食材做得精緻而不冰冷。可作備選精緻晚餐。',
+    duration: '約 2 小時',
     tip: '建議訂位。若想更輕鬆也可當天再決定，但這類餐廳週末容易滿。',
     mapsQuery: 'V Zátiší Prague',
   },
@@ -1043,21 +1128,11 @@ export const places: Place[] = [
     nameEn: 'Café Louvre',
     city: 'prague',
     category: 'cafe',
-    intro:
-      '1902 年開業的歷史咖啡館，愛因斯坦、卡夫卡都曾來過。空間寬敞、有撞球室與傳統糕點，適合最後一天中午輕食，感受老布拉格文人氣息。',
-    tip: '不必趕預約下午的高級晚餐，這裡當輕鬆午餐剛剛好。',
+    intro: '1902 年開業的歷史咖啡館，愛因斯坦和卡夫卡都曾是常客，有撞球室和傳統甜點。',
+    price: '每人約 200–450 CZK',
+    hours: '平日 8:00–23:30',
+    duration: '約 1 小時',
     mapsQuery: 'Café Louvre Prague',
-  },
-  {
-    id: 'bellevue',
-    name: 'Restaurant Bellevue',
-    nameEn: 'Restaurant Bellevue',
-    city: 'prague',
-    category: 'restaurant',
-    intro:
-      '河畔高級餐廳，面對查理大橋與城堡夜景，是本行程的歡送晚宴首選。浪漫、正式、風景極佳，用來替 14 天畫下句點。',
-    tip: '務必提前訂位並要求河景／橋景桌。18:30 用餐，之後可再走去老城廣場看最後一次夜景。',
-    mapsQuery: 'Restaurant Bellevue Prague',
   },
   {
     id: 'old-town-shopping',
@@ -1065,9 +1140,10 @@ export const places: Place[] = [
     nameEn: 'Prague Old Town shopping streets',
     city: 'prague',
     category: 'shop',
-    intro:
-      '老城廣場周圍巷弄有水晶、石榴石飾品、木偶、巧克力、菠丹妮與各種紀念品店。最後一天補貨最合適，買完回飯店秤重，避免超重。',
-    tip: '捷克石榴石與波希米亞水晶是傳統伴手禮；比價後再買，主要街道較貴。',
+    intro: '老城廣場周圍的巷弄有波希米亞水晶、石榴石飾品、木偶和巧克力店。',
+    hours: '多數每日約 10:00–19:00',
+    duration: '約 1–1.5 小時',
+    tip: '主要街道比較貴，可以多比價；買完回飯店秤行李。',
     mapsQuery: 'Celetná Street Prague',
   },
   {

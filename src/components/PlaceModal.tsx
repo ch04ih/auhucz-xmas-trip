@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { FadeImage } from './FadeImage'
+import { PlaceBody } from './PlaceBody'
 import { categoryLabels, cityLabels, getPlace, placeImage } from '../data/places'
 import { placesForDay } from '../data/trip'
 import { useStayPlan } from '../lib/StayPlanContext'
@@ -52,6 +53,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
             className="modal-image"
             src={placeImage(place)}
             alt={place.name}
+            style={place.imagePosition ? { objectPosition: place.imagePosition } : undefined}
             onError={(e) => {
               const wrap = e.currentTarget.parentElement
               if (wrap) wrap.style.display = 'none'
@@ -71,19 +73,7 @@ export function PlaceModal({ placeId, onClose, onOpenDay }: Props) {
           {place.name}
         </h2>
         {place.nameEn && <p className="modal-en">{place.nameEn}</p>}
-        <p className="modal-intro">{place.intro}</p>
-        {place.story && (
-          <div className="story">
-            <strong>小趣事</strong>
-            <p>{place.story}</p>
-          </div>
-        )}
-        {place.tip && (
-          <div className="tip">
-            <strong>小提醒</strong>
-            <p>{place.tip}</p>
-          </div>
-        )}
+        <PlaceBody place={place} />
         {relatedDays.length > 0 && (
           <div className="related">
             <p className="related-label">出現在行程</p>

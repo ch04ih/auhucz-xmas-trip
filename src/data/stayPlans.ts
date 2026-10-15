@@ -219,7 +219,7 @@ const hotelCities444: HotelCityGroup[] = [
         stars: 4,
         note: '已訂 · 含 2 客早餐 · 2022 開幕',
         summary:
-          '精選四星飯店第2名，位於新城區河畔，鄰近國家歌劇院。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
+          '精選四星飯店第2名，位於新城區，鄰近國家劇院與 Národní 大街。交通方便，步行至查理大橋 12 分鍾、電車至老城廣場 5 分鍾。治安極佳，周邊屬於高級文教住宅區。',
       },
     ],
   },
@@ -320,7 +320,7 @@ const tickets345 = ticketBundle({
 })
 
 const tickets444 = ticketBundle({
-  belvedere: 7,
+  belvedere: 6,
   opera: 9,
   schonbrunn: 7,
   pragueCastle: 12,

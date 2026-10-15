@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { FadeImage } from '../components/FadeImage'
 import { PlaceChips } from '../components/PlaceChips'
-import { getPlace, placeImage } from '../data/places'
+import { ScheduleDetails } from '../components/ScheduleDetails'
+import { cityLabels, foodListUrls, getPlace, placeImage } from '../data/places'
 import type { DayPlan } from '../data/types'
 import { warmDayCovers } from '../lib/preloadImages'
 import { useStayPlan } from '../lib/StayPlanContext'
@@ -11,6 +12,14 @@ interface Props {
   dayNumber: number
   onSelectDay: (day: number) => void
   onOpenPlace: (id: string) => void
+}
+
+/** 交通與飯店在「交通與住宿」區已有，不放進行程的詳細介紹 */
+function detailPlaceIds(ids?: string[]): string[] {
+  return (ids ?? []).filter((id) => {
+    const category = getPlace(id)?.category
+    return category !== 'transport' && category !== 'hotel'
+  })
 }
 
 function MealBlock({
@@ -43,6 +52,7 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
   const prev = days.find((d) => d.day === day.day - 1)
   const next = days.find((d) => d.day === day.day + 1)
   const cover = day.coverPlaceId ? getPlace(day.coverPlaceId) : undefined
+  const foodCities = day.cityIds.filter((c) => foodListUrls[c])
   const scrollerRef = useRef<HTMLDivElement>(null)
   const viewportRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
@@ -145,7 +155,9 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
       touchStart.current = {
         x: t.clientX,
         y: t.clientY,
-        ignore: Boolean(target?.closest('.day-scroller, .chips, a, input, textarea, select')),
+        ignore: Boolean(
+          target?.closest('.day-scroller, .chips, .tl-tabs, a, input, textarea, select'),
+        ),
         axis: 'undecided',
       }
     }
@@ -284,7 +296,12 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
                 className="day-cover"
                 onClick={() => onOpenPlace(cover.id)}
               >
-                <FadeImage key={cover.id} src={placeImage(cover)} alt={cover.name} />
+                <FadeImage
+                  key={cover.id}
+                  src={placeImage(cover)}
+                  alt={cover.name}
+                  style={cover.imagePosition ? { objectPosition: cover.imagePosition } : undefined}
+                />
                 <span>{cover.name}</span>
               </button>
             )}
@@ -294,7 +311,7 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
             <h2>時間軸</h2>
             <ol className="timeline">
               {day.schedule.map((item) => (
-                <li key={`${item.time}-${item.title}`} className="tl-item">
+                <li key={`${day.day}-${item.time}-${item.title}`} className="tl-item">
                   <div className="tl-time">{item.time}</div>
                   <div className="tl-body">
                     <strong>{item.title}</strong>
@@ -304,8 +321,14 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
                         {item.transit}
                       </p>
                     ) : null}
-                    {item.note && <p>{item.note}</p>}
-                    <PlaceChips ids={item.placeIds} onOpen={onOpenPlace} />
+                    {item.brief && <p className="tl-brief">{item.brief}</p>}
+                    {item.note || item.shops?.length || detailPlaceIds(item.placeIds).length ? (
+                      <ScheduleDetails
+                        note={item.note}
+                        placeIds={detailPlaceIds(item.placeIds)}
+                        shops={item.shops}
+                      />
+                    ) : null}
                   </div>
                 </li>
               ))}
@@ -313,7 +336,24 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
           </section>
 
           <section className="section">
-            <h2>餐飲</h2>
+            <h2>
+              餐飲
+              {foodCities.map((c) => (
+                <a
+                  key={c}
+                  className="food-list-link"
+                  href={foodListUrls[c]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${cityLabels[c]}美食清單（Google 地圖）`}
+                  title={`${cityLabels[c]}美食清單`}
+                >
+                  <span aria-hidden="true">🍴</span>
+                  {foodCities.length > 1 ? cityLabels[c] : '美食清單'}
+                  <span className="food-list-arrow" aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </h2>
             <div className="card">
               <MealBlock label="早餐" meal={day.meals.breakfast} onOpenPlace={onOpenPlace} />
               <MealBlock label="午餐" meal={day.meals.lunch} onOpenPlace={onOpenPlace} />

@@ -28,11 +28,19 @@ export interface Place {
   city: CityId
   category: PlaceCategory
   intro: string
-  /** 簡短趣事／傳說，獨立色塊顯示 */
+  /** 導覽會講的典故；多條用 '\n' 分隔，「標題：內容」會加粗標題 */
   story?: string
+  /** 門票或每人大約花費 */
+  price?: string
+  /** 行程當週適用的開放／營業時間 */
+  hours?: string
+  /** 建議停留多久 */
+  duration?: string
   tip?: string
   mapsQuery?: string
   image?: string
+  /** 大圖被裁切時保留的位置（CSS object-position），預設置中 */
+  imagePosition?: string
 }
 
 export interface Meal {
@@ -41,13 +49,24 @@ export interface Meal {
   placeIds?: string[]
 }
 
+export interface ShopPick {
+  name: string
+  feature: string
+  price: string
+  mapsQuery: string
+}
+
 export interface ScheduleItem {
   time: string
   title: string
+  /** 一眼要看到的關鍵資訊（入場、關門、集合時間）；其餘放 note 收進「詳細介紹」 */
+  brief?: string
   note?: string
   /** 從前一個行程到這裡的交通，例：「Bolt 約 10 分」 */
   transit?: string
   placeIds?: string[]
+  /** 不另建景點的推薦店家，列在「詳細介紹」 */
+  shops?: ShopPick[]
 }
 
 export interface DayPlan {

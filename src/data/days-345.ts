@@ -101,9 +101,9 @@ export const days345: DayPlan[] = [
         placeIds: ['vaci-utca'],
       },
       dinner: {
-        label: 'Bors GastroBar 或市集小吃',
+        label: '市集小吃或大教堂周邊',
         time: '約 19:00',
-        placeIds: ['bors-gastrobar', 'st-stephen-market'],
+        placeIds: ['st-stephen-market'],
       },
     },
     transport: '機場地底搭電車至維也納中央車站，轉乘特快火車頭等艙直達布達佩斯；市區步行／Bolt。',
@@ -204,9 +204,8 @@ export const days345: DayPlan[] = [
         placeIds: ['langos', 'great-market-hall'],
       },
       dinner: {
-        label: 'Menza（摩登匈牙利菜，招牌鴨胸）',
-        time: '19:30',
-        placeIds: ['menza'],
+        label: '碼頭附近（Vigadó tér、瓦茨街一帶）',
+        time: '19:00',
       },
     },
     transport: '景點間以 Bolt 接駁；可體驗黃線地鐵 M1。',
@@ -378,9 +377,8 @@ export const days345: DayPlan[] = [
       },
       {
         time: '17:00 – 18:30',
-        title: '吃晚餐',
+        title: '晚餐：歌劇院附近找',
         transit: '步行 · 約 5–10 分',
-        placeIds: ['ribs-of-vienna', 'lugeck'],
       },
       {
         time: '19:00 – 21:30',
@@ -392,14 +390,13 @@ export const days345: DayPlan[] = [
     ],
     meals: {
       lunch: {
-        label: 'NENI 或市場內海鮮攤',
+        label: 'NENI（以色列／地中海料理）',
         time: '12:30',
         placeIds: ['neni', 'naschmarkt'],
       },
       dinner: {
-        label: 'Ribs of Vienna 或 Lugeck',
+        label: '歌劇院附近（看戲前早點吃）',
         time: '17:00–18:30',
-        placeIds: ['ribs-of-vienna', 'lugeck'],
       },
     },
     transport: 'Bolt 或地鐵 U-Bahn。',
@@ -504,10 +501,9 @@ export const days345: DayPlan[] = [
       },
       {
         time: '13:00 – 14:30',
-        title: '伏爾塔瓦河景觀午餐',
-        transit: '步行 · 約 5–8 分（橋旁）',
-        note: '邊用餐邊看城堡遠景',
-        placeIds: ['kampa-park'],
+        title: '午餐：查理大橋小城區橋頭',
+        transit: '步行 · 約 5 分（過橋）',
+        note: '小城區橋頭或 Kampa 島一帶找，避開橋頭第一排的觀光餐廳',
       },
       {
         time: '15:00 – 18:00',
@@ -519,9 +515,8 @@ export const days345: DayPlan[] = [
     ],
     meals: {
       lunch: {
-        label: 'Kampa Park 或河畔景觀餐廳',
+        label: '查理大橋小城區橋頭、Kampa 島一帶',
         time: '13:00',
-        placeIds: ['kampa-park'],
       },
       dinner: {
         label: 'U Fleků（500 年釀酒廠，黑啤與烤鴨）',
@@ -560,9 +555,8 @@ export const days345: DayPlan[] = [
     ],
     meals: {
       lunch: {
-        label: '城堡區景觀餐廳（如 Terasa U Zlaté studně）',
+        label: '小城區（小城廣場、Nerudova 街一帶）',
         time: '12:00',
-        placeIds: ['terasa'],
       },
       dinner: {
         label: 'Mlynec（河畔精緻捷克菜，查理大橋夜景）',
@@ -658,11 +652,7 @@ export const days345: DayPlan[] = [
         time: '11:30',
         placeIds: ['cafe-louvre'],
       },
-      dinner: {
-        label: 'Restaurant Bellevue 歡送晚宴',
-        time: '18:30',
-        placeIds: ['bellevue'],
-      },
+      dinner: { label: '從美食清單挑' },
     },
     transport: '全天於老城區與飯店周邊，零拉車負擔。',
     lodging: 'Hilton Prague Old Town（5/5 晚）',
