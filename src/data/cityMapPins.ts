@@ -88,6 +88,7 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
   'imperial-lights': { lat: 48.1845, lng: 16.3175 },
   belvedere: { lat: 48.1916, lng: 16.3807 },
   'belvedere-market': { lat: 48.191, lng: 16.38 },
+  'national-library': { lat: 48.2063, lng: 16.3668 },
   'the-kiss': { lat: 48.1916, lng: 16.3807 },
   plachutta: { lat: 48.2014, lng: 16.3732 },
   'plachutta-hietzing': { lat: 48.1876, lng: 16.3027 },

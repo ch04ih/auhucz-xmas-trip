@@ -97,7 +97,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: 'Plachutta',
           note: is444
-            ? '12/16 19:30 Wollzeile 本店 Tafelspitz 晚餐'
+            ? '12/16 18:00 美泉宮旁 Hietzing 分店 Tafelspitz 晚餐'
             : '12/15 19:00 Tafelspitz 晚餐',
           food: true,
         },
@@ -109,13 +109,13 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       items: [
         {
           name: '美景宮上宮（《吻》）',
-          note: is444 ? '12/15 16:30 時段票，官網預購' : '官網預購較省排隊',
+          note: is444 ? '12/18 14:15 時段票，官網預購' : '官網預購較省排隊',
         },
         ...(is444
           ? [
               {
-                name: '美泉宮 Palace Ticket',
-                note: '12/16 14:30 時段票，官網預購',
+                name: '茜茜套票 Sisi Pass',
+                note: '12/16 美泉宮選 15:00 時段；霍夫堡茜茜博物館不用預約，官網預購',
               } satisfies BookingItem,
             ]
           : []),
@@ -162,7 +162,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
         {
           name: 'Café Central',
           note: is444
-            ? '12/16 12:00 早午餐；整修中，先確認是否重開'
+            ? '12/16 13:15 午餐；整修中，先確認是否重開'
             : '12/15 11:30 早午餐；整修中，先確認是否重開',
           food: true,
         },
@@ -199,7 +199,7 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
           ? [
               {
                 name: '慕夏博物館',
-                note: '12/21 16:45 現場買票，認明 Panská 7',
+                note: '12/20 15:25 現場買票，認明 Panská 7',
               } satisfies BookingItem,
             ]
           : []),

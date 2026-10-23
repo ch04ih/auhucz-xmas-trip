@@ -52,6 +52,18 @@ function InlinePlace({ place }: { place: Place }) {
   )
 }
 
+/** 一次只展開一個；收起上方的項目時把剛點開的這個留在原位，畫面不跳 */
+function closeOthers(current: HTMLDetailsElement) {
+  const others = [...document.querySelectorAll<HTMLDetailsElement>('details.tl-details[open]')].filter(
+    (d) => d !== current,
+  )
+  if (!others.length) return
+  const before = current.getBoundingClientRect().top
+  for (const d of others) d.open = false
+  const shift = current.getBoundingClientRect().top - before
+  if (shift) window.scrollBy(0, shift)
+}
+
 function ShopList({ shops }: { shops: ShopPick[] }) {
   return (
     <ul className="tl-shops">
@@ -75,7 +87,14 @@ export function ScheduleDetails({ note, placeIds, shops }: Props) {
   const current = places[Math.min(active, places.length - 1)]
 
   return (
-    <details className="tl-details" onToggle={(e) => setOpen(e.currentTarget.open)}>
+    <details
+      className="tl-details"
+      onToggle={(e) => {
+        const el = e.currentTarget
+        setOpen(el.open)
+        if (el.open) closeOthers(el)
+      }}
+    >
       <summary>詳細介紹</summary>
       {open && (
         <div className="tl-details-body">

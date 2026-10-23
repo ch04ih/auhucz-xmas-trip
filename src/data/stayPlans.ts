@@ -231,6 +231,8 @@ function ticketBundle(days: {
   schonbrunn: number
   pragueCastle: number
   operaBooked?: boolean
+  /** 美泉宮改買含霍夫堡茜茜博物館的套票，並加國家圖書館 */
+  sisiPass?: boolean
 }): { ticketItems: BudgetLine[]; optionalTicketItems: BudgetLine[] } {
   const bookedOpera: BudgetLine = {
     label: '維也納國家歌劇院《魔笛》',
@@ -309,6 +311,25 @@ function ticketBundle(days: {
   } else {
     bundle.optionalTicketItems.splice(3, 0, optionalOpera)
   }
+  if (days.sisiPass) {
+    bundle.optionalTicketItems = bundle.optionalTicketItems.filter(
+      (line) => line.placeId !== 'schonbrunn',
+    )
+    bundle.ticketItems.push(
+      {
+        label: '茜茜套票 Sisi Pass',
+        detail: `Day ${days.schonbrunn} · 成人 €60，含美泉宮 Palace Ticket、霍夫堡茜茜博物館、家具博物館`,
+        price: 2241,
+        placeId: 'schonbrunn',
+      },
+      {
+        label: '奧地利國家圖書館主廳',
+        detail: `Day ${days.schonbrunn} · 成人 €12`,
+        price: 448,
+        placeId: 'national-library',
+      },
+    )
+  }
   return bundle
 }
 
@@ -320,11 +341,12 @@ const tickets345 = ticketBundle({
 })
 
 const tickets444 = ticketBundle({
-  belvedere: 6,
+  belvedere: 9,
   opera: 9,
   schonbrunn: 7,
   pragueCastle: 12,
   operaBooked: true,
+  sisiPass: true,
 })
 
 export const stayPlans: StayPlan[] = [

@@ -23,6 +23,7 @@ const sources = {
   'hilton-vienna-park': { wiki: 'Hilton Vienna' },
   'hilton-prague': { wiki: 'Hilton Prague Old Town' },
   'vaci-utca': { wiki: 'Váci Street' },
+  'national-library': { commons: 'Prunksaal der Nationalbibliothek' },
   'st-stephen-market': {
     wiki: "St. Stephen's Basilica",
     commons: 'Budapest Christmas market Basilica',
