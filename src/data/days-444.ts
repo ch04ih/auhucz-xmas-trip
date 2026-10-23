@@ -412,7 +412,7 @@ export const days444: DayPlan[] = [
     cityIds: ['vienna'],
     coverPlaceId: 'schonbrunn',
     schedule: [
-      { time: '11:00', title: '睡到 10 點，出門' },
+      { time: '11:00', title: '睡飽飽出門' },
       {
         time: '11:15 – 12:30',
         title: '霍夫堡茜茜博物館＋皇帝寢宮',
