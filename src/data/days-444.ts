@@ -354,8 +354,8 @@ export const days444: DayPlan[] = [
         time: '15:15 – 16:20',
         title: '聖史蒂芬大教堂',
         transit: '地鐵 U3 Neubaugasse → Stephansplatz · 約 15 分',
-        brief: '先上塔趁天亮看屋頂，現場決定爬南塔看全景或搭北塔電梯看大鐘；再看中殿（16:30 停止參觀）。都不用預約，帶現金',
-        note: '教堂後方就是莫札特之家，經過拍外觀即可',
+        brief: '中殿 16:30 停止參觀；不用預約，帶現金',
+        note: '想上塔的話，建議趁天還亮先上去：南塔爬樓梯看全景，北塔搭電梯看大鐘。教堂後方就是莫札特之家，經過拍外觀即可',
         placeIds: ['stephansdom', 'mozarthaus-vienna'],
       },
       {
