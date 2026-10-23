@@ -166,6 +166,15 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
             : '12/15 11:30 早午餐；整修中，先確認是否重開',
           food: true,
         },
+        ...(is444
+          ? [
+              {
+                name: 'Demel',
+                note: '12/15 約 16:30 皇帝煎餅；不能訂位，現場排隊或外帶',
+                food: true,
+              } satisfies BookingItem,
+            ]
+          : []),
         {
           name: 'Zum Schwarzen Kameel',
           note: is444

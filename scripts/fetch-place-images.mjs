@@ -24,6 +24,7 @@ const sources = {
   'hilton-prague': { wiki: 'Hilton Prague Old Town' },
   'vaci-utca': { wiki: 'Váci Street' },
   'national-library': { commons: 'Prunksaal der Nationalbibliothek' },
+  demel: { wiki: 'Demel', commons: 'Demel Kaiserschmarrn' },
   'st-stephen-market': {
     wiki: "St. Stephen's Basilica",
     commons: 'Budapest Christmas market Basilica',
