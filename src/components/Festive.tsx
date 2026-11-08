@@ -15,6 +15,22 @@ const flakes = Array.from({ length: 30 }, (_, i) => ({
   opacity: 0.75 + seeded(i, 6) * 0.25,
 }))
 
+/** iOS 會把 ❄ 字元畫成彩色 emoji、不吃 CSS 顏色，所以改用 SVG */
+function SnowflakeIcon() {
+  return (
+    <svg viewBox="-12 -12 24 24" width="1em" height="1em">
+      <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none">
+        {[0, 60, 120].map((deg) => (
+          <g key={deg} transform={`rotate(${deg})`}>
+            <path d="M0 -10.5V10.5" />
+            <path d="M-3 -8.5L0 -5.5L3 -8.5M-3 8.5L0 5.5L3 8.5" />
+          </g>
+        ))}
+      </g>
+    </svg>
+  )
+}
+
 export function Snowfall() {
   return (
     <div className="snowfall" aria-hidden="true">
@@ -32,7 +48,7 @@ export function Snowfall() {
             } as CSSProperties
           }
         >
-          ❄
+          <SnowflakeIcon />
         </span>
       ))}
     </div>

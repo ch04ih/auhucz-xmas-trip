@@ -60,16 +60,10 @@ export const days444: DayPlan[] = [
         placeIds: ['obb'],
       },
       {
-        time: '12:35 – 13:10',
-        title: '飯店放行李',
-        transit: '抵達後 Bolt／步行 · 約 10–15 分',
-        placeIds: ['hotel-moments'],
-      },
-      {
-        time: '13:30 – 15:00',
-        title: '瓦茨街逛街 + 午餐',
-        transit: '步行 · 約 8–12 分',
-        placeIds: ['vaci-utca'],
+        time: '12:35 – 15:00',
+        title: '飯店放行李 → 瓦茨街逛街 + 午餐',
+        transit: '抵達後 Bolt／步行到飯店 · 約 10–15 分',
+        placeIds: ['hotel-moments', 'vaci-utca'],
       },
       {
         time: '15:00 – 17:00',
