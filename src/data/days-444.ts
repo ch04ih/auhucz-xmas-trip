@@ -47,16 +47,11 @@ export const days444: DayPlan[] = [
         placeIds: ['ci63'],
       },
       {
-        time: '07:30 – 08:30',
+        time: '07:30 – 09:30',
         title: '搭 ÖBB 到維也納中央車站',
         transit: '機場地底電車／列車 · 約 15–25 分',
+        brief: '到站後在車站買點東西吃',
         placeIds: ['obb', 'wien-hbf'],
-      },
-      {
-        time: '08:30 – 09:30',
-        title: '車站買點東西吃',
-        transit: '同站內步行 · 約 2 分',
-        placeIds: ['wien-hbf'],
       },
       {
         time: '09:40 – 12:35',
@@ -233,7 +228,7 @@ export const days444: DayPlan[] = [
         time: '11:00 – 13:30',
         title: '睡飽飽出門：安德拉希大道散步＋午餐',
         transit: '飯店出門就是大道起點',
-        brief: '往英雄廣場方向走，中途在歌劇院一帶找咖啡廳吃午餐',
+        brief: '往英雄廣場方向走',
         placeIds: ['andrassy'],
       },
       {
@@ -412,7 +407,8 @@ export const days444: DayPlan[] = [
         time: '13:15 – 14:10',
         title: '中央咖啡館 Café Central',
         transit: '步行 · 約 5 分',
-        brief: '整修中，出發前確認是否重開；沒開改去附近的 DECENTRAL',
+        brief: '整修中，出發前確認是否重開',
+        note: '沒開的話改去附近的 DECENTRAL',
         placeIds: ['cafe-central'],
       },
       {
@@ -426,14 +422,13 @@ export const days444: DayPlan[] = [
         time: '16:15 – 17:30',
         title: '美泉宮聖誕市集',
         transit: '出宮殿就是正門前廣場',
-        brief: '天剛黑、點燈最漂亮',
         placeIds: ['schonbrunn-market'],
       },
       {
         time: '18:00 – 19:30',
         title: '晚餐 Plachutta Hietzing',
         transit: '往西走 · 約 10 分',
-        brief: '清燉牛肉 Tafelspitz，兩人點一份再加前菜或甜點',
+        brief: '清燉牛肉 Tafelspitz',
         placeIds: ['plachutta-hietzing'],
       },
     ],
@@ -507,7 +502,7 @@ export const days444: DayPlan[] = [
         time: '12:30 – 14:00',
         title: '納許市場吃午餐',
         transit: '步行 · 約 10–15 分',
-        brief: '推薦 NENI：招牌烤整顆花椰菜和胡姆斯，點幾樣一起分',
+        brief: '推薦 NENI',
         placeIds: ['naschmarkt', 'neni'],
       },
       {
@@ -536,7 +531,7 @@ export const days444: DayPlan[] = [
         brief: '可以選陳家麵館，18:30 前到歌劇院',
       },
       {
-        time: '19:00 – 約 22:00',
+        time: '19:00 – 22:00',
         title: '維也納國家歌劇院《魔笛》',
         transit: '步行 · 約 10–15 分',
         brief: '18:30 前到場',
@@ -579,7 +574,6 @@ export const days444: DayPlan[] = [
         time: '12:05 – 14:00',
         title: '瑪麗亞希爾夫大街：午餐＋逛街',
         transit: '飯店步行 · 約 5 分',
-        brief: '找間餐廳坐下吃熱的午餐，再慢慢逛',
         note: '維也納最大的購物街，Zara、H&M、Mango、COS 和 Peek & Cloppenburg 百貨都在這；週六人比較多',
       },
       {
@@ -658,7 +652,7 @@ export const days444: DayPlan[] = [
         time: '14:30 – 15:15',
         title: '老城廣場・天文鐘（白天）',
         transit: '步行 · 約 10 分（從老城橋頭穿過 Karlova 街）',
-        brief: '15:00 整點看天文鐘報時；趁天亮拍泰恩教堂和彩色房子',
+        brief: '整點天文鐘報時；趁天亮拍泰恩教堂和彩色房子',
         placeIds: ['old-town-square', 'astronomical-clock'],
       },
       {
@@ -672,7 +666,7 @@ export const days444: DayPlan[] = [
         time: '16:45 – 18:45',
         title: '老城廣場聖誕市集',
         transit: '步行 · 約 10 分（路過火藥塔、市民會館夜景，經 Celetná 街）',
-        brief: '17:30 聖誕樹燈光音樂秀，提早 15 分卡位；17:00、18:00 天文鐘報時',
+        brief: '17:30 聖誕樹燈光音樂秀，提早 15 分卡位；整點天文鐘報時',
         note: '火藥塔是國王加冕遊行的起點，隔壁市民會館的金色馬賽克打燈很亮眼，裡面市長廳的天花板是慕夏畫的；一樓咖啡館可以探頭看新藝術內裝',
         placeIds: ['prague-christmas-market', 'powder-tower', 'municipal-house'],
       },
@@ -779,7 +773,6 @@ export const days444: DayPlan[] = [
         time: '12:30 – 13:30',
         title: '午餐 Café Louvre',
         transit: '電車／Bolt · 約 10 分（飯店旁）',
-        brief: '推薦：老咖啡館的平價捷克午餐，吃完走回飯店打包',
         placeIds: ['cafe-louvre'],
       },
       {
