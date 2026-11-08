@@ -19,6 +19,8 @@ export function parseHash(hash = window.location.hash): AppRoute {
   }
   if (parts[0] === 'budget') return { tab: 'budget' }
   if (parts[0] === 'info') return { tab: 'info' }
+  if (parts[0] === 'tools') return { tab: 'tools' }
+  if (parts[0] === 'bookings') return { tab: 'bookings' }
   if (parts[0] === 'places') {
     return { tab: 'places', placeId: parts[1] }
   }
@@ -31,6 +33,8 @@ export function toHash(route: AppRoute): string {
   }
   if (route.tab === 'budget') return '#/budget'
   if (route.tab === 'info') return '#/info'
+  if (route.tab === 'tools') return '#/tools'
+  if (route.tab === 'bookings') return '#/bookings'
   if (route.tab === 'places') {
     return route.placeId ? `#/places/${route.placeId}` : '#/places'
   }

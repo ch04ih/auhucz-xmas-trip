@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { FadeImage } from '../components/FadeImage'
+import { Holly } from '../components/Festive'
 import { FlightSummary } from '../components/FlightSummary'
 import { placeThumb } from '../data/places'
 import {
@@ -109,6 +110,7 @@ export function BudgetView({ onOpenPlace }: Props) {
       </header>
 
       <div className="total-card">
+        <Holly className="holly holly-card" />
         <span>預估每人</span>
         <strong>{formatTwd(total)}</strong>
         <p>

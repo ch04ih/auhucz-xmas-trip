@@ -98,23 +98,13 @@ export function ScheduleDetails({ note, placeIds, shops }: Props) {
       <summary>詳細介紹</summary>
       {open && (
         <div className="tl-details-body">
-          {places.length > 1 && (
-            <TabStrip>
-              {places.map((p, i) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={p === current}
-                  className={p === current ? 'tl-tab active' : 'tl-tab'}
-                  onClick={() => setActive(i)}
-                >
-                  {p.name}
-                </button>
-              ))}
-            </TabStrip>
+          {note && (
+            <div className="tl-note">
+              <PlaceSection label="行程備註">
+                <Points items={splitPoints(note)} />
+              </PlaceSection>
+            </div>
           )}
-          {current && <InlinePlace key={current.id} place={current} />}
           {shops?.length ? (
             <div className="tl-note">
               <PlaceSection label="推薦店家">
@@ -122,11 +112,25 @@ export function ScheduleDetails({ note, placeIds, shops }: Props) {
               </PlaceSection>
             </div>
           ) : null}
-          {note && (
-            <div className="tl-note">
-              <PlaceSection label="行程備註">
-                <Points items={splitPoints(note)} />
-              </PlaceSection>
+          {current && (
+            <div className="tl-places">
+              {places.length > 1 && (
+                <TabStrip>
+                  {places.map((p, i) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={p === current}
+                      className={p === current ? 'tl-tab active' : 'tl-tab'}
+                      onClick={() => setActive(i)}
+                    >
+                      {p.name}
+                    </button>
+                  ))}
+                </TabStrip>
+              )}
+              <InlinePlace key={current.id} place={current} />
             </div>
           )}
         </div>

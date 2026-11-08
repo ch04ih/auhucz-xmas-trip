@@ -1,4 +1,4 @@
-export type Tab = 'home' | 'itinerary' | 'budget' | 'places' | 'info'
+export type Tab = 'home' | 'itinerary' | 'budget' | 'places' | 'tools' | 'info' | 'bookings'
 
 export type CityId =
   | 'taipei'
@@ -67,6 +67,8 @@ export interface ScheduleItem {
   placeIds?: string[]
   /** 不另建景點的推薦店家，列在「詳細介紹」 */
   shops?: ShopPick[]
+  /** 備案，時間軸上淡化顯示 */
+  optional?: boolean
 }
 
 export interface DayPlan {

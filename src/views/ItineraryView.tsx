@@ -1,20 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { FadeImage } from '../components/FadeImage'
+import { Holly } from '../components/Festive'
 import { PlaceChips } from '../components/PlaceChips'
 import { ScheduleDetails } from '../components/ScheduleDetails'
 import { cityLabels, foodListUrls, getPlace, placeImage } from '../data/places'
 import type { DayPlan } from '../data/types'
 import { warmDayCovers } from '../lib/preloadImages'
 import { useStayPlan } from '../lib/StayPlanContext'
-import { shareLink } from '../lib/share'
-
 interface Props {
   dayNumber: number
   onSelectDay: (day: number) => void
   onOpenPlace: (id: string) => void
 }
 
-/** 交通與飯店在「交通與住宿」區已有，不放進行程的詳細介紹 */
+/** 交通在時間軸已有、飯店在「住宿」區已有，不放進行程的詳細介紹 */
 function detailPlaceIds(ids?: string[]): string[] {
   return (ids ?? []).filter((id) => {
     const category = getPlace(id)?.category
@@ -281,15 +280,6 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
             {day.subtitle && <p className="hero-sub">{day.subtitle}</p>}
             <p className="city-line">{day.cityLabel}</p>
             {day.note && <p className="note">{day.note}</p>}
-            <button
-              type="button"
-              className="text-btn share-day"
-              onClick={() =>
-                shareLink(`Day ${day.day} ${day.title}`, `${day.date} ${day.title}`)
-              }
-            >
-              分享這一天
-            </button>
             {cover && (
               <button
                 type="button"
@@ -309,30 +299,36 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
 
           <section className="section">
             <h2>時間軸</h2>
-            <ol className="timeline">
-              {day.schedule.map((item) => (
-                <li key={`${day.day}-${item.time}-${item.title}`} className="tl-item">
-                  <div className="tl-time">{item.time}</div>
-                  <div className="tl-body">
-                    <strong>{item.title}</strong>
-                    {item.transit ? (
-                      <p className="tl-transit">
-                        <span aria-hidden="true">→</span>
-                        {item.transit}
-                      </p>
-                    ) : null}
-                    {item.brief && <p className="tl-brief">{item.brief}</p>}
-                    {item.note || item.shops?.length || detailPlaceIds(item.placeIds).length ? (
-                      <ScheduleDetails
-                        note={item.note}
-                        placeIds={detailPlaceIds(item.placeIds)}
-                        shops={item.shops}
-                      />
-                    ) : null}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <div className="corner-wrap">
+              <Holly className="holly holly-card" />
+              <ol className="timeline card timeline-card">
+                {day.schedule.map((item) => (
+                  <li
+                    key={`${day.day}-${item.time}-${item.title}`}
+                    className={item.optional ? 'tl-item optional' : 'tl-item'}
+                  >
+                    <div className="tl-time">{item.time}</div>
+                    <div className="tl-body">
+                      <strong>{item.title}</strong>
+                      {item.transit ? (
+                        <p className="tl-transit">
+                          <span aria-hidden="true">→</span>
+                          {item.transit}
+                        </p>
+                      ) : null}
+                      {item.brief && <p className="tl-brief">{item.brief}</p>}
+                      {item.note || item.shops?.length || detailPlaceIds(item.placeIds).length ? (
+                        <ScheduleDetails
+                          note={item.note}
+                          placeIds={detailPlaceIds(item.placeIds)}
+                          shops={item.shops}
+                        />
+                      ) : null}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </section>
 
           <section className="section">
@@ -362,14 +358,9 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
           </section>
 
           <section className="section">
-            <h2>交通與住宿</h2>
+            <h2>住宿</h2>
             <div className="card meta-card">
               <div>
-                <span className="meta-label">交通</span>
-                <p>{day.transport}</p>
-              </div>
-              <div>
-                <span className="meta-label">住宿</span>
                 <p>{day.lodging}</p>
                 <PlaceChips
                   ids={day.lodgingPlaceId ? [day.lodgingPlaceId] : undefined}

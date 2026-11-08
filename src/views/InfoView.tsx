@@ -1,21 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
-import type { StayPlanId } from '../data/stayPlans'
-import { useStayPlan } from '../lib/StayPlanContext'
-
-type MoneyCode = 'TWD' | 'EUR' | 'CZK' | 'HUF'
-
-const moneyLabels: Record<MoneyCode, string> = {
-  TWD: '台幣 TWD',
-  EUR: '歐元 EUR',
-  CZK: '克朗 CZK',
-  HUF: '福林 HUF',
-}
-
-const fallbackPerTwd: Record<Exclude<MoneyCode, 'TWD'>, number> = {
-  EUR: 0.028,
-  CZK: 0.69,
-  HUF: 11.2,
-}
+import { Fragment, type ReactNode } from 'react'
+import { Holly } from '../components/Festive'
+import {
+  SectionLayoutEditor,
+  SectionLayoutToggle,
+  useSectionLayout,
+} from '../components/SectionLayout'
 
 const weather = [
   {
@@ -44,367 +33,195 @@ const weather = [
   },
 ]
 
-const wearLayers = ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽圍巾', '防滑防水鞋']
-const kitItems = ['護唇膏', '保濕乳霜', '手套', '折疊傘']
+const hotelCards = [
+  {
+    city: '布達佩斯 · 12/11–15',
+    name: 'Hotel Moments Budapest',
+    address: 'Andrássy út 8, 1061 Budapest',
+    phone: '+36 1 611 7000',
+  },
+  {
+    city: '維也納 · 12/15–19',
+    name: 'Jaz in the City Vienna',
+    address: 'Windmühlgasse 28, 1060 Wien',
+    phone: '+43 1 25300610',
+  },
+  {
+    city: '布拉格 · 12/19–23',
+    name: 'Hotel CUBE',
+    address: 'Křemencova 164/18, 110 00 Praha 1',
+    phone: '+420 251 019 811',
+  },
+]
 
-const BOOKING_DONE_KEY = 'auhucz-booking-done'
+const localEmergency = [
+  { country: '奧地利', police: '133', ambulance: '144' },
+  { country: '匈牙利', police: '107', ambulance: '104' },
+  { country: '捷克', police: '158', ambulance: '155' },
+]
 
-type BookingItem = { name: string; note: string; food?: boolean }
+const taiwanOffices = [
+  {
+    name: '駐奧地利台北經濟文化代表處',
+    city: '維也納',
+    emergency: '+43 664 345 0455',
+    office: '+43 1 2124720',
+    address: 'Wagramer Str. 19/11. OG, 1220 Wien',
+  },
+  {
+    name: '駐匈牙利台北代表處',
+    city: '布達佩斯',
+    emergency: '+36 30 964 1546',
+    office: '+36 1 266 2884',
+    address: 'Rákóczi út 1-3/II, 1088 Budapest',
+  },
+  {
+    name: '駐捷克台北經濟文化辦事處',
+    city: '布拉格',
+    emergency: '+420 603 166 707',
+    office: '+420 233 320 606',
+    address: 'Evropská 2590/33c, 160 00 Praha 6',
+  },
+]
 
-function getBookingGroups(planId: StayPlanId): { when: string; hint: string; items: BookingItem[] }[] {
-  const is444 = planId === '4-4-4'
-  return [
-    {
-      when: '出發前 2–3 個月',
-      hint: '聖誕旺季最容易搶光，能早訂就早訂',
-      items: [
-        {
-          name: '維也納國家歌劇院',
-          note: is444
-            ? '已購 · 12/18 19:00《魔笛》2 張'
-            : '熱門劇目／週末場常提前售完；站票也建議提早盯',
-        },
-        {
-          name: '飯店',
-          note: is444
-            ? '三城皆已訂 · 時光飯店、城市爵士飯店、Hotel Cube'
-            : 'BasiliQ、Jaz、希爾頓待訂；聖誕旺季建議提早',
-        },
-        { name: '華航豪經艙', note: '已訂 · 12/10 去程、12/23 回程' },
-        {
-          name: 'Mlynec',
-          note: is444
-            ? '12/21 19:00 城堡日晚餐，橋景／窗邊位'
-            : '12/20 19:00 城堡日晚餐，橋景／窗邊位',
-          food: true,
-        },
-      ],
-    },
-    {
-      when: '出發前 3–4 週',
-      hint: '門票場次與一日遊，愈早愈穩',
-      items: [
-        { name: '國會大廈內部導覽', note: '官網先訂場次，選中文語音' },
-        { name: 'Klook 薩爾斯堡＆哈修塔特', note: '一日遊名額有限' },
-        { name: 'ÖBB 頭等艙車票', note: '維也納⇄布達佩斯、維也納→布拉格' },
-        {
-          name: 'Figlmüller',
-          note: is444
-            ? '12/15 19:30 維也納第一晚炸牛排'
-            : '12/14 約 19:00 維也納第一晚炸牛排',
-          food: true,
-        },
-        {
-          name: 'Plachutta',
-          note: is444
-            ? '12/16 18:00 美泉宮旁 Hietzing 分店 Tafelspitz 晚餐'
-            : '12/15 19:00 Tafelspitz 晚餐',
-          food: true,
-        },
-      ],
-    },
-    {
-      when: '出發前 1–2 週',
-      hint: '多數餐廳與預購票',
-      items: [
-        {
-          name: '美景宮上宮（《吻》）',
-          note: is444 ? '12/18 14:15 時段票，官網預購' : '官網預購較省排隊',
-        },
-        ...(is444
-          ? [
-              {
-                name: '茜茜套票 Sisi Pass',
-                note: '12/16 美泉宮選 15:00 時段；霍夫堡茜茜博物館不用預約，官網預購',
-              } satisfies BookingItem,
-            ]
-          : []),
-        { name: '布拉格城堡套票', note: '若進主迴路建議線上買' },
-        {
-          name: 'Lokál Dlouhááá',
-          note: is444
-            ? '12/20 19:00 逛完老城廣場後'
-            : '12/18 20:15 抵達布拉格第一晚',
-          food: true,
-        },
-        ...(is444
-          ? [
-              {
-                name: 'U Fleků',
-                note: '12/19 20:15 抵達布拉格第一晚，飯店同條街；週六晚建議訂位',
-                food: true,
-              } satisfies BookingItem,
-            ]
-          : []),
-        {
-          name: '帝國咖啡館下午茶',
-          note: is444
-            ? '12/21 約 15:30–16:30 城堡日下午茶'
-            : '12/20 約 14:30–17:00 城堡日下午茶',
-          food: true,
-        },
-        ...(is444
-          ? []
-          : [
-              {
-                name: 'V Zátiší',
-                note: '12/21 19:00 高堡日晚餐',
-                food: true,
-              } satisfies BookingItem,
-            ]),
-      ],
-    },
-    {
-      when: '出發前幾天～當天早上',
-      hint: '多數仍建議訂，臨時也常有位',
-      items: [
-        { name: '多瑙河夜航', note: '12/13 20:30；可現場買，旺季先訂較安心' },
-        {
-          name: 'Café Central',
-          note: is444
-            ? '12/16 13:15 午餐；整修中，先確認是否重開'
-            : '12/15 11:30 早午餐；整修中，先確認是否重開',
-          food: true,
-        },
-        ...(is444
-          ? [
-              {
-                name: 'Demel',
-                note: '12/15 約 16:30 皇帝煎餅；不能訂位，現場排隊或外帶',
-                food: true,
-              } satisfies BookingItem,
-            ]
-          : []),
-        {
-          name: 'Zum Schwarzen Kameel',
-          note: is444
-            ? '12/19 12:20 轉布拉格當日午餐'
-            : '12/18 12:20 轉布拉格當日午餐',
-          food: true,
-        },
-        {
-          name: 'Kiskakukk',
-          note: '12/12 19:00 國會與城堡日晚餐',
-          food: true,
-        },
-        {
-          name: 'NENI',
-          note: is444
-            ? '12/18 12:30 納許市場午餐'
-            : '12/17 12:30 納許市場午餐',
-          food: true,
-        },
-      ],
-    },
-    {
-      when: '不用預約（walk-in）',
-      hint: '直接去即可，尖峰可能稍候',
-      items: [
-        { name: '各大聖誕市集', note: '免票入場，攤位現金方便' },
-        { name: '塞切尼溫泉', note: '現場買票；平日較不擠' },
-        { name: '布達城堡纜車', note: '現場買；排隊長可改搭巴士' },
-        { name: '查理大橋／老城廣場', note: '戶外免費逛' },
-        ...(is444
-          ? [
-              {
-                name: '慕夏博物館',
-                note: '12/20 15:25 現場買票，認明 Panská 7',
-              } satisfies BookingItem,
-            ]
-          : []),
-        { name: '中央市場／納許市場', note: '小吃與採買隨到隨吃' },
-        { name: '漁人堡／高堡區外圍', note: '散步即可' },
-        ...(is444
-          ? []
-          : [
-              {
-                name: 'U Fleků',
-                note: '12/19 約 19:00 可現場候位或提早到',
-                food: true,
-              } satisfies BookingItem,
-            ]),
-        {
-          name: 'Café Louvre',
-          note: is444
-            ? '12/22 約 12:30 打包前午餐，通常免訂'
-            : '12/22 約 11:30 最後一天輕食，通常免訂',
-          food: true,
-        },
-      ],
-    },
-  ]
+function telHref(phone: string) {
+  return `tel:${phone.replace(/\s/g, '')}`
 }
 
-function formatClock(date: Date, timeZone: string) {
-  return new Intl.DateTimeFormat('zh-TW', {
-    timeZone,
-    month: 'numeric',
-    day: 'numeric',
-    weekday: 'short',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).format(date)
+const packingGroups: { title: string; note?: string; items: string[] }[] = [
+  {
+    title: '保暖衣物',
+    note: '洋蔥式穿法，進室內有暖氣好穿脫。',
+    items: ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽', '圍巾', '防滑防水鞋'],
+  },
+  {
+    title: '防寒保濕',
+    note: '空氣乾，護唇與保濕很重要。',
+    items: ['護唇膏', '保濕乳霜', '手套', '折疊傘'],
+  },
+  {
+    title: '證件與錢',
+    note: '信用卡兩張分開放；零錢留著付廁所和市集杯子押金。',
+    items: ['護照', '護照照片存手機', '信用卡 ×2', '少量歐元', '匈牙利福林', '捷克克朗', '零錢包'],
+  },
+  {
+    title: '電器',
+    note: '中歐是 C／F 型插頭、230V。手機、相機充電器多半通用；吹風機、電棒捲要確認雙電壓。',
+    items: ['轉接頭', '行動電源', '充電線', '延長線或多孔插座', 'eSIM／網卡'],
+  },
+  {
+    title: '特別行程',
+    items: ['泳衣（溫泉）', '溫泉拖鞋', '歌劇院服裝', '好走的正式鞋'],
+  },
+  {
+    title: '隨身小物',
+    note: '歐洲超市的購物袋要另外買，帶一個折疊袋很方便。',
+    items: ['常備藥', '暖暖包', '防盜斜背包', '折疊購物袋', '保溫瓶', '濕紙巾'],
+  },
+]
+
+type InfoSectionId = 'hotels' | 'emergency' | 'weather' | 'packing'
+
+const infoSectionTitles: Record<InfoSectionId, string> = {
+  hotels: '🏨 飯店地址卡',
+  emergency: '🆘 緊急聯絡',
+  weather: '❄️ 12 月天氣',
+  packing: '🧳 建議攜帶',
 }
+
+const defaultInfoOrder: InfoSectionId[] = ['hotels', 'emergency', 'weather', 'packing']
 
 export function InfoView() {
-  const { planId } = useStayPlan()
-  const bookingGroups = useMemo(() => getBookingGroups(planId), [planId])
-  const [now, setNow] = useState(() => new Date())
-  const [amount, setAmount] = useState('100')
-  const [from, setFrom] = useState<MoneyCode>('TWD')
-  const [to, setTo] = useState<MoneyCode>('EUR')
-  const [perTwd, setPerTwd] = useState(fallbackPerTwd)
-  const [rateNote, setRateNote] = useState('使用備用匯率，連上網後會更新')
-  const [doneBookings, setDoneBookings] = useState<Set<string>>(() => {
-    try {
-      const raw = localStorage.getItem(BOOKING_DONE_KEY)
-      if (!raw) return new Set()
-      const parsed = JSON.parse(raw) as unknown
-      return Array.isArray(parsed) ? new Set(parsed.filter((x) => typeof x === 'string')) : new Set()
-    } catch {
-      return new Set()
-    }
-  })
+  const layout = useSectionLayout('auhucz-info', defaultInfoOrder)
 
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(new Date()), 1000)
-    return () => window.clearInterval(id)
-  }, [])
+  const sections: Record<InfoSectionId, ReactNode> = {
+    hotels: (
+      <>
+        <h2>🏨 飯店地址卡</h2>
+        <p className="hero-sub pending-lead">搭 Bolt 或計程車時，直接把這張給司機看。</p>
+        <div className="tip-list">
+          {hotelCards.map((hotel) => (
+            <div key={hotel.name} className="info-card hotel-card">
+              <span>{hotel.city}</span>
+              <strong>{hotel.name}</strong>
+              <p className="hotel-address">{hotel.address}</p>
+              <div className="hotel-links">
+                <a href={telHref(hotel.phone)}>📞 {hotel.phone}</a>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name} ${hotel.address}`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  地圖 ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    ),
+    emergency: (
+      <>
+        <h2>🆘 緊急聯絡</h2>
+        <p className="hero-sub pending-lead">點號碼可以直接撥打。市集人多，包包背前面。</p>
+        <div className="tip-list">
+          <div className="info-card emergency-card">
+            <span>歐盟通用・警察／救護／消防</span>
+            <a className="emergency-main" href="tel:112">
+              112
+            </a>
+            <p>英文可通，三國都能撥，手機沒插當地 SIM 卡也能打。</p>
+            <div className="emergency-grid">
+              <span />
+              <span>警察</span>
+              <span>救護車</span>
+              {localEmergency.map((row) => (
+                <Fragment key={row.country}>
+                  <span>{row.country}</span>
+                  <a href={telHref(row.police)}>{row.police}</a>
+                  <a href={telHref(row.ambulance)}>{row.ambulance}</a>
+                </Fragment>
+              ))}
+            </div>
+          </div>
 
-  useEffect(() => {
-    try {
-      localStorage.setItem(BOOKING_DONE_KEY, JSON.stringify([...doneBookings]))
-    } catch {
-      /* ignore */
-    }
-  }, [doneBookings])
+          {taiwanOffices.map((office) => (
+            <div key={office.name} className="info-card office-card">
+              <span>{office.city}</span>
+              <strong>{office.name}</strong>
+              <div className="office-lines">
+                <span>急難救助（24 小時）</span>
+                <a href={telHref(office.emergency)}>{office.emergency}</a>
+                <span>上班時間</span>
+                <a href={telHref(office.office)}>{office.office}</a>
+              </div>
+              <p className="office-address">{office.address}</p>
+            </div>
+          ))}
 
-  const toggleBookingDone = (name: string) => {
-    setDoneBookings((prev) => {
-      const next = new Set(prev)
-      if (next.has(name)) next.delete(name)
-      else next.add(name)
-      return next
-    })
-  }
-  useEffect(() => {
-    let cancelled = false
-    fetch('https://open.er-api.com/v6/latest/TWD')
-      .then((res) => res.json())
-      .then((data) => {
-        if (cancelled || data?.result !== 'success') return
-        setPerTwd({
-          EUR: Number(data.rates.EUR) || fallbackPerTwd.EUR,
-          CZK: Number(data.rates.CZK) || fallbackPerTwd.CZK,
-          HUF: Number(data.rates.HUF) || fallbackPerTwd.HUF,
-        })
-        setRateNote(`匯率更新：${String(data.time_last_update_utc || '').slice(0, 16)} UTC`)
-      })
-      .catch(() => {
-        if (!cancelled) setRateNote('目前離線，使用備用匯率')
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-
-  const converted = useMemo(() => {
-    const value = Number(amount)
-    if (!Number.isFinite(value)) return '—'
-    const toTwd = (code: MoneyCode, n: number) => (code === 'TWD' ? n : n / perTwd[code])
-    const fromTwd = (code: MoneyCode, n: number) => (code === 'TWD' ? n : n * perTwd[code])
-    const result = fromTwd(to, toTwd(from, value))
-    return new Intl.NumberFormat('zh-TW', {
-      maximumFractionDigits: result >= 100 ? 0 : 2,
-    }).format(result)
-  }, [amount, from, to, perTwd])
-
-  return (
-    <div className="page info-page">
-      <header className="page-head">
-        <p className="eyebrow">Travel info</p>
-        <h1>實用資訊</h1>
-        <p className="hero-sub">12 月中歐是冬天時區，台灣比當地快 7 小時。</p>
-      </header>
-
-      <section className="section">
-        <h2>現在時間</h2>
-        <div className="clock-grid">
-          <div className="info-card">
+          <div className="info-card office-card">
             <span>台灣</span>
-            <strong>{formatClock(now, 'Asia/Taipei')}</strong>
-          </div>
-          <div className="info-card">
-            <span>當地（維也納／布達佩斯／布拉格）</span>
-            <strong>{formatClock(now, 'Europe/Vienna')}</strong>
+            <strong>外交部旅外國人緊急服務專線</strong>
+            <div className="office-lines">
+              <span>24 小時</span>
+              <a href={telHref('+886 800 085 095')}>+886 800 085 095</a>
+            </div>
+            <p className="office-address">
+              從國外撥要付國際電話費。急難電話只用在車禍、搶劫、生命安危等狀況；護照遺失這類一般事項，請在上班時間打代表處辦公室電話。
+            </p>
           </div>
         </div>
-      </section>
-
-      <section className="section">
-        <h2>貨幣換算</h2>
-        <p className="hero-sub pending-lead">
-          奧地利用歐元，匈牙利用福林，捷克用克朗。聖誕市集常要現金。
-        </p>
-        <div className="card">
-          <label className="field">
-            <span>金額</span>
-            <input
-              inputMode="decimal"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </label>
-          <div className="money-row">
-            <label className="field">
-              <span>從</span>
-              <select value={from} onChange={(e) => setFrom(e.target.value as MoneyCode)}>
-                {(Object.keys(moneyLabels) as MoneyCode[]).map((code) => (
-                  <option key={code} value={code}>
-                    {moneyLabels[code]}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <button
-              type="button"
-              className="swap-btn"
-              onClick={() => {
-                setFrom(to)
-                setTo(from)
-              }}
-            >
-              ⇄
-            </button>
-            <label className="field">
-              <span>到</span>
-              <select value={to} onChange={(e) => setTo(e.target.value as MoneyCode)}>
-                {(Object.keys(moneyLabels) as MoneyCode[]).map((code) => (
-                  <option key={code} value={code}>
-                    {moneyLabels[code]}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <p className="convert-result">
-            約等於
-            <strong>
-              {converted} {to}
-            </strong>
-          </p>
-          <p className="rate-note">{rateNote}</p>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2>❄️ 12 月天氣與穿搭建議</h2>
+      </>
+    ),
+    weather: (
+      <>
+        <h2>❄️ 12 月天氣</h2>
         <p className="hero-sub pending-lead">
           約略均溫，實際以出發前一週為準。白天短，約 8:00–16:00。
         </p>
 
-        <div className="weather-overview">
+        <div className="weather-overview corner-wrap">
+          <Holly className="holly holly-card" />
           <span>實際均溫</span>
           <p className="weather-temps">
             白天約 <strong>1–5°C</strong>
@@ -419,26 +236,6 @@ export function InfoView() {
           <p className="weather-temps-note">
             穿好防風的話，涼涼乾乾的很好走，沒有濕冷那種黏。實際氣溫更低，可是中歐是乾冷，體感沒數字看起來可怕；空曠市集沒防風，就會再冷好幾度。
           </p>
-        </div>
-
-        <div className="weather-pack">
-          <div>
-            <span>穿搭公式</span>
-            <ol className="wear-steps">
-              {wearLayers.map((layer) => (
-                <li key={layer}>{layer}</li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <span>隨身必備</span>
-            <p className="kit-note">空氣乾，護唇與保濕很重要。</p>
-            <div className="kit-chips">
-              {kitItems.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-          </div>
         </div>
 
         <h3 className="weather-sub">📍 各城市氣候提示</h3>
@@ -457,67 +254,44 @@ export function InfoView() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="section">
-        <h2>訂位與預約清單</h2>
-        <p className="hero-sub pending-lead">
-          點一下可劃掉已完成；再點可取消。進度會存在這台裝置。聖誕旺季建議盡量提早。
-        </p>
-        <div className="booking-stack">
-          {bookingGroups.map((group) => (
-            <div key={group.when} className="booking-group">
-              <div className="booking-group-head">
-                <strong>{group.when}</strong>
-                <span>{group.hint}</span>
-              </div>
-              <div className="booking-list">
-                {group.items.map((item) => {
-                  const done = doneBookings.has(item.name)
-                  return (
-                    <button
-                      key={item.name}
-                      type="button"
-                      className={done ? 'booking-row done' : 'booking-row'}
-                      aria-pressed={done}
-                      onClick={() => toggleBookingDone(item.name)}
-                    >
-                      <span className="booking-check" aria-hidden="true">
-                        {done ? '✓' : ''}
-                      </span>
-                      <span className="booking-row-body">
-                        <strong>
-                          {item.food ? '🍴 ' : ''}
-                          {item.name}
-                        </strong>
-                        <span>{item.note}</span>
-                      </span>
-                    </button>
-                  )
-                })}
+      </>
+    ),
+    packing: (
+      <>
+        <h2>🧳 建議攜帶</h2>
+        <div className="tip-list">
+          {packingGroups.map((group) => (
+            <div key={group.title} className="info-card">
+              <strong>{group.title}</strong>
+              {group.note && <p>{group.note}</p>}
+              <div className="kit-chips">
+                {group.items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </>
+    ),
+  }
 
-      <section className="section">
-        <h2>出發前也用得到</h2>
-        <div className="tip-list">
-          <div className="info-card">
-            <strong>插頭與電壓</strong>
-            <p>中歐是 C／F 型、230V。台灣電器需轉接頭；吹風機建議在當地買或確認雙電壓。</p>
-          </div>
-          <div className="info-card">
-            <strong>緊急電話</strong>
-            <p>歐盟通用 112。市集人多注意包包；卡片可刷，攤位仍常收現金。</p>
-          </div>
-          <div className="info-card">
-            <strong>別忘了帶</strong>
-            <p>行動電源、泳衣（溫泉）。歌劇院穿著整齊即可，不必禮服。</p>
-          </div>
-        </div>
-      </section>
+  return (
+    <div className="page info-page">
+      <header className="page-head">
+        <p className="eyebrow">Travel info</p>
+        <h1>實用資訊</h1>
+        <p className="hero-sub">飯店地址、緊急聯絡、天氣與攜帶清單。</p>
+        <SectionLayoutToggle layout={layout} />
+      </header>
+
+      <SectionLayoutEditor layout={layout} titles={infoSectionTitles} />
+
+      {layout.visible.map((id) => (
+        <section key={id} className="section">
+          {sections[id]}
+        </section>
+      ))}
     </div>
   )
 }

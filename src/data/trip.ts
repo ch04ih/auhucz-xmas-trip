@@ -11,6 +11,9 @@ export const tripMeta = {
   nights: '14 天 13 夜',
   start: '2026-12-10',
   end: '2026-12-24',
+  /** 華航 CI63 桃園起飛（台灣時間） */
+  departure: '2026-12-10T23:35:00+08:00',
+  departureLabel: '12/10（四）23:35 華航 CI63 起飛',
   dateRangeLabel: '12/10 – 12/24',
   year: 2026,
 }
@@ -88,7 +91,7 @@ export const transportItems = [
   },
   {
     label: '維也納 ➜ 布拉格',
-    detail: 'ÖBB 火車頭等艙 €32　15:10–19:23',
+    detail: 'ÖBB 火車頭等艙 €32',
     price: 1195,
     placeId: 'obb',
   },

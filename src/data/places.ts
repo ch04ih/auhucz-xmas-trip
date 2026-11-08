@@ -115,7 +115,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '奧地利聯邦鐵路。維也納⇄布達佩斯去回皆訂頭等艙（約 €35.4／€31.4）；Day 10 再搭頭等艙直達布拉格，約 €32（$1,195），15:10–19:23。',
-    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB app 預訂。Day 10 記得 14:40 前回到中央車站。',
+    tip: '頭等艙較安靜、座位寬，適合補眠。車票建議事先在 ÖBB app 預訂。Day 10 記得 14:50 前到中央車站。',
     mapsQuery: 'Wien Hauptbahnhof',
   },
   {
@@ -182,7 +182,6 @@ export const places: Place[] = [
     intro: '布達佩斯最知名的步行購物街，從弗洛斯馬提廣場一路通往中央市場，兩側是紀念品店、品牌服飾與餐廳。',
     hours: '商店多為 10:00–20:00',
     duration: '約 30–60 分鐘',
-    tip: '觀光區餐廳偏貴，午餐簡單吃就好。',
     mapsQuery: 'Váci utca Budapest',
   },
   {

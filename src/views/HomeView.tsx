@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { tripMeta } from '../data/trip'
+import { Holly } from '../components/Festive'
 import { FlightSummary } from '../components/FlightSummary'
 import type { DayPlan } from '../data/types'
 import { useStayPlan } from '../lib/StayPlanContext'
@@ -6,7 +8,6 @@ import { shareLink } from '../lib/share'
 
 interface Props {
   onOpenDay: (day: number) => void
-  onOpenBudget: () => void
   onOpenPlaces: () => void
 }
 
@@ -19,12 +20,51 @@ function todayDay(daysList: DayPlan[]): DayPlan | undefined {
   return daysList.find((d) => d.day === Math.min(diff, 14))
 }
 
-export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
+const departureAt = new Date(tripMeta.departure).getTime()
+
+function DepartureCountdown() {
+  const [now, setNow] = useState(() => Date.now())
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(Date.now()), 1000)
+    return () => window.clearInterval(id)
+  }, [])
+
+  const left = departureAt - now
+  if (left <= 0) return null
+  const seconds = Math.floor(left / 1000)
+  const days = Math.floor(seconds / 86400)
+  const hours = Math.floor((seconds % 86400) / 3600)
+  const mins = Math.floor((seconds % 3600) / 60)
+  const secs = seconds % 60
+  const pad = (n: number) => String(n).padStart(2, '0')
+
+  return (
+    <div className="countdown-card">
+      <Holly className="holly holly-left" />
+      <Holly className="holly holly-right" />
+      <span className="countdown-label">倒數出發</span>
+      <p className="countdown-nums">
+        <strong>{days}</strong>
+        <span>天</span>
+        <strong>{pad(hours)}</strong>
+        <span>時</span>
+        <strong>{pad(mins)}</strong>
+        <span>分</span>
+        <strong>{pad(secs)}</strong>
+        <span>秒</span>
+      </p>
+      <span className="countdown-sub">{tripMeta.departureLabel}</span>
+    </div>
+  )
+}
+
+export function HomeView({ onOpenDay, onOpenPlaces }: Props) {
   const { plan } = useStayPlan()
   const current = todayDay(plan.days)
 
   return (
-    <div className="page">
+    <div className="page home-page">
       <header className="hero">
         <p className="eyebrow">Christmas Markets · 2026</p>
         <h1>{tripMeta.title}</h1>
@@ -39,6 +79,8 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
           分享給同行
         </button>
       </header>
+
+      <DepartureCountdown />
 
       {current ? (
         <button type="button" className="today-card" onClick={() => onOpenDay(current.day)}>
@@ -68,11 +110,8 @@ export function HomeView({ onOpenDay, onOpenBudget, onOpenPlaces }: Props) {
       <section className="section">
         <div className="section-head">
           <h2>航班</h2>
-          <button type="button" className="text-btn" onClick={onOpenBudget}>
-            看預算
-          </button>
         </div>
-        <FlightSummary />
+        <FlightSummary showPrice={false} />
       </section>
 
       <section className="section">
