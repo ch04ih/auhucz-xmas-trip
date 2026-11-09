@@ -25,8 +25,8 @@ export const flightPlans: FlightPlan[] = [
     label: '華航',
     cabins: [{ cabin: '豪經艙', price: 63375 }],
     legs: [
-      { route: '台北 ➜ 維也納', detail: '12/10 23:35 – 12/11 06:50　華航 CI63' },
-      { route: '布拉格 ➜ 台北', detail: '12/23 10:30 – 12/24 05:25　華航 CI68' },
+      { route: '台北 ➜ 維也納', detail: '12/10（四）23:35 – 12/11 06:50　華航 CI63' },
+      { route: '布拉格 ➜ 台北', detail: '12/23（三）10:30 – 12/24 05:25　華航 CI68' },
     ],
   },
   {
@@ -70,6 +70,13 @@ export const hotelPerPerson = hotelPerPersonFromSelection(
   hotelCities,
 )
 
+/** 已訂 ÖBB 頭等艙，時間與每日行程一致 */
+export const trainLegs: FlightLeg[] = [
+  { route: '維也納 ➜ 布達佩斯', detail: '12/11（五）09:40 – 12:35' },
+  { route: '布達佩斯 ➜ 維也納', detail: '12/15（二）11:30 – 14:20' },
+  { route: '維也納 ➜ 布拉格', detail: '12/19（六）15:10 – 19:23' },
+]
+
 export const transportItems = [
   {
     label: '維也納機場 ➜ 中央車站',
@@ -79,20 +86,20 @@ export const transportItems = [
   },
   {
     label: '維也納 ➜ 布達佩斯',
-    detail: 'ÖBB 火車頭等艙 €35.4',
-    price: 1324,
+    detail: '已訂 · ÖBB 頭等艙 2 張共 $2,661',
+    price: 1331,
     placeId: 'obb',
   },
   {
     label: '布達佩斯 ➜ 維也納',
-    detail: 'ÖBB 火車頭等艙 €31.4',
-    price: 1174,
+    detail: '已訂 · ÖBB 頭等艙 2 張共 $2,703',
+    price: 1352,
     placeId: 'obb',
   },
   {
     label: '維也納 ➜ 布拉格',
-    detail: 'ÖBB 火車頭等艙 €32',
-    price: 1195,
+    detail: '已訂 · ÖBB 頭等艙 2 張共 $2,363',
+    price: 1182,
     placeId: 'obb',
   },
   {

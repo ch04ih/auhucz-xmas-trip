@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { tripMeta } from '../data/trip'
 import { Holly } from '../components/Festive'
-import { FlightSummary } from '../components/FlightSummary'
+import { FlightSummary, TrainSummary } from '../components/FlightSummary'
 import type { DayPlan } from '../data/types'
 import { useStayPlan } from '../lib/StayPlanContext'
 import { shareLink } from '../lib/share'
@@ -112,6 +112,13 @@ export function HomeView({ onOpenDay, onOpenPlaces }: Props) {
           <h2>航班</h2>
         </div>
         <FlightSummary showPrice={false} />
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>交通</h2>
+        </div>
+        <TrainSummary />
       </section>
 
       <section className="section">

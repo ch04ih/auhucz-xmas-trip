@@ -1,4 +1,4 @@
-import { useMemo, useReducer, useState } from 'react'
+import { useEffect, useMemo, useReducer, useState } from 'react'
 import { Holly } from './Festive'
 
 export type MoneyCode = 'TWD' | 'EUR' | 'CZK' | 'HUF'
@@ -12,6 +12,18 @@ const moneyLabels: Record<MoneyCode, string> = {
 }
 
 const codes = Object.keys(moneyLabels) as MoneyCode[]
+
+const FROM_KEY = 'auhucz-calc-from'
+const TO_KEY = 'auhucz-calc-to'
+
+function loadCode(key: string, fallback: MoneyCode): MoneyCode {
+  try {
+    const saved = localStorage.getItem(key)
+    return codes.includes(saved as MoneyCode) ? (saved as MoneyCode) : fallback
+  } catch {
+    return fallback
+  }
+}
 
 interface Props {
   perTwd: Record<Exclude<MoneyCode, 'TWD'>, number>
@@ -107,8 +119,17 @@ function CurrencySelect({ value, onChange }: { value: MoneyCode; onChange: (c: M
 }
 
 export function CurrencyCalculator({ perTwd, rateNote }: Props) {
-  const [from, setFrom] = useState<MoneyCode>('TWD')
-  const [to, setTo] = useState<MoneyCode>('EUR')
+  const [from, setFrom] = useState<MoneyCode>(() => loadCode(FROM_KEY, 'EUR'))
+  const [to, setTo] = useState<MoneyCode>(() => loadCode(TO_KEY, 'TWD'))
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FROM_KEY, from)
+      localStorage.setItem(TO_KEY, to)
+    } catch {
+      /* 無痕模式等存不了就算了 */
+    }
+  }, [from, to])
   const [{ entry, acc, op, fresh }, dispatch] = useReducer(calcReducer, {
     entry: '100',
     acc: null,

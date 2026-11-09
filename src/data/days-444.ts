@@ -12,6 +12,10 @@ export const days444: DayPlan[] = [
     coverPlaceId: 'ci63',
     schedule: [
       {
+        time: '20:30',
+        title: '出發去機場',
+      },
+      {
         time: '21:30',
         title: '抵達桃園機場',
         placeIds: ['tpe-airport'],
@@ -19,7 +23,7 @@ export const days444: DayPlan[] = [
       {
         time: '23:35',
         title: '華航 CI63 直飛維也納',
-        transit: '出境安檢後登機 · 預留緩衝',
+        transit: '飛行約 13 小時 15 分',
         placeIds: ['ci63'],
       },
     ],
@@ -352,7 +356,7 @@ export const days444: DayPlan[] = [
         time: '19:30 – 21:00',
         title: '晚餐 Figlmüller',
         transit: 'Bolt · 約 10 分（從市政廳出發）',
-        brief: '炸牛排',
+        brief: '炸豬排',
         placeIds: ['figlmuller'],
       },
     ],
@@ -362,7 +366,7 @@ export const days444: DayPlan[] = [
         time: '約 12:30',
       },
       dinner: {
-        label: 'Figlmüller（百年巨無霸維也納炸牛排）',
+        label: 'Figlmüller（百年巨無霸維也納炸豬排）',
         time: '19:30',
         placeIds: ['figlmuller'],
       },
@@ -817,7 +821,8 @@ export const days444: DayPlan[] = [
       {
         time: '12/23 10:30',
         title: '華航 CI68 直飛返台',
-        transit: '報到安檢 · 建議提早 3 小時',
+        transit: '飛行約 11 小時 55 分',
+        brief: '建議提早 3 小時到機場',
         placeIds: ['ci68'],
       },
       {

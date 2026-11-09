@@ -42,12 +42,15 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       items: [
         { name: '國會大廈內部導覽', note: '官網先訂場次，選中文語音' },
         { name: 'Klook 薩爾斯堡＆哈修塔特', note: '一日遊名額有限' },
-        { name: 'ÖBB 頭等艙車票', note: '維也納⇄布達佩斯、維也納→布拉格' },
+        {
+          name: 'ÖBB 頭等艙車票',
+          note: '已訂 · 維也納⇄布達佩斯、維也納→布拉格，共 6 張',
+        },
         {
           name: 'Figlmüller',
           note: is444
-            ? '12/15 19:30 維也納第一晚炸牛排'
-            : '12/14 約 19:00 維也納第一晚炸牛排',
+            ? '12/15 19:30 維也納第一晚炸豬排'
+            : '12/14 約 19:00 維也納第一晚炸豬排',
           food: true,
         },
         {

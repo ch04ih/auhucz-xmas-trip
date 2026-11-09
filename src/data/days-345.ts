@@ -261,7 +261,7 @@ export const days345: DayPlan[] = [
         time: '約 12:30',
       },
       dinner: {
-        label: 'Figlmüller（百年巨無霸維也納炸牛排）',
+        label: 'Figlmüller（百年巨無霸維也納炸豬排）',
         time: '19:00',
         placeIds: ['figlmuller'],
       },

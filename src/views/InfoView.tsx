@@ -92,7 +92,7 @@ const packingGroups: { title: string; note?: string; items: string[] }[] = [
   {
     title: '保暖衣物',
     note: '洋蔥式穿法，進室內有暖氣好穿脫。',
-    items: ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽', '圍巾', '防滑防水鞋'],
+    items: ['防風長版外套', '發熱衣', '中層毛衣／刷毛', '毛帽', '圍巾', '防滑防水鞋', '止滑鞋套'],
   },
   {
     title: '防寒保濕',
