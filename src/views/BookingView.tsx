@@ -144,6 +144,11 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
               } satisfies BookingItem,
             ]),
         {
+          name: '紐約咖啡館',
+          note: '已訂 · 12/12 10:00 早午餐',
+          food: true,
+        },
+        {
           name: 'Kiskakukk',
           note: '12/12 19:00 國會與城堡日晚餐',
           food: true,

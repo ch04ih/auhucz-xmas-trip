@@ -225,7 +225,7 @@ export const places: Place[] = [
     price: '每人約 10,000–16,000 HUF（另加 15% 服務費）',
     hours: '每日 7:00 起；早餐只供應到 11:00，11:00–12:00 只有甜點',
     duration: '約 1–1.5 小時',
-    tip: '18:00 前不接受訂位，週六早上要排隊，建議提早到。',
+    tip: '已訂 12/12（六）10:00；週六早上人多，準時到。',
     mapsQuery: 'New York Café Budapest',
   },
   {

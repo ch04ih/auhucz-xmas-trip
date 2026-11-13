@@ -113,12 +113,12 @@ export const days444: DayPlan[] = [
     cityIds: ['budapest'],
     coverPlaceId: 'parliament',
     schedule: [
-      { time: '10:15', title: '出門' },
+      { time: '09:40', title: '出門' },
       {
-        time: '10:30 – 12:15',
+        time: '10:00 – 12:00',
         title: '紐約咖啡館早午餐',
         transit: 'Bolt · 約 8–12 分',
-        brief: '早餐只供應到 11:00，到了先點餐',
+        brief: '已訂 10:00；早餐只供應到 11:00，到了先點餐',
         placeIds: ['new-york-cafe'],
       },
       {
@@ -129,7 +129,7 @@ export const days444: DayPlan[] = [
       },
       {
         time: '15:00 – 17:00',
-        title: '漁人堡與布達城堡',
+        title: '漁人堡與布達城堡夕陽',
         transit: 'Bolt 至纜車站後搭纜車 · 約 15–20 分',
         placeIds: ['funicular', 'fishermans-bastion', 'buda-castle'],
       },
@@ -143,7 +143,7 @@ export const days444: DayPlan[] = [
     meals: {
       lunch: {
         label: '紐約咖啡館（奢華早午餐／輕食咖啡）',
-        time: '10:30',
+        time: '10:00',
         placeIds: ['new-york-cafe'],
       },
       dinner: {
