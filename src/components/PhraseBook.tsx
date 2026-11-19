@@ -25,6 +25,19 @@ const phrases: ({ zh: string } & Record<LangCode, string>)[] = [
   { zh: '好吃！', hu: 'Finom!', de: 'Lecker!', cs: 'Výborné!' },
   { zh: '結帳', hu: 'A számlát kérem', de: 'Die Rechnung, bitte', cs: 'Zaplatím, prosím' },
   { zh: '廁所在哪', hu: 'Hol van a mosdó?', de: 'Wo ist die Toilette?', cs: 'Kde je toaleta?' },
+  { zh: '入口在哪', hu: 'Hol van a bejárat?', de: 'Wo ist der Eingang?', cs: 'Kde je vchod?' },
+  {
+    zh: '有位子嗎',
+    hu: 'Van szabad asztal?',
+    de: 'Haben Sie noch einen Platz?',
+    cs: 'Máte volné místo?',
+  },
+  {
+    zh: '聖誕節快樂',
+    hu: 'Boldog karácsonyt!',
+    de: 'Frohe Weihnachten!',
+    cs: 'Veselé Vánoce!',
+  },
 ]
 
 function pickVoice(lang: string) {
