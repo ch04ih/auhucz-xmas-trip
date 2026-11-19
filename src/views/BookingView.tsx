@@ -40,7 +40,10 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       when: '出發前 3–4 週',
       hint: '門票場次與一日遊，愈早愈穩',
       items: [
-        { name: '國會大廈內部導覽', note: '官網先訂場次，選中文語音' },
+        {
+          name: '國會大廈內部導覽',
+          note: '12/12 內導優先；約不到再改看外觀，夜航也可看點燈國會',
+        },
         { name: 'Klook 薩爾斯堡＆哈修塔特', note: '一日遊名額有限' },
         {
           name: 'ÖBB 頭等艙車票',
@@ -117,11 +120,11 @@ function getBookingGroups(planId: StayPlanId): { when: string; hint: string; ite
       when: '出發前幾天～當天早上',
       hint: '多數仍建議訂，臨時也常有位',
       items: [
-        { name: '多瑙河夜航', note: '12/13 20:30；可現場買，旺季先訂較安心' },
+        { name: '多瑙河夜航', note: '會去 · 12/13 20:30；可現場買或線上先訂' },
         {
           name: 'Café Central',
           note: is444
-            ? '12/16 13:15 午餐；整修中，先確認是否重開'
+            ? '12/16 12:50 午餐；整修中，沒開改 DECENTRAL'
             : '12/15 11:30 早午餐；整修中，先確認是否重開',
           food: true,
         },

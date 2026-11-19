@@ -125,6 +125,7 @@ export const days444: DayPlan[] = [
         time: '13:00 – 14:30',
         title: '國會大廈內部導覽',
         transit: 'Bolt · 約 10–15 分',
+        brief: '內導優先；約不到再改看外觀',
         placeIds: ['parliament'],
       },
       {
@@ -194,6 +195,7 @@ export const days444: DayPlan[] = [
         time: '20:30 – 22:00',
         title: '多瑙河夜航遊船',
         transit: '步行 · 約 5 分',
+        brief: '會去；河上看點燈國會、鏈橋與城堡',
         placeIds: ['danube-cruise'],
       },
     ],
@@ -380,14 +382,14 @@ export const days444: DayPlan[] = [
     date: '12/16',
     weekday: '三',
     title: '霍夫堡茜茜博物館・美泉宮',
-    subtitle: '茜茜公主、國家圖書館、美泉宮聖誕市集',
+    subtitle: '茜茜公主、美泉宮聖誕市集',
     cityLabel: '維也納',
     cityIds: ['vienna'],
     coverPlaceId: 'schonbrunn',
     schedule: [
       { time: '11:00', title: '睡飽飽出門' },
       {
-        time: '11:15 – 12:30',
+        time: '11:15 – 12:45',
         title: '霍夫堡茜茜博物館＋皇帝寢宮',
         transit: '地鐵 U3 Neubaugasse → Herrengasse · 約 15 分',
         brief: '用茜茜套票 Sisi Pass 入場，不用預約時段',
@@ -395,19 +397,12 @@ export const days444: DayPlan[] = [
         placeIds: ['hofburg'],
       },
       {
-        time: '12:35 – 13:15',
-        title: '奧地利國家圖書館主廳',
-        transit: '步行 · 約 5 分（Josefsplatz）',
-        brief: '現場買票 €12',
-        placeIds: ['national-library'],
-      },
-      {
-        time: '13:15 – 14:10',
+        time: '12:50 – 13:50',
         title: '中央咖啡館 Café Central',
-        transit: '步行 · 約 5 分',
+        transit: '步行 · 約 5–8 分',
         brief: '整修中，出發前確認是否重開',
         note: '沒開的話改去附近的 DECENTRAL',
-        placeIds: ['cafe-central'],
+        placeIds: ['cafe-central', 'decentral'],
       },
       {
         time: '15:00 – 16:15',
@@ -433,8 +428,8 @@ export const days444: DayPlan[] = [
     meals: {
       lunch: {
         label: '中央咖啡館（咖啡、輕食與招牌甜點）',
-        time: '13:15',
-        placeIds: ['cafe-central'],
+        time: '12:50',
+        placeIds: ['cafe-central', 'decentral'],
       },
       dinner: {
         label: 'Plachutta Hietzing（正宗清燉牛肉 Tafelspitz）',

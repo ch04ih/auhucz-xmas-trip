@@ -10,12 +10,14 @@ import { HomeView } from './views/HomeView'
 import { ItineraryView } from './views/ItineraryView'
 import { InfoView } from './views/InfoView'
 import { PlacesView } from './views/PlacesView'
+import { RestaurantsView } from './views/RestaurantsView'
 import { ToolsView } from './views/ToolsView'
 import type { Tab } from './data/types'
 
 const tabs: { id: Tab; label: string }[] = [
   { id: 'home', label: '總覽' },
   { id: 'itinerary', label: '行程' },
+  { id: 'restaurants', label: '餐廳' },
   { id: 'tools', label: '小工具' },
   { id: 'info', label: '資訊' },
 ]
@@ -119,6 +121,13 @@ function AppShell() {
           aria-hidden={route.tab !== 'places'}
         >
           <PlacesView onOpenPlace={openPlace} active={route.tab === 'places'} />
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'restaurants'}
+          aria-hidden={route.tab !== 'restaurants'}
+        >
+          <RestaurantsView onOpenPlace={openPlace} />
         </div>
         <div
           className="tab-panel"

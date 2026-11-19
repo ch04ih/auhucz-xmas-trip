@@ -76,6 +76,7 @@ export const placeMapPins: Partial<Record<string, MapPin>> = {
   votivkirche: { lat: 48.2155, lng: 16.3589 },
   hofburg: { lat: 48.2066, lng: 16.365 },
   'cafe-central': { lat: 48.2102, lng: 16.3653 },
+  decentral: { lat: 48.2115, lng: 16.3653 },
   'miiro-spittelberg': { lat: 48.2028, lng: 16.3545 },
   graben: { lat: 48.2087, lng: 16.3688 },
   kohlmarkt: { lat: 48.2089, lng: 16.3678 },

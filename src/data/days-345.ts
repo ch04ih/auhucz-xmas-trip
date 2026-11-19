@@ -285,7 +285,7 @@ export const days345: DayPlan[] = [
         title: '中央咖啡館 Café Central',
         transit: '地鐵／Bolt · 約 15–20 分',
         note: '音樂家與文人聚集的百年咖啡館',
-        placeIds: ['cafe-central'],
+        placeIds: ['cafe-central', 'decentral'],
       },
       {
         time: '13:30 – 16:00',
@@ -306,7 +306,7 @@ export const days345: DayPlan[] = [
       lunch: {
         label: '中央咖啡館（早午餐、咖啡與招牌甜點）',
         time: '11:30',
-        placeIds: ['cafe-central'],
+        placeIds: ['cafe-central', 'decentral'],
       },
       dinner: {
         label: 'Plachutta（正宗清燉牛肉 Tafelspitz）',

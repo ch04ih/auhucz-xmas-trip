@@ -1,4 +1,12 @@
-export type Tab = 'home' | 'itinerary' | 'budget' | 'places' | 'tools' | 'info' | 'bookings'
+export type Tab =
+  | 'home'
+  | 'itinerary'
+  | 'budget'
+  | 'places'
+  | 'restaurants'
+  | 'tools'
+  | 'info'
+  | 'bookings'
 
 export type CityId =
   | 'taipei'

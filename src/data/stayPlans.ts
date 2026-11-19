@@ -231,7 +231,7 @@ function ticketBundle(days: {
   schonbrunn: number
   pragueCastle: number
   operaBooked?: boolean
-  /** 美泉宮改買含霍夫堡茜茜博物館的套票，並加國家圖書館 */
+  /** 美泉宮改買含霍夫堡茜茜博物館的套票 */
   sisiPass?: boolean
 }): { ticketItems: BudgetLine[]; optionalTicketItems: BudgetLine[] } {
   const bookedOpera: BudgetLine = {
@@ -256,7 +256,7 @@ function ticketBundle(days: {
       },
       {
         label: '國會大廈內部導覽',
-        detail: 'Day 3 · 非歐盟成人 14,000 HUF，含中文語音導覽',
+        detail: 'Day 3 · 非歐盟成人 14,000 HUF；約不到再改看外觀',
         price: 1445,
         placeId: 'parliament',
       },
@@ -268,7 +268,7 @@ function ticketBundle(days: {
       },
       {
         label: '多瑙河夜航',
-        detail: 'Day 4 · 參考 Legenda 官網晚間航程約 €25，含中文語音',
+        detail: 'Day 4 · 會去；參考 Legenda 晚間航程約 €25，含中文語音',
         price: 934,
         placeId: 'danube-cruise',
       },
@@ -321,12 +321,6 @@ function ticketBundle(days: {
         detail: `Day ${days.schonbrunn} · 成人 €60，含美泉宮 Palace Ticket、霍夫堡茜茜博物館、家具博物館`,
         price: 2241,
         placeId: 'schonbrunn',
-      },
-      {
-        label: '奧地利國家圖書館主廳',
-        detail: `Day ${days.schonbrunn} · 成人 €12`,
-        price: 448,
-        placeId: 'national-library',
       },
     )
   }

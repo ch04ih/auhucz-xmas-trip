@@ -242,7 +242,7 @@ export const places: Place[] = [
     price: '非歐盟成人 14,000 HUF（含語音導覽）',
     hours: '每日 8:00–16:00',
     duration: '導覽約 45 分鐘，另外提早 15–20 分鐘到場安檢',
-    tip: '在 Jegymester.hu 預約場次，選中文語音導覽。入場有安檢，提早 15 分到。',
+    tip: '在 Jegymester.hu 預約場次，選中文語音導覽。約不到再改看外觀；晚上遊河也能看點燈國會。',
     mapsQuery: 'Hungarian Parliament Building',
   },
   {
@@ -612,8 +612,22 @@ export const places: Place[] = [
     price: '咖啡＋蛋糕約 €13–15',
     hours: '⚠️ 2026 年 3 月起整修停業，預計年底重開，日期未定',
     duration: '約 1 小時',
-    tip: '出發前確認是否重新開幕；還沒開的話，改去附近 Freyung 的 DECENTRAL（每日 8:00–22:00）。',
+    tip: '出發前確認是否重新開幕；還沒開的話改去附近的 DECENTRAL。',
     mapsQuery: 'Café Central Vienna',
+  },
+  {
+    id: 'decentral',
+    name: 'DECENTRAL',
+    nameEn: 'DECENTRAL',
+    city: 'vienna',
+    category: 'cafe',
+    intro:
+      '中央咖啡館整修期間的替代店，開在 Freyung 的 Palais Harrach。延續維也納咖啡館風格，也有自家甜點、Focaccia 和咖啡。',
+    price: '早餐約 €10–15；咖啡＋蛋糕約 €10–15',
+    hours: '每日 8:00–21:00（11/2 起；早餐供應至 13:00）',
+    duration: '約 1 小時',
+    tip: '從霍夫堡／中央咖啡館一帶步行約 5–8 分。地址 Freyung 3/1；可當中央咖啡館沒開時的備案午餐。',
+    mapsQuery: 'DECENTRAL Freyung Vienna',
   },
   {
     id: 'schonbrunn',
