@@ -3542,6 +3542,12 @@ button.home-city-panel {
   border-color: var(--accent);
 }
 
+.home-page .guide-city-chips .chip {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
 .guide-sections {
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: 12px;
