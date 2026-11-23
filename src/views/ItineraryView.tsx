@@ -327,6 +327,11 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
                     </div>
                   </li>
                 ))}
+                {day.timelineNote ? (
+                  <li className="tl-item tl-footnote">
+                    <p className="tl-footnote-text">{day.timelineNote}</p>
+                  </li>
+                ) : null}
               </ol>
             </div>
           </section>

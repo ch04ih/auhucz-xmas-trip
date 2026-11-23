@@ -5,6 +5,7 @@ import type { DayPlan, HotelCityGroup, HotelOption } from './types'
 export type StayPlanId = '3-4-5' | '4-4-4'
 
 export interface StayCitySummary {
+  id: 'budapest' | 'vienna' | 'prague'
   name: string
   nights: string
   dates: string
@@ -349,9 +350,9 @@ export const stayPlans: StayPlan[] = [
     label: '3 / 4 / 5',
     blurb: '布達佩斯 3 晚、維也納 4 晚、布拉格 5 晚（含高堡日）',
     cities: [
-      { name: '布達佩斯', nights: '3 晚', dates: '12/11–14' },
-      { name: '維也納', nights: '4 晚', dates: '12/14–18' },
-      { name: '布拉格', nights: '5 晚', dates: '12/18–23' },
+      { id: 'budapest', name: '布達佩斯', nights: '3 晚', dates: '12/11–14' },
+      { id: 'vienna', name: '維也納', nights: '4 晚', dates: '12/14–18' },
+      { id: 'prague', name: '布拉格', nights: '5 晚', dates: '12/18–23' },
     ],
     hotelCities: hotelCities345,
     days: days345,
@@ -362,9 +363,9 @@ export const stayPlans: StayPlan[] = [
     label: '4 / 4 / 4',
     blurb: '三城各 4 晚；布達多一天放鬆，布拉格拿掉高堡',
     cities: [
-      { name: '布達佩斯', nights: '4 晚', dates: '12/11–15' },
-      { name: '維也納', nights: '4 晚', dates: '12/15–19' },
-      { name: '布拉格', nights: '4 晚', dates: '12/19–23' },
+      { id: 'budapest', name: '布達佩斯', nights: '4 晚', dates: '12/11–15' },
+      { id: 'vienna', name: '維也納', nights: '4 晚', dates: '12/15–19' },
+      { id: 'prague', name: '布拉格', nights: '4 晚', dates: '12/19–23' },
     ],
     hotelCities: hotelCities444,
     days: days444,

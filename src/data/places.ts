@@ -284,6 +284,21 @@ export const places: Place[] = [
     mapsQuery: 'Budavári Sikló',
   },
   {
+    id: 'chain-bridge',
+    name: '塞切尼鏈橋',
+    nameEn: 'Széchenyi Chain Bridge',
+    city: 'budapest',
+    category: 'attraction',
+    intro:
+      '布達佩斯第一座永久跨多瑙河大橋（1849），石獅守橋、鐵鏈拱橋是城市地標。布達端接纜車與城堡山，佩斯端接學院廣場；步行過橋約 7–10 分，日夜景都好看。',
+    story: '開通前布達與佩斯只能靠船或季節性浮橋往來；這座橋讓兩邊真正連成一座城。',
+    price: '免費步行；橋上已禁私人汽車',
+    hours: '全天開放',
+    duration: '步行過橋約 10–15 分鐘（含拍照）',
+    tip: 'Day 3 從城堡區搭 16 路到 Clark Ádám tér 下車最順；夜航也會從河上看點燈鏈橋。',
+    mapsQuery: 'Széchenyi Chain Bridge Budapest',
+  },
+  {
     id: 'kiskakukk',
     name: 'Kiskakukk Étterem',
     nameEn: 'Kiskakukk Étterem',

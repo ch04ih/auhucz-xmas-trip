@@ -1720,6 +1720,27 @@ h3 {
   font-weight: 500;
 }
 
+.timeline-card .tl-item.tl-footnote {
+  display: block;
+  margin: 2px 0 12px;
+  padding: 0;
+  grid-template-columns: none;
+}
+
+.timeline-card .tl-item.tl-footnote::before {
+  display: none;
+}
+
+.tl-footnote-text {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--card));
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
 .tl-time {
   font-size: 12px;
   color: var(--forest);
@@ -3390,4 +3411,216 @@ h3 {
 
 .budget-page .stack .budget-card:last-child {
   border-bottom: 0;
+}
+
+.section-hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.home-page .city-card {
+  cursor: pointer;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+}
+
+.home-page .city-card:active {
+  transform: scale(0.98);
+}
+
+.chip.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.chip em {
+  font-style: normal;
+  opacity: 0.75;
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+.guide-back {
+  margin-bottom: 0;
+}
+
+.guide-page-head {
+  margin-bottom: 10px;
+}
+
+.guide-city-panel {
+  margin: 0 0 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+}
+
+.guide-city-panel h1,
+.home-city-panel-title {
+  margin: 0 0 2px;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.guide-city-panel .hero-sub,
+.home-city-panel .hero-sub {
+  margin: 0;
+}
+
+button.home-city-panel {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: var(--card);
+  border: 1px solid var(--accent-line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.home-city-panel-head {
+  padding: 12px 16px;
+  background: var(--accent-soft);
+  border-bottom: 1px solid #e8d5d3;
+}
+
+.home-city-panel-photo {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.home-city-panel .guide-intro {
+  margin: 0;
+  padding: 12px 16px 0;
+}
+
+.home-city-panel-cta {
+  display: inline-block;
+  margin: 10px 16px 14px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.guide-intro {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.guide-city-chips {
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.guide-city-chips .chip {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  background: var(--card);
+}
+
+.guide-city-chips .chip.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.guide-sections {
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.guide-sections button {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: visible;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.guide-sections button.active {
+  font-weight: 600;
+}
+
+.guide-sections .holly-card {
+  top: -12px;
+  right: -8px;
+  width: 36px;
+  height: 24px;
+  transform: scaleX(-1) rotate(-24deg);
+}
+
+.guide-card-grid {
+  margin: 0;
+}
+
+button.guide-card {
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.guide-card.static {
+  cursor: default;
+}
+
+.guide-card-planned {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.guide-card-extra {
+  border-color: var(--line);
+  border-style: dashed;
+}
+
+.guide-card-body {
+  gap: 4px;
+}
+
+.guide-card-body strong {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.guide-card-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

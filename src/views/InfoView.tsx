@@ -120,16 +120,17 @@ const packingGroups: { title: string; note?: string; items: string[] }[] = [
   },
 ]
 
-type InfoSectionId = 'hotels' | 'emergency' | 'weather' | 'packing'
+type InfoSectionId = 'hotels' | 'transit' | 'emergency' | 'weather' | 'packing'
 
 const infoSectionTitles: Record<InfoSectionId, string> = {
   hotels: '🏨 飯店地址卡',
+  transit: '🚌 交通備忘',
   emergency: '🆘 緊急聯絡',
   weather: '❄️ 12 月天氣',
   packing: '🧳 建議攜帶',
 }
 
-const defaultInfoOrder: InfoSectionId[] = ['hotels', 'emergency', 'weather', 'packing']
+const defaultInfoOrder: InfoSectionId[] = ['hotels', 'transit', 'emergency', 'weather', 'packing']
 
 export function InfoView() {
   const layout = useSectionLayout('auhucz-info', defaultInfoOrder)
@@ -157,6 +158,33 @@ export function InfoView() {
               </div>
             </div>
           ))}
+        </div>
+      </>
+    ),
+    transit: (
+      <>
+        <h2>🚌 交通備忘</h2>
+        <p className="hero-sub pending-lead">多數路段仍搭 Bolt；布達佩斯偶爾搭公車／地鐵時用這段。</p>
+        <div className="tip-list">
+          <div className="info-card">
+            <strong>布達佩斯 · BudapestGO</strong>
+            <p>
+              App Store 搜「BudapestGO」。單程票 500
+              HUF，App 內可直接用 Apple Pay（或 Google Pay）付款，不用輸卡號。買完上車前掃站牌／車門旁 QR
+              驗票；趕車來不及可上車後掃車內碼。車上跟司機買會變 700 HUF，盡量先在 App 買。
+            </p>
+            <p>
+              Day 3 城堡下山：Szentháromság tér 搭 <strong>16 路</strong>往 Deák Ferenc
+              tér，Clark Ádám tér 下車即可步行過鏈橋。單程票不含城堡纜車（纜車另購）。
+            </p>
+          </div>
+          <div className="info-card">
+            <strong>維也納／布拉格</strong>
+            <p>
+              行程以步行為主，較遠再叫 Bolt／計程車。維也納可用 WienMobil；布拉格可用 PID
+              Lítačka；兩城多數也能刷卡或手機錢包，細節出發前再開 App 確認即可。
+            </p>
+          </div>
         </div>
       </>
     ),
@@ -281,7 +309,7 @@ export function InfoView() {
       <header className="page-head">
         <p className="eyebrow">Travel info</p>
         <h1>實用資訊</h1>
-        <p className="hero-sub">飯店地址、緊急聯絡、天氣與攜帶清單。</p>
+        <p className="hero-sub">飯店地址、交通購票、緊急聯絡、天氣與攜帶清單。</p>
         <SectionLayoutToggle layout={layout} />
       </header>
 

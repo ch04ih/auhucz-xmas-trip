@@ -4,8 +4,10 @@ import { PlaceModal } from './components/PlaceModal'
 import { StayPlanProvider, useStayPlan } from './lib/StayPlanContext'
 import { parseHash, toHash, type AppRoute } from './lib/route'
 import { scheduleWarmAllPlaceImages, warmDayCovers } from './lib/preloadImages'
+import type { GuideCityId } from './data/cityGuides'
 import { BookingView } from './views/BookingView'
 import { BudgetView } from './views/BudgetView'
+import { CityGuideView } from './views/CityGuideView'
 import { HomeView } from './views/HomeView'
 import { ItineraryView } from './views/ItineraryView'
 import { InfoView } from './views/InfoView'
@@ -23,6 +25,7 @@ const tabs: { id: Tab; label: string }[] = [
 ]
 
 const moreTabs: { id: Tab; label: string; icon: string }[] = [
+  { id: 'city', label: '城市介紹', icon: '🏙️' },
   { id: 'places', label: '景點', icon: '📍' },
   { id: 'budget', label: '預算', icon: '💰' },
   { id: 'bookings', label: '訂位清單', icon: '✅' },
@@ -33,6 +36,9 @@ function AppShell() {
   const [route, setRoute] = useState<AppRoute>(() => parseHash())
   const [placeId, setPlaceId] = useState<string | null>(() => parseHash().placeId ?? null)
   const [lastDay, setLastDay] = useState(() => parseHash().day ?? 1)
+  const [lastCityId, setLastCityId] = useState<GuideCityId>(
+    () => parseHash().cityId ?? 'budapest',
+  )
   const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
@@ -45,6 +51,7 @@ function AppShell() {
       setPlaceId(next.placeId ?? null)
       setMoreOpen(false)
       if (next.tab === 'itinerary' && next.day) setLastDay(next.day)
+      if (next.tab === 'city' && next.cityId) setLastCityId(next.cityId)
     }
     window.addEventListener('hashchange', sync)
     if (!window.location.hash) {
@@ -95,6 +102,19 @@ function AppShell() {
           <HomeView
             onOpenDay={(day) => go({ tab: 'itinerary', day })}
             onOpenPlaces={() => go({ tab: 'places' })}
+            onOpenCity={(cityId) => go({ tab: 'city', cityId })}
+          />
+        </div>
+        <div
+          className="tab-panel"
+          hidden={route.tab !== 'city'}
+          aria-hidden={route.tab !== 'city'}
+        >
+          <CityGuideView
+            cityId={(route.cityId ?? 'budapest') as GuideCityId}
+            onSelectCity={(cityId) => go({ tab: 'city', cityId })}
+            onBack={() => go({ tab: 'home' })}
+            onOpenPlace={openPlace}
           />
         </div>
         <div
@@ -198,7 +218,11 @@ function AppShell() {
                 className={route.tab === tab.id ? 'more-item active' : 'more-item'}
                 onClick={() => {
                   setMoreOpen(false)
-                  go({ tab: tab.id })
+                  go(
+                    tab.id === 'city'
+                      ? { tab: 'city', cityId: lastCityId }
+                      : { tab: tab.id },
+                  )
                 }}
               >
                 <span aria-hidden="true">{tab.icon}</span>

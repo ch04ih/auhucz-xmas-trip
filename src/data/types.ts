@@ -7,6 +7,7 @@ export type Tab =
   | 'tools'
   | 'info'
   | 'bookings'
+  | 'city'
 
 export type CityId =
   | 'taipei'
@@ -89,6 +90,8 @@ export interface DayPlan {
   cityIds: CityId[]
   coverPlaceId?: string
   note?: string
+  /** 時間軸卡片最下方備註 */
+  timelineNote?: string
   schedule: ScheduleItem[]
   meals: {
     breakfast?: Meal

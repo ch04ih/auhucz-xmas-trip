@@ -20,15 +20,49 @@ function saveList(key: string, list: readonly string[]) {
   }
 }
 
+/** 保留已存順序，並把新增區塊插回預設相對位置（不要一律塞到最後） */
+function mergeOrderWithDefaults<T extends string>(saved: T[], defaults: readonly T[]): T[] {
+  const order = saved.filter((id) => defaults.includes(id))
+  for (const id of defaults) {
+    if (order.includes(id)) continue
+    const defaultIndex = defaults.indexOf(id)
+    let insertAt = order.length
+    for (let i = defaultIndex + 1; i < defaults.length; i++) {
+      const nextKnown = order.indexOf(defaults[i])
+      if (nextKnown !== -1) {
+        insertAt = nextKnown
+        break
+      }
+    }
+    for (let i = defaultIndex - 1; i >= 0; i--) {
+      const prevKnown = order.indexOf(defaults[i])
+      if (prevKnown !== -1) {
+        insertAt = prevKnown + 1
+        break
+      }
+    }
+    order.splice(insertAt, 0, id)
+  }
+  return order
+}
+
 export function useSectionLayout<T extends string>(storageKey: string, defaults: readonly T[]) {
   const orderKey = `${storageKey}-order`
   const hiddenKey = `${storageKey}-hidden`
   const [order, setOrder] = useState<T[]>(() => {
     const saved = loadList(orderKey, defaults) ?? []
-    return [...saved, ...defaults.filter((id) => !saved.includes(id))]
+    return mergeOrderWithDefaults(saved, defaults)
   })
   const [hidden, setHidden] = useState<Set<T>>(() => new Set(loadList(hiddenKey, defaults) ?? []))
   const [editing, setEditing] = useState(false)
+
+  // 預設清單新增區塊時，同步插回正確位置（避免舊 localStorage 永遠把新區塊藏在最後）
+  useEffect(() => {
+    setOrder((prev) => {
+      const next = mergeOrderWithDefaults(prev, defaults)
+      return next.length === prev.length && next.every((id, i) => id === prev[i]) ? prev : next
+    })
+  }, [defaults])
 
   useEffect(() => saveList(orderKey, order), [orderKey, order])
   useEffect(() => saveList(hiddenKey, [...hidden]), [hiddenKey, hidden])

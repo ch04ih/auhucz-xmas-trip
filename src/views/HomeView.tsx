@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
-import { tripMeta } from '../data/trip'
+import { FadeImage } from '../components/FadeImage'
 import { Holly } from '../components/Festive'
 import { FlightSummary, TrainSummary } from '../components/FlightSummary'
+import { cityGuides, getCityGuide, type GuideCityId } from '../data/cityGuides'
+import { placeImage } from '../data/places'
+import { tripMeta } from '../data/trip'
 import type { DayPlan } from '../data/types'
 import { useStayPlan } from '../lib/StayPlanContext'
 import { shareLink } from '../lib/share'
@@ -9,6 +12,7 @@ import { shareLink } from '../lib/share'
 interface Props {
   onOpenDay: (day: number) => void
   onOpenPlaces: () => void
+  onOpenCity: (cityId: GuideCityId) => void
 }
 
 function todayDay(daysList: DayPlan[]): DayPlan | undefined {
@@ -59,9 +63,12 @@ function DepartureCountdown() {
   )
 }
 
-export function HomeView({ onOpenDay, onOpenPlaces }: Props) {
+export function HomeView({ onOpenDay, onOpenPlaces, onOpenCity }: Props) {
   const { plan } = useStayPlan()
   const current = todayDay(plan.days)
+  const [previewCityId, setPreviewCityId] = useState<GuideCityId>('budapest')
+  const previewGuide = getCityGuide(previewCityId) ?? cityGuides[0]
+  const previewStay = plan.cities.find((c) => c.id === previewGuide.id)
 
   return (
     <div className="page home-page">
@@ -96,15 +103,42 @@ export function HomeView({ onOpenDay, onOpenPlaces }: Props) {
         <div className="section-head">
           <h2>三座城市</h2>
         </div>
-        <div className="city-grid">
-          {plan.cities.map((c) => (
-            <div key={c.name} className="city-card">
-              <strong>{c.name}</strong>
-              <span>{c.nights}</span>
-              <em>{c.dates}</em>
-            </div>
+        <div className="chips guide-city-chips" role="tablist" aria-label="選擇城市">
+          {cityGuides.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              role="tab"
+              aria-selected={c.id === previewGuide.id}
+              className={c.id === previewGuide.id ? 'chip active' : 'chip'}
+              onClick={() => setPreviewCityId(c.id)}
+            >
+              {c.name}
+            </button>
           ))}
         </div>
+        <button
+          type="button"
+          className="guide-city-panel home-city-panel"
+          onClick={() => onOpenCity(previewGuide.id)}
+        >
+          <div className="home-city-panel-head">
+            <strong className="home-city-panel-title">{previewGuide.name}</strong>
+            {previewStay ? (
+              <p className="hero-sub">
+                {previewStay.nights}　·　{previewStay.dates}
+              </p>
+            ) : null}
+          </div>
+          <FadeImage
+            className="home-city-panel-photo"
+            src={placeImage(previewGuide.coverImageId)}
+            alt=""
+            loading="lazy"
+          />
+          <p className="guide-intro">{previewGuide.intro}</p>
+          <span className="home-city-panel-cta">看必吃／必去／必買 ›</span>
+        </button>
       </section>
 
       <section className="section">
