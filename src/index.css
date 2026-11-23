@@ -3496,9 +3496,8 @@ button.home-city-panel {
 .home-city-panel-photo {
   display: block;
   width: 100%;
-  height: 190px;
+  height: 148px;
   object-fit: cover;
-  object-position: center 35%;
 }
 
 .home-city-panel .guide-intro {

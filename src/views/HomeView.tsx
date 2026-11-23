@@ -135,6 +135,11 @@ export function HomeView({ onOpenDay, onOpenPlaces, onOpenCity }: Props) {
             src={placeImage(previewGuide.coverImageId)}
             alt=""
             loading="lazy"
+            style={
+              previewGuide.coverImagePosition
+                ? { objectPosition: previewGuide.coverImagePosition }
+                : undefined
+            }
           />
           <p className="guide-intro">{previewGuide.intro}</p>
           <span className="home-city-panel-cta">看必吃／必去／必買 ›</span>

@@ -26,8 +26,10 @@ export interface CityGuide {
   name: string
   /** 一兩句城市印象就好 */
   intro: string
-  /** 總覽城市卡右側代表圖（places 圖 id） */
+  /** 總覽城市卡代表圖（places 圖 id） */
   coverImageId: string
+  /** 代表圖裁切位置（CSS object-position） */
+  coverImagePosition?: string
   eat: CityGuideItem[]
   see: CityGuideItem[]
   buy: CityGuideItem[]
@@ -282,6 +284,7 @@ export const cityGuides: CityGuide[] = [
     id: 'vienna',
     name: '維也納',
     coverImageId: 'stephansdom',
+    coverImagePosition: 'center 58%',
     intro:
       '維也納曾是哈布斯堡王朝的權力中心，帝國在此統治中歐數百年，直到一次大戰後才結束。美泉宮是皇帝夏宮，霍夫堡則有茜茜博物館，能看見這段宮廷故事。街上咖啡廳與音樂傳統延續到現在；聖誕時市政廳市集燈飾很大，白天逛街、晚上聽一場最對味。',
     eat: [
