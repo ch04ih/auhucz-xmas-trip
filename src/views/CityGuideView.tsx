@@ -16,6 +16,7 @@ import { useStayPlan } from '../lib/StayPlanContext'
 
 interface Props {
   cityId: GuideCityId
+  initialSection?: GuideSectionId
   onSelectCity: (id: GuideCityId) => void
   onBack: () => void
   onOpenPlace: (id: string) => void
@@ -94,9 +95,15 @@ function GuideCard({
   return <article className={className}>{body}</article>
 }
 
-export function CityGuideView({ cityId, onSelectCity, onBack, onOpenPlace }: Props) {
+export function CityGuideView({
+  cityId,
+  initialSection = 'eat',
+  onSelectCity,
+  onBack,
+  onOpenPlace,
+}: Props) {
   const { plan } = useStayPlan()
-  const [section, setSection] = useState<GuideSectionId>('eat')
+  const [section, setSection] = useState<GuideSectionId>(initialSection)
   const guide = getCityGuide(cityId) ?? cityGuides[0]
   const stay = plan.cities.find((c) => c.id === guide.id)
   const plannedPlaceIds = useMemo(() => {
@@ -125,8 +132,8 @@ export function CityGuideView({ cityId, onSelectCity, onBack, onOpenPlace }: Pro
   }, [guide, section, plannedPlaceIds])
 
   useEffect(() => {
-    setSection('eat')
-  }, [cityId])
+    setSection(initialSection)
+  }, [cityId, initialSection])
 
   return (
     <div className="page city-guide-page">

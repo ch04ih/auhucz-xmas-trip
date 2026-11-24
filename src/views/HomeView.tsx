@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { FadeImage } from '../components/FadeImage'
 import { Holly } from '../components/Festive'
 import { FlightSummary, TrainSummary } from '../components/FlightSummary'
-import { cityGuides, getCityGuide, type GuideCityId } from '../data/cityGuides'
+import { cityGuides, getCityGuide, type GuideCityId, type GuideSectionId } from '../data/cityGuides'
 import { placeImage } from '../data/places'
 import { tripMeta } from '../data/trip'
 import type { DayPlan } from '../data/types'
@@ -12,7 +12,7 @@ import { shareLink } from '../lib/share'
 interface Props {
   onOpenDay: (day: number) => void
   onOpenPlaces: () => void
-  onOpenCity: (cityId: GuideCityId) => void
+  onOpenCity: (cityId: GuideCityId, section?: GuideSectionId) => void
 }
 
 function todayDay(daysList: DayPlan[]): DayPlan | undefined {
@@ -117,33 +117,47 @@ export function HomeView({ onOpenDay, onOpenPlaces, onOpenCity }: Props) {
             </button>
           ))}
         </div>
-        <button
-          type="button"
-          className="guide-city-panel home-city-panel"
-          onClick={() => onOpenCity(previewGuide.id)}
-        >
+        <div className="guide-city-panel home-city-panel">
           <div className="home-city-panel-head">
-            <strong className="home-city-panel-title">{previewGuide.name}</strong>
-            {previewStay ? (
-              <p className="hero-sub">
-                {previewStay.nights}　·　{previewStay.dates}
-              </p>
-            ) : null}
+            <button
+              type="button"
+              className="home-city-panel-meta"
+              onClick={() => onOpenCity(previewGuide.id)}
+            >
+              <strong className="home-city-panel-title">{previewGuide.name}</strong>
+              {previewStay ? (
+                <p className="hero-sub">
+                  {previewStay.nights}　·　{previewStay.dates}
+                </p>
+              ) : null}
+            </button>
+            <button
+              type="button"
+              className="home-city-section-btn"
+              onClick={() => onOpenCity(previewGuide.id)}
+            >
+              城市指南<span className="home-city-section-chevron" aria-hidden="true">▸</span>
+            </button>
           </div>
-          <FadeImage
-            className="home-city-panel-photo"
-            src={placeImage(previewGuide.coverImageId)}
-            alt=""
-            loading="lazy"
-            style={
-              previewGuide.coverImagePosition
-                ? { objectPosition: previewGuide.coverImagePosition }
-                : undefined
-            }
-          />
-          <p className="guide-intro">{previewGuide.intro}</p>
-          <span className="home-city-panel-cta">看必吃／必去／必買 ›</span>
-        </button>
+          <button
+            type="button"
+            className="home-city-panel-body"
+            onClick={() => onOpenCity(previewGuide.id)}
+          >
+            <FadeImage
+              className="home-city-panel-photo"
+              src={placeImage(previewGuide.coverImageId)}
+              alt=""
+              loading="lazy"
+              style={
+                previewGuide.coverImagePosition
+                  ? { objectPosition: previewGuide.coverImagePosition }
+                  : undefined
+              }
+            />
+            <p className="guide-intro">{previewGuide.intro}</p>
+          </button>
+        </div>
       </section>
 
       <section className="section">

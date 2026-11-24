@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LightString, Snowfall } from './components/Festive'
+import { Holly, LightString, Snowfall } from './components/Festive'
 import { PlaceModal } from './components/PlaceModal'
 import { StayPlanProvider, useStayPlan } from './lib/StayPlanContext'
 import { parseHash, toHash, type AppRoute } from './lib/route'
@@ -102,7 +102,9 @@ function AppShell() {
           <HomeView
             onOpenDay={(day) => go({ tab: 'itinerary', day })}
             onOpenPlaces={() => go({ tab: 'places' })}
-            onOpenCity={(cityId) => go({ tab: 'city', cityId })}
+            onOpenCity={(cityId, section) =>
+              go({ tab: 'city', cityId, guideSection: section })
+            }
           />
         </div>
         <div
@@ -112,6 +114,7 @@ function AppShell() {
         >
           <CityGuideView
             cityId={(route.cityId ?? 'budapest') as GuideCityId}
+            initialSection={route.guideSection}
             onSelectCity={(cityId) => go({ tab: 'city', cityId })}
             onBack={() => go({ tab: 'home' })}
             onOpenPlace={openPlace}
@@ -173,22 +176,26 @@ function AppShell() {
       </main>
 
       <nav className="tabbar" aria-label="主要選單">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            className={route.tab === tab.id ? 'tab active' : 'tab'}
-            onClick={() =>
-              go(
-                tab.id === 'itinerary'
-                  ? { tab: 'itinerary', day: lastDay }
-                  : { tab: tab.id },
-              )
-            }
-          >
-            {tab.label}
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const active = route.tab === tab.id
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              className={active ? 'tab active' : 'tab'}
+              onClick={() =>
+                go(
+                  tab.id === 'itinerary'
+                    ? { tab: 'itinerary', day: lastDay }
+                    : { tab: tab.id },
+                )
+              }
+            >
+              {tab.label}
+              {active ? <Holly className="holly holly-card" /> : null}
+            </button>
+          )
+        })}
         <button
           type="button"
           className={

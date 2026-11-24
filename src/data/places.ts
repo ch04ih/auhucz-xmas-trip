@@ -269,7 +269,7 @@ export const places: Place[] = [
     price: '戶外免費；博物館另購票',
     hours: '戶外全天開放',
     duration: '外圍散步約 1 小時',
-    tip: '和漁人堡同一趟走完；下山可步行或搭 16 路公車。',
+    tip: '和漁人堡同一趟走完；下山可步行或搭 16 號公車。',
     mapsQuery: 'Buda Castle',
   },
   {
@@ -280,7 +280,7 @@ export const places: Place[] = [
     category: 'transport',
     intro:
       '從塞切尼鍊橋布達側山腳通往城堡區的百年纜車，車廂復古、坡度明顯，本身就是一個小體驗。可比走路省力，也適合拍照。',
-    tip: '官網單程 4,500 HUF、來回 5,500 HUF。現場買票即可；尖峰可能稍等。排隊太長可改搭巴士 16 路上山。',
+    tip: '官網單程 4,500 HUF、來回 5,500 HUF。現場買票即可；尖峰可能稍等。排隊太長可改搭 16 號公車上山。',
     mapsQuery: 'Budavári Sikló',
   },
   {
@@ -295,7 +295,7 @@ export const places: Place[] = [
     price: '免費步行；橋上已禁私人汽車',
     hours: '全天開放',
     duration: '步行過橋約 10–15 分鐘（含拍照）',
-    tip: 'Day 3 從城堡區搭 16 路到 Clark Ádám tér 下車最順；夜航也會從河上看點燈鏈橋。',
+    tip: 'Day 3 從城堡區搭 16 號公車到 Clark Ádám tér 下車最順；夜航也會從河上看點燈鏈橋。',
     mapsQuery: 'Széchenyi Chain Bridge Budapest',
   },
   {

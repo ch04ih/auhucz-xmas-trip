@@ -1,11 +1,22 @@
-import { isGuideCityId, type GuideCityId } from '../data/cityGuides'
+import {
+  isGuideCityId,
+  type GuideCityId,
+  type GuideSectionId,
+} from '../data/cityGuides'
 import type { Tab } from '../data/types'
+
+const guideSections: GuideSectionId[] = ['eat', 'see', 'buy', 'tips']
+
+function isGuideSectionId(value: string): value is GuideSectionId {
+  return (guideSections as string[]).includes(value)
+}
 
 export interface AppRoute {
   tab: Tab
   day?: number
   placeId?: string
   cityId?: GuideCityId
+  guideSection?: GuideSectionId
 }
 
 export function parseHash(hash = window.location.hash): AppRoute {
@@ -29,7 +40,8 @@ export function parseHash(hash = window.location.hash): AppRoute {
   }
   if (parts[0] === 'city') {
     const cityId = parts[1] && isGuideCityId(parts[1]) ? parts[1] : 'budapest'
-    return { tab: 'city', cityId }
+    const guideSection = parts[2] && isGuideSectionId(parts[2]) ? parts[2] : undefined
+    return { tab: 'city', cityId, guideSection }
   }
   return { tab: 'home' }
 }
@@ -47,7 +59,8 @@ export function toHash(route: AppRoute): string {
     return route.placeId ? `#/places/${route.placeId}` : '#/places'
   }
   if (route.tab === 'city') {
-    return `#/city/${route.cityId ?? 'budapest'}`
+    const city = route.cityId ?? 'budapest'
+    return route.guideSection ? `#/city/${city}/${route.guideSection}` : `#/city/${city}`
   }
   return '#/'
 }

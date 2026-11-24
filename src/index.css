@@ -1471,9 +1471,9 @@ h3 {
   transform: translateX(-50%);
   width: min(560px, 100%);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr) 42px;
-  gap: 4px;
-  padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+  grid-template-columns: repeat(5, minmax(0, 1fr)) 40px;
+  gap: 2px;
+  padding: 10px 8px calc(10px + env(safe-area-inset-bottom)) 14px;
   background: var(--bar-bg);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--line);
@@ -1482,13 +1482,14 @@ h3 {
 }
 
 .tabbar > .tab {
+  position: relative;
   min-width: 0;
-  padding: 11px 2px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 10px 2px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
 }
 
 .tab,
@@ -1511,31 +1512,23 @@ h3 {
   color: #fff;
 }
 
-/* 用 mask 畫雪花，避免 iOS 把 ❄ 字元變成彩色 emoji */
-.tabbar > .tab.active::before {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 4px;
-  vertical-align: -1px;
-  background: #f1dca8;
-  --flake: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round' fill='none'%3E%3Cg%3E%3Cpath d='M0 -10.5V10.5M-3 -8.5L0 -5.5L3 -8.5M-3 8.5L0 5.5L3 8.5'/%3E%3C/g%3E%3Cg transform='rotate(60)'%3E%3Cpath d='M0 -10.5V10.5M-3 -8.5L0 -5.5L3 -8.5M-3 8.5L0 5.5L3 8.5'/%3E%3C/g%3E%3Cg transform='rotate(120)'%3E%3Cpath d='M0 -10.5V10.5M-3 -8.5L0 -5.5L3 -8.5M-3 8.5L0 5.5L3 8.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask: var(--flake) center / contain no-repeat;
-  mask: var(--flake) center / contain no-repeat;
+.tabbar > .tab .holly-card {
+  top: -7px;
+  left: -6px;
+  right: auto;
+  width: 28px;
+  height: 19px;
+  transform: rotate(-28deg);
+  z-index: 2;
 }
 
 .tab-more {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
+  width: 40px;
   padding-left: 0;
   padding-right: 0;
-}
-
-.tab-more.active::before {
-  content: none;
 }
 
 .tab-more-icon {
@@ -3471,16 +3464,10 @@ h3 {
   margin: 0;
 }
 
-button.home-city-panel {
-  display: block;
-  width: 100%;
+.home-city-panel {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  text-align: left;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
   background: var(--card);
   border: 1px solid var(--accent-line);
   border-radius: 16px;
@@ -3488,9 +3475,68 @@ button.home-city-panel {
 }
 
 .home-city-panel-head {
-  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 12px 12px 16px;
   background: var(--accent-soft);
   border-bottom: 1px solid #e8d5d3;
+}
+
+.home-city-panel-meta {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.home-city-section-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0;
+  padding: 8px 10px 5px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.home-city-section-chevron {
+  display: inline-block;
+  transform: translateY(-0.5px);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.home-city-panel-body {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 
 .home-city-panel-photo {
@@ -3502,15 +3548,7 @@ button.home-city-panel {
 
 .home-city-panel .guide-intro {
   margin: 0;
-  padding: 12px 16px 0;
-}
-
-.home-city-panel-cta {
-  display: inline-block;
-  margin: 10px 16px 14px;
-  font-size: 13px;
-  font-weight: 650;
-  color: var(--accent);
+  padding: 12px 16px 14px;
 }
 
 .guide-intro {
