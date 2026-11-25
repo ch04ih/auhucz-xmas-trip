@@ -623,12 +623,6 @@ export const cityGuides: CityGuide[] = [
         planned: false,
       },
       {
-        title: 'Baťa',
-        note: '捷克老牌鞋店，實用皮鞋與靴子；瓦茨拉夫廣場有大店',
-        mapsQuery: 'Baťa Václavské náměstí Prague',
-        planned: false,
-      },
-      {
         title: '捷克石榴石',
         note: '深紅色石榴石飾品，耳環與項鍊常見；買有信譽的店較安心',
         imageId: 'czech-garnet',

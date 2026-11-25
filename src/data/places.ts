@@ -1222,6 +1222,14 @@ export const places: Place[] = [
     tip: '07:30 退房出發，專車每人 $1,000、車程約 25 分。10:30 班機，國際線建議提早 3 小時到。',
     mapsQuery: 'Václav Havel Airport Prague',
   },
+  {
+    id: 'taotao',
+    name: '陶陶',
+    city: 'taipei',
+    category: 'experience',
+    intro: '回家最重要的迎接儀式。',
+    imagePosition: 'center 80%',
+  },
 ]
 
 export const placeMap = Object.fromEntries(places.map((p) => [p.id, p])) as Record<

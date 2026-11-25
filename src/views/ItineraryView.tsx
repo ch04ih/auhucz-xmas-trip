@@ -280,21 +280,31 @@ export function ItineraryView({ dayNumber, onSelectDay, onOpenPlace }: Props) {
             {day.subtitle && <p className="hero-sub">{day.subtitle}</p>}
             <p className="city-line">{day.cityLabel}</p>
             {day.note && <p className="note">{day.note}</p>}
-            {cover && (
-              <button
-                type="button"
-                className="day-cover"
-                onClick={() => onOpenPlace(cover.id)}
-              >
-                <FadeImage
-                  key={cover.id}
-                  src={placeImage(cover)}
-                  alt={cover.name}
-                  style={cover.imagePosition ? { objectPosition: cover.imagePosition } : undefined}
-                />
-                <span>{cover.name}</span>
-              </button>
-            )}
+            {cover &&
+              (cover.id === 'taotao' ? (
+                <div className="day-cover day-cover-tall" aria-label={cover.name}>
+                  <FadeImage
+                    key={cover.id}
+                    src={placeImage(cover)}
+                    alt={cover.name}
+                    style={cover.imagePosition ? { objectPosition: cover.imagePosition } : undefined}
+                  />
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="day-cover"
+                  onClick={() => onOpenPlace(cover.id)}
+                >
+                  <FadeImage
+                    key={cover.id}
+                    src={placeImage(cover)}
+                    alt={cover.name}
+                    style={cover.imagePosition ? { objectPosition: cover.imagePosition } : undefined}
+                  />
+                  <span>{cover.name}</span>
+                </button>
+              ))}
           </header>
 
           <section className="section">

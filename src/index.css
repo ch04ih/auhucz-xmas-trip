@@ -234,10 +234,16 @@ h3 {
   text-align: left;
 }
 
+.day-cover.day-cover-tall {
+  height: 380px;
+  cursor: default;
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+}
+
 .day-cover img {
   display: block;
   width: 100%;
-  height: 188px;
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.22s ease;
