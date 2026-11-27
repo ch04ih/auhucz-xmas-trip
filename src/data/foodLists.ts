@@ -197,6 +197,7 @@ export const foodListCities: FoodListCity[] = [
         rating: 4.1,
         reviews: 771,
         imageId: 'food-motto-brot',
+        imagePosition: 'center 72%',
         intro: '人氣麵包店；招牌是火腿三明治，麵包扎實、配料豐盛。',
         mapsQuery: 'Motto Brot Vienna',
       },
