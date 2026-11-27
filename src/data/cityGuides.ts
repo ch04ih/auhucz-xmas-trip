@@ -49,7 +49,7 @@ export const cityGuides: CityGuide[] = [
   {
     id: 'budapest',
     name: '布達佩斯',
-    coverImageId: 'parliament',
+    coverImageId: 'city-map-budapest',
     intro:
       '布達與佩斯本來是兩座城，中間隔著多瑙河。哈布斯堡王朝統治時期，在河上蓋了第一座固定大橋——鏈橋，把西岸布達的城堡山與東岸佩斯的熱鬧市區連起來；後來兩城在 1873 年正式合併成布達佩斯，國會大廈也是合併後全盛時期興建的。這裡冬天適合白天泡溫泉，晚上搭船看國會大廈點燈，並享受聖誕市集氛圍。',
     eat: [
@@ -283,8 +283,7 @@ export const cityGuides: CityGuide[] = [
   {
     id: 'vienna',
     name: '維也納',
-    coverImageId: 'stephansdom',
-    coverImagePosition: 'center 58%',
+    coverImageId: 'city-map-vienna',
     intro:
       '維也納以前是哈布斯堡王朝的首都，帝國在這裡統治了歐洲數百年，直到一戰後才結束。美泉宮是皇帝夏天住的宮殿，霍夫堡有茜茜博物館——她當年風靡全歐洲，很多人專程來認識她的故事。街上咖啡館很多，音樂也很有名；聖誕時市政廳前市集燈超亮，白天適合逛街，晚上可以去聽歌劇或音樂會。',
     eat: [
@@ -483,7 +482,7 @@ export const cityGuides: CityGuide[] = [
   {
     id: 'prague',
     name: '布拉格',
-    coverImageId: 'charles-bridge',
+    coverImageId: 'city-map-prague',
     intro:
       '布拉格以前是波希米亞王國的首都，查理四世的時候是全盛時期，查理大橋跟城堡區都是那時候蓋的——當時這裡幾乎是中歐最重要的城市之一。後來雖被劃進哈布斯堡王朝版圖，紅瓦屋頂跟老城廣場仍留著中世紀的感覺。白天從城堡一路往下走，晚上看查理大橋和老城廣場夜景，聖誕節時廣場還會有大聖誕樹和市集。',
     eat: [

@@ -165,6 +165,12 @@ export function CityGuideView({
             {stay.nights}　·　{stay.dates}
           </p>
         ) : null}
+        <FadeImage
+          className="guide-city-map"
+          src={placeImage(guide.coverImageId)}
+          alt={`${guide.name}景點相對位置圖`}
+          loading="lazy"
+        />
         <p className="guide-intro">{guide.intro}</p>
       </div>
 
