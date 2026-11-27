@@ -65,14 +65,15 @@ export const days444: DayPlan[] = [
       },
       {
         time: '12:35 – 15:00',
-        title: '飯店放行李 → 瓦茨街逛街 + 午餐',
+        title: '聖伊什特萬大教堂＆安德拉什大街',
         transit: '抵達後 Bolt／步行到飯店 · 約 10–15 分',
-        placeIds: ['hotel-moments', 'vaci-utca'],
+        brief: '飯店放行李➜附近吃午餐逛逛',
+        placeIds: ['hotel-moments', 'andrassy', 'st-stephen-basilica'],
       },
       {
         time: '15:00 – 17:00',
         title: '飯店 check-in 休息',
-        transit: '步行回飯店 · 約 8–12 分',
+        transit: '就在這一帶，走回飯店即可',
         brief: '台灣時間約晚上 22:00–24:00',
         placeIds: ['hotel-moments'],
       },
@@ -90,9 +91,9 @@ export const days444: DayPlan[] = [
     ],
     meals: {
       lunch: {
-        label: '瓦茨街周邊餐廳',
+        label: '安德拉希大道／大教堂周邊',
         time: '約 13:30',
-        placeIds: ['vaci-utca'],
+        placeIds: ['andrassy', 'st-stephen-basilica'],
       },
       dinner: {
         label: '市集小吃或大教堂周邊',
@@ -100,7 +101,7 @@ export const days444: DayPlan[] = [
         placeIds: ['st-stephen-market'],
       },
     },
-    transport: '機場地底搭電車至維也納中央車站，轉乘特快火車頭等艙直達布達佩斯；市區步行／Bolt。',
+    transport: '機場地底搭電車至維也納中央車站，轉乘特快火車頭等艙直達布達佩斯；市區以飯店周邊步行為主。',
     lodging: '布達佩斯時光飯店（1/4 晚）',
     lodgingPlaceId: 'hotel-moments',
   },
@@ -249,7 +250,7 @@ export const days444: DayPlan[] = [
       },
       {
         time: '15:30 – 17:30',
-        title: '逛街買看歌劇的小禮服',
+        title: '瓦茨街逛街買看歌劇的小禮服',
         transit: '黃線地鐵 M1 從 Hősök tere 站到 Vörösmarty tér 站 · 約 15 分',
         note: '從瓦茨街往回逛：Mango → Fashion Street 的 COS、Massimo Dutti → MARCIANO → MAX&Co.，最後一站就在飯店旁。同一家店同一張發票滿 68,000 福林（約 €175）可以辦退稅，最後在布拉格機場出境時蓋章。歌劇院沒有服裝規定，大衣會寄放，裡面那套要好看也要夠暖',
         placeIds: ['metro-m1'],
